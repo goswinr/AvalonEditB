@@ -212,6 +212,18 @@ namespace ICSharpCode.AvalonEdit.Folding
 			return pen;
 		}
 
+
+		SolidColorBrush backbgroundColor = null;
+		/// <summary>
+		/// Get or Set the background color of the full Margin
+		/// </summary>
+		public SolidColorBrush BackbgroundColor {
+			get { return backbgroundColor; }
+			set { backbgroundColor = value; }
+		}
+
+
+
 		/// <inheritdoc/>
 		protected override void OnRender(DrawingContext drawingContext)
 		{
@@ -219,6 +231,12 @@ namespace ICSharpCode.AvalonEdit.Folding
 				return;
 			if (TextView.VisualLines.Count == 0 || FoldingManager == null)
 				return;
+
+			// draw Background
+			if (backbgroundColor != null) {
+				Size renderSize = this.RenderSize;
+				drawingContext.DrawRectangle(backbgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
+			}
 
 			var allTextLines = TextView.VisualLines.SelectMany(vl => vl.TextLines).ToList();
 			Pen[] colors = new Pen[allTextLines.Count + 1];
