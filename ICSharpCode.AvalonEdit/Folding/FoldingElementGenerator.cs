@@ -136,12 +136,14 @@ namespace ICSharpCode.AvalonEdit.Folding
 
 				string title = foldingSection.Title;
 				if (string.IsNullOrEmpty(title))
-					title = "...";
+					title = " ... "; // the text schown in the folding box
 				var p = new VisualLineElementTextRunProperties(CurrentContext.GlobalTextRunProperties);
 				p.SetForegroundBrush(textBrush);
+			
+
 				var textFormatter = TextFormatterFactory.Create(CurrentContext.TextView);
 				var text = FormattedTextElement.PrepareText(textFormatter, title, p);
-				return new FoldingLineElement(foldingSection, text, foldedUntil - offset) { textBrush = textBrush };
+				return new FoldingLineElement(foldingSection, text, foldedUntil - offset) { textBrush = textBrush, textBrushBackground = foldingSection.BackbgroundColor  };
 			} else {
 				return null;
 			}
@@ -152,6 +154,7 @@ namespace ICSharpCode.AvalonEdit.Folding
 			readonly FoldingSection fs;
 
 			internal Brush textBrush;
+			internal Brush textBrushBackground; //added by Goswin
 
 			public FoldingLineElement(FoldingSection fs, TextLine text, int documentLength) : base(text, documentLength)
 			{
@@ -160,7 +163,7 @@ namespace ICSharpCode.AvalonEdit.Folding
 
 			public override TextRun CreateTextRun(int startVisualColumn, ITextRunConstructionContext context)
 			{
-				return new FoldingLineTextRun(this, this.TextRunProperties) { textBrush = textBrush };
+				return new FoldingLineTextRun(this, this.TextRunProperties) { textBrush = textBrush, textBrushBackground = textBrushBackground };
 			}
 
 			protected internal override void OnMouseDown(MouseButtonEventArgs e)
@@ -177,6 +180,7 @@ namespace ICSharpCode.AvalonEdit.Folding
 		sealed class FoldingLineTextRun : FormattedTextRun
 		{
 			internal Brush textBrush;
+			internal Brush textBrushBackground; //added by Goswin
 
 			public FoldingLineTextRun(FormattedTextElement element, TextRunProperties properties)
 				: base(element, properties)
@@ -187,7 +191,8 @@ namespace ICSharpCode.AvalonEdit.Folding
 			{
 				var metrics = Format(double.PositiveInfinity);
 				Rect r = new Rect(origin.X, origin.Y - metrics.Baseline, metrics.Width, metrics.Height);
-				drawingContext.DrawRectangle(null, new Pen(textBrush, 1), r);
+				//drawingContext.DrawRectangle(null, new Pen(textBrush, 1), r); // original
+				drawingContext.DrawRectangle(textBrushBackground, new Pen(textBrush, 1), r); // so that the colapsing text box can be highlighted too
 				base.Draw(drawingContext, origin, rightToLeft, sideways);
 			}
 		}
