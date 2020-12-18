@@ -17,6 +17,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System.Diagnostics;
+using System.Windows.Media;
 
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Rendering;
@@ -33,6 +34,16 @@ namespace ICSharpCode.AvalonEdit.Folding
 		bool isFolded;
 		internal CollapsedLineSection[] collapsedSections;
 		string title;
+
+		SolidColorBrush backbgroundColor = null;
+		/// <summary>
+		/// Get or Set the background color for the box in collapsed state
+		/// Call TextView.Redraw() if not showing.
+		/// </summary>
+		public SolidColorBrush BackbgroundColor {
+			get { return backbgroundColor; }
+			set { backbgroundColor = value; }
+		}
 
 		/// <summary>
 		/// Gets/sets if the section is folded.
@@ -91,6 +102,7 @@ namespace ICSharpCode.AvalonEdit.Folding
 
 		/// <summary>
 		/// Gets/Sets the text used to display the collapsed version of the folding section.
+		/// by default this is three dots: ' ... '
 		/// </summary>
 		public string Title {
 			get {
