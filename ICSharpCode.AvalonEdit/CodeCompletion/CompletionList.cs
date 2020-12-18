@@ -270,13 +270,18 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 			var listBoxItems = new ObservableCollection<ICompletionData>();
 			int bestIndex = -1;
 			int bestQuality = -1;
-			double bestPriority = 0;
+			double bestPriority = 0.0;
 			int i = 0;
 			foreach (var matchingItem in matchingItems) {
 				double priority = matchingItem.Item == suggestedItem ? double.PositiveInfinity : matchingItem.Item.Priority;
 				int quality = matchingItem.Quality;
-				if (quality > bestQuality || (quality == bestQuality && (priority > bestPriority))) {
-					bestIndex = i;
+				//if (quality > bestQuality || (quality == bestQuality && (priority > bestPriority))) {     // original if clause in Avalonedit
+				
+				// new clause
+				int incrQuality = quality + 1; // +1 to ignore case sensitve quality ranking
+				bool anygoodatall = quality > 0; // to still exclude none matches
+				if (quality > bestQuality || ( anygoodatall && incrQuality >= bestQuality && priority > bestPriority )) { // allow higher priority to win if quality is close
+				    bestIndex = i;
 					bestPriority = priority;
 					bestQuality = quality;
 				}
@@ -359,14 +364,14 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 			// 		3 = match substring case sensitive
 			//		2 = match substring
 			//		1 = match CamelCase
-			//		-1 = no match
+			//		-1 = no match			
 			if (query == itemText)
-				return 8;
+				return 8;			
 			if (string.Equals(itemText, query, StringComparison.InvariantCultureIgnoreCase))
 				return 7;
 
 			if (itemText.StartsWith(query, StringComparison.InvariantCulture))
-				return 6;
+				return 6;			
 			if (itemText.StartsWith(query, StringComparison.InvariantCultureIgnoreCase))
 				return 5;
 
