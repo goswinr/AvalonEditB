@@ -84,7 +84,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 
 		/// <inheritdoc/>
 		public override bool StandardLigatures {
-			get { return true; }
+			get { return false; }
 		}
 
 		/// <inheritdoc/>
