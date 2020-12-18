@@ -72,12 +72,28 @@ namespace ICSharpCode.AvalonEdit.Editing
 			return new Size(text.Width, 0);
 		}
 
+
+		SolidColorBrush backbgroundColor = null;
+		/// <summary>
+		/// Get or Set the background color of the full Margin
+		/// </summary>
+		public SolidColorBrush BackbgroundColor {
+			get { return backbgroundColor; }
+			set { backbgroundColor = value; }
+		}
+
 		/// <inheritdoc/>
 		protected override void OnRender(DrawingContext drawingContext)
 		{
 			TextView textView = this.TextView;
 			Size renderSize = this.RenderSize;
 			if (textView != null && textView.VisualLinesValid) {
+
+				// draw Background
+				if ( backbgroundColor != null) { 
+					drawingContext.DrawRectangle(backbgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
+				}
+
 				var foreground = (Brush)GetValue(Control.ForegroundProperty);
 				foreach (VisualLine line in textView.VisualLines) {
 					int lineNumber = line.FirstDocumentLine.LineNumber;
