@@ -1,22 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>netcoreapp3.0;net40;net45</TargetFrameworks>
+    <TargetFrameworks>net472</TargetFrameworks>    <!-- no net50-windows because no Thread.Abort() for fsi-->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ICSharpCode.AvalonEdit.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>ICSharpCode.AvalonEdit.xml</DocumentationFile>
-    <Company>ic#code</Company>
+    <Company>ICSharpCode</Company>
     <Copyright>2000-2020 AlphaSierraPapa for the SharpDevelop Team</Copyright>
-    <Description>AvalonEdit is the WPF-based text editor used in SharpDevelop. There are three builds of AvalonEdit included in this package: .NET 4.0, 4.5 and .NET Core 3.0.</Description>
-    <Version>6.1</Version>
-    <AssemblyVersion>6.1.0.0</AssemblyVersion>
-    <FileVersion>6.1.0.0</FileVersion>
+    <Description>AvalonEdit is the WPF-based text editor used in SharpDevelop. This Branch is used in Seff F# scripting editor </Description>
+    <Version>7.0</Version>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+    <FileVersion>7.0.0.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
+<PropertyGroup>
     <PackageId>AvalonEdit</PackageId>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -30,7 +31,7 @@
     <PackageTags>WPF Text Editor SharpDevelop AvalonEdit</PackageTags>
     <PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes>
   </PropertyGroup>
-
+  <!--
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
@@ -42,10 +43,11 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  </ItemGroup>-->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
+  </ItemGroup>  
+
   <ItemGroup>
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
@@ -58,6 +60,7 @@
     <Resource Include="Search\prev.png" />
     <Resource Include="themes\RightArrow.cur" />
   </ItemGroup>
+  
   <ItemGroup>
     <None Remove="Highlighting\Resources\*" />
     <EmbeddedResource Include="Highlighting\Resources\*" />
