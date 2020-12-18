@@ -36,6 +36,16 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 		ToolTip toolTip = new ToolTip();
 
 		/// <summary>
+		/// Gets and sets the ToolTip Content of the of this completion window.
+		/// So that content can be set here or via completion line Description
+		/// </summary>
+		public object ToolTipContent { // Added by Goswin
+			get { return toolTip.Content ; }
+			set { toolTip.Content = value; }
+		}
+
+
+		/// <summary>
 		/// Gets the completion list used in this completion window.
 		/// </summary>
 		public CompletionList CompletionList {
