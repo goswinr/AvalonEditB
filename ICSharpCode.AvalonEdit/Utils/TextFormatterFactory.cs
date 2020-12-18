@@ -70,16 +70,33 @@ namespace ICSharpCode.AvalonEdit.Utils
 				emSize = TextBlock.GetFontSize(element);
 			if (foreground == null)
 				foreground = TextBlock.GetForeground(element);
-			return new FormattedText(
-				text,
-				CultureInfo.CurrentCulture,
-				FlowDirection.LeftToRight,
-				typeface,
-				emSize.Value,
-				foreground,
-				null,
-				TextOptions.GetTextFormattingMode(element)
-			);
+
+			//new:
+			var pixelsPerDip = VisualTreeHelper.GetDpi(element).PixelsPerDip;
+			//var formating = TextOptions.GetTextFormattingMode(element);
+			FormattedText formattedText = new FormattedText(
+							text,
+							CultureInfo.CurrentCulture,
+							FlowDirection.LeftToRight,
+							typeface,
+							emSize.Value,
+							foreground, pixelsPerDip
+						);
+
+			//orignal but obsolete:
+			/*
+			FormattedText formattedTextOLD = new FormattedText(
+							text,
+							CultureInfo.CurrentCulture,
+							FlowDirection.LeftToRight,
+							typeface,
+							emSize.Value,
+							foreground,
+							null,
+							TextOptions.GetTextFormattingMode(element)
+						);
+			*/
+			return formattedText;
 		}
 	}
 }
