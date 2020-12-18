@@ -1058,6 +1058,11 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			};
 		}
 
+		/// <summary>
+		/// To limit the amount of InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?") printed in log
+		/// </summary>
+		public int linesCollapsedVisualPosOffThrowCount = 0;
+
 		VisualLine BuildVisualLine(DocumentLine documentLine,
 								   TextRunProperties globalTextRunProperties,
 								   VisualLineTextParagraphProperties paragraphProperties,
@@ -1079,7 +1084,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 
 			visualLine.ConstructVisualElements(textSource, elementGeneratorsArray);
 
-			if (visualLine.FirstDocumentLine != visualLine.LastDocumentLine) {
+			if (visualLine.FirstDocumentLine != visualLine.LastDocumentLine) { // so its a folding
 				// Check whether the lines are collapsed correctly:
 				double firstLinePos = heightTree.GetVisualPosition(visualLine.FirstDocumentLine.NextLine);
 				double lastLinePos = heightTree.GetVisualPosition(visualLine.LastDocumentLine.NextLine ?? visualLine.LastDocumentLine);
@@ -1088,7 +1093,16 @@ namespace ICSharpCode.AvalonEdit.Rendering
 						if (!heightTree.GetIsCollapsed(i))
 							throw new InvalidOperationException("Line " + i + " was skipped by a VisualLineElementGenerator, but it is not collapsed.");
 					}
-					throw new InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?");
+					
+					++linesCollapsedVisualPosOffThrowCount;
+					if (linesCollapsedVisualPosOffThrowCount < 20) { 
+						string err =
+							"THIS ERROR CAN HAPPEN WHEN SCROLLING FAST THROUGH A LARGE FILE WITH RECENTLY COLLAPSED FOLDINGS. IT CAN BE IGNORED." +
+							$"visualLine.FirstDocumentLine({visualLine.FirstDocumentLine}) != visualLine.LastDocumentLine({visualLine.LastDocumentLine})" + Environment.NewLine +
+							$"(!firstLinePos({firstLinePos}).IsClose(lastLinePos({lastLinePos}))";						
+						throw new InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?" + Environment.NewLine + err);
+					}
+					//throw new InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?" );
 				}
 			}
 
