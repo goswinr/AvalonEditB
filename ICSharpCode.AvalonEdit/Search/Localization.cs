@@ -42,7 +42,7 @@ namespace ICSharpCode.AvalonEdit.Search
 		/// Default: 'Use regular expressions'
 		/// </summary>
 		public virtual string UseRegexText {
-			get { return "Use regular expressions"; }
+			get { return "Use regex"; } //get { return "Use regular expressions"; }
 		}
 
 		/// <summary>
