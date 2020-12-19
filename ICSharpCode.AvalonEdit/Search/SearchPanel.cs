@@ -34,6 +34,7 @@ namespace ICSharpCode.AvalonEdit.Search
 	/// <summary>
 	/// Provides search functionality for AvalonEdit. It is displayed in the top-right corner of the TextArea.
 	/// </summary>
+	
 	public class SearchPanel : Control
 	{
 		TextArea textArea;
@@ -43,7 +44,6 @@ namespace ICSharpCode.AvalonEdit.Search
 		TextBox searchTextBox;
 		TextBox replaceTextBox;
 		Border searchPanel;
-		Popup dropdownPopup;
 		SearchPanelAdorner adorner;
 
 		#region DependencyProperties
@@ -299,11 +299,9 @@ namespace ICSharpCode.AvalonEdit.Search
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
-
 			searchPanel = Template.FindName("PART_searchPanel", this) as Border;
 			searchTextBox = Template.FindName("PART_searchTextBox", this) as TextBox;
 			replaceTextBox = Template.FindName("PART_replaceTextBox", this) as TextBox;
-			dropdownPopup = Template.FindName("PART_dropdownPopup", this) as Popup;
 		}
 
 		void ValidateSearchText()
@@ -485,8 +483,7 @@ namespace ICSharpCode.AvalonEdit.Search
 			var layer = AdornerLayer.GetAdornerLayer(textArea);
 			if (layer != null)
 				layer.Remove(adorner);
-			if (dropdownPopup != null)
-				dropdownPopup.IsOpen = false;
+			//if (dropdownPopup != null) opdownPopup.IsOpen = false; // Removed by search an replace box
 			messageView.IsOpen = false;
 			textArea.TextView.BackgroundRenderers.Remove(renderer);
 			if (hasFocus)
