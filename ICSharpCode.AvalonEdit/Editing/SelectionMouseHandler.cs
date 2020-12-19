@@ -73,8 +73,10 @@ namespace ICSharpCode.AvalonEdit.Editing
 		void ITextAreaInputHandler.Attach()
 		{
 			textArea.MouseLeftButtonDown += textArea_MouseLeftButtonDown;
+			textArea.MouseDown += textArea_MouseMiddleButtonDown;
 			textArea.MouseMove += textArea_MouseMove;
 			textArea.MouseLeftButtonUp += textArea_MouseLeftButtonUp;
+			textArea.MouseUp += textArea_MouseMiddleButtonUp; // there is no event for middle button up
 			textArea.QueryCursor += textArea_QueryCursor;
 			textArea.DocumentChanged += textArea_DocumentChanged;
 			textArea.OptionChanged += textArea_OptionChanged;
@@ -89,8 +91,10 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			mode = MouseSelectionMode.None;
 			textArea.MouseLeftButtonDown -= textArea_MouseLeftButtonDown;
+			textArea.MouseDown -= textArea_MouseMiddleButtonDown;
 			textArea.MouseMove -= textArea_MouseMove;
 			textArea.MouseLeftButtonUp -= textArea_MouseLeftButtonUp;
+			textArea.MouseUp -= textArea_MouseMiddleButtonUp; // there is no event for middle button up
 			textArea.QueryCursor -= textArea_QueryCursor;
 			textArea.DocumentChanged -= textArea_DocumentChanged;
 			textArea.OptionChanged -= textArea_OptionChanged;
@@ -460,6 +464,75 @@ namespace ICSharpCode.AvalonEdit.Editing
 			e.Handled = true;
 		}
 
+		void textArea_MouseMiddleButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Middle) {
+				mode = MouseSelectionMode.None;
+				if (textArea.Document == null) {
+					// Avoid entering any selection mode when there's no document attached.
+					return;
+				}
+				if (!e.Handled && e.ChangedButton == MouseButton.Middle) { //redundant check ?
+					ModifierKeys modifiers = Keyboard.Modifiers;
+					bool shift = (modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
+					if (enableTextDragDrop && e.ClickCount == 1 && !shift) {
+						int visualColumn;
+						bool isAtEndOfLine;
+						int offset = GetOffsetFromMousePosition(e, out visualColumn, out isAtEndOfLine);
+						if (textArea.Selection.Contains(offset)) {
+							if (textArea.CaptureMouse()) {
+								mode = MouseSelectionMode.PossibleDragStart;
+								possibleDragStartMousePos = e.GetPosition(textArea);
+							}
+							e.Handled = true;
+							return;
+						}
+					}
+
+					var oldPosition = textArea.Caret.Position;
+					SetCaretOffsetToMousePosition(e);
+
+
+					if (!shift) {
+						textArea.ClearSelection();
+					}
+					if (textArea.CaptureMouse()) {
+						if (e.ClickCount == 1 && ((modifiers & ModifierKeys.Control) == 0) && textArea.Options.EnableRectangularSelection) {
+							mode = MouseSelectionMode.Rectangular;
+							if (shift && textArea.Selection is RectangleSelection) {
+								textArea.Selection = textArea.Selection.StartSelectionOrSetEndpoint(oldPosition, textArea.Caret.Position);
+							}
+						} else {
+							SimpleSegment startWord;
+							if (e.ClickCount == 3) {
+								mode = MouseSelectionMode.WholeLine;
+								startWord = GetLineAtMousePosition(e);
+							} else {
+								mode = MouseSelectionMode.WholeWord;
+								startWord = GetWordAtMousePosition(e);
+							}
+							if (startWord == SimpleSegment.Invalid) {
+								mode = MouseSelectionMode.None;
+								textArea.ReleaseMouseCapture();
+								return;
+							}
+							if (shift && !textArea.Selection.IsEmpty) {
+								if (startWord.Offset < textArea.Selection.SurroundingSegment.Offset) {
+									textArea.Selection = textArea.Selection.SetEndpoint(new TextViewPosition(textArea.Document.GetLocation(startWord.Offset)));
+								} else if (startWord.EndOffset > textArea.Selection.SurroundingSegment.EndOffset) {
+									textArea.Selection = textArea.Selection.SetEndpoint(new TextViewPosition(textArea.Document.GetLocation(startWord.EndOffset)));
+								}
+								this.startWord = new AnchorSegment(textArea.Document, textArea.Selection.SurroundingSegment);
+							} else {
+								textArea.Selection = Selection.Create(textArea, startWord.Offset, startWord.EndOffset);
+								this.startWord = new AnchorSegment(textArea.Document, startWord.Offset, startWord.Length);
+							}
+						}
+					}
+				}
+				e.Handled = true;
+			}
+		}
 		public MouseSelectionMode MouseSelectionMode {
 			get { return mode; }
 			set {
@@ -671,5 +744,24 @@ namespace ICSharpCode.AvalonEdit.Editing
 			textArea.ReleaseMouseCapture();
 		}
 		#endregion
+
+		void textArea_MouseMiddleButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Middle) {
+				if (mode == MouseSelectionMode.None || e.Handled)
+					return;
+				e.Handled = true;
+				if (mode == MouseSelectionMode.PossibleDragStart) {
+					// -> this was not a drag start (mouse didn't move after mousedown)
+					SetCaretOffsetToMousePosition(e);
+					textArea.ClearSelection();
+				} else if (mode == MouseSelectionMode.Normal || mode == MouseSelectionMode.WholeWord || mode == MouseSelectionMode.WholeLine || mode == MouseSelectionMode.Rectangular) {
+					ExtendSelectionToMouse(e);
+				}
+				mode = MouseSelectionMode.None;
+				textArea.ReleaseMouseCapture();
+			}
+
+		}
 	}
 }
