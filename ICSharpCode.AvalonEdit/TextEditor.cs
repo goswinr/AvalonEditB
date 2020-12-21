@@ -808,6 +808,7 @@ namespace ICSharpCode.AvalonEdit
 		#region TextBox methods
 		/// <summary>
 		/// Gets/Sets the selected text.
+		/// If the selection is rectangular this will include the text between the segments too.
 		/// </summary>
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string SelectedText {
@@ -879,6 +880,7 @@ namespace ICSharpCode.AvalonEdit
 
 		/// <summary>
 		/// Selects the specified text section.
+		/// Puts the Caret at end of selection.
 		/// </summary>
 		public void Select(int start, int length)
 		{
