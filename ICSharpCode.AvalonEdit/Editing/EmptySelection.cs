@@ -25,34 +25,60 @@ using ICSharpCode.AvalonEdit.Utils;
 
 namespace ICSharpCode.AvalonEdit.Editing
 {
-	sealed class EmptySelection : Selection
+	/// <summary>
+	/// Dummy value for no selction present.
+	/// Exposed publicly to allow type checking on TextArea.Selection
+	/// </summary>
+	public sealed class EmptySelection : Selection
 	{
+
+		/// <summary>
+		/// Returns EmptySelection
+		/// </summary>
 		public EmptySelection(TextArea textArea) : base(textArea)
 		{
 		}
 
+		/// <summary>
+		/// Returns this instance
+		/// </summary>
 		public override Selection UpdateOnDocumentChange(DocumentChangeEventArgs e)
 		{
 			return this;
 		}
 
+		/// <summary>
+		/// Returns TextViewPosition(TextLocation.Empty)
+		/// </summary>
 		public override TextViewPosition StartPosition {
 			get { return new TextViewPosition(TextLocation.Empty); }
 		}
 
+		/// <summary>
+		/// Returns TextViewPosition(TextLocation.Empty)
+		/// </summary>
 		public override TextViewPosition EndPosition {
 			get { return new TextViewPosition(TextLocation.Empty); }
 		}
 
+		/// <summary>
+		/// Returns null
+		/// </summary>
 		public override ISegment SurroundingSegment {
 			get { return null; }
 		}
 
+		/// <summary>
+		/// Raises NotSupportedException()
+		/// </summary>
 		public override Selection SetEndpoint(TextViewPosition endPosition)
 		{
 			throw new NotSupportedException();
 		}
 
+		/// <summary>
+		/// Returns a new valil seelction if possible
+		/// </summary>
 		public override Selection StartSelectionOrSetEndpoint(TextViewPosition startPosition, TextViewPosition endPosition)
 		{
 			var document = textArea.Document;
@@ -61,15 +87,24 @@ namespace ICSharpCode.AvalonEdit.Editing
 			return Create(textArea, startPosition, endPosition);
 		}
 
+		/// <summary>
+		/// Returns empty list
+		/// </summary>
 		public override IEnumerable<SelectionSegment> Segments {
 			get { return Empty<SelectionSegment>.Array; }
 		}
 
+		/// <summary>
+		/// Returns empty string
+		/// </summary>
 		public override string GetText()
 		{
 			return string.Empty;
 		}
 
+		/// <summary>
+		/// Inserts text at caret
+		/// </summary>
 		public override void ReplaceSelectionWithText(string newText)
 		{
 			if (newText == null)
@@ -83,16 +118,22 @@ namespace ICSharpCode.AvalonEdit.Editing
 			textArea.Caret.VisualColumn = -1;
 		}
 
+		/// <summary>
+		/// returns 0
+		/// </summary>
 		public override int Length {
 			get { return 0; }
 		}
 
-		// Use reference equality because there's only one EmptySelection per text area.
+		/// <summary>
+		/// Uses reference equality because there's only one EmptySelection per text area.
+		/// </summary>		
 		public override int GetHashCode()
 		{
 			return RuntimeHelpers.GetHashCode(this);
 		}
-
+		
+		/// <inheritdoc/>
 		public override bool Equals(object obj)
 		{
 			return this == obj;
