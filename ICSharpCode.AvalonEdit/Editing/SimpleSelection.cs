@@ -27,7 +27,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 	/// <summary>
 	/// A simple selection.
 	/// </summary>
-	sealed class SimpleSelection : Selection
+	public sealed class SimpleSelection : Selection
 	{
 		readonly TextViewPosition start, end;
 		readonly int startOffset, endOffset;
@@ -35,7 +35,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 		/// <summary>
 		/// Creates a new SimpleSelection instance.
 		/// </summary>
-		internal SimpleSelection(TextArea textArea, TextViewPosition start, TextViewPosition end)
+		public SimpleSelection(TextArea textArea, TextViewPosition start, TextViewPosition end)
 			: base(textArea)
 		{
 			this.start = start;
@@ -90,11 +90,11 @@ namespace ICSharpCode.AvalonEdit.Editing
 				}
 			}
 		}
-
+		/// <inheritdoc/>
 		public override TextViewPosition StartPosition {
 			get { return start; }
 		}
-
+		/// <inheritdoc/>
 		public override TextViewPosition EndPosition {
 			get { return end; }
 		}
@@ -136,7 +136,8 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			return Create(textArea, start, endPosition);
 		}
-
+		
+		/// <inheritdoc/>
 		public override Selection StartSelectionOrSetEndpoint(TextViewPosition startPosition, TextViewPosition endPosition)
 		{
 			var document = textArea.Document;
