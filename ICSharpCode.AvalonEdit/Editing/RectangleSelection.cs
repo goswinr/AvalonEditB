@@ -331,6 +331,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 					pos = new TextViewPosition(document.GetLocation(editOffset + firstInsertionLength));
 					textArea.ClearSelection();
 				}
+				//TODO, BUG ! on some fontsizes, like 17.5 Consolas, in rectangular selection this will put the cursor one line higher eachtime 
 				textArea.Caret.Position = textArea.TextView.GetPosition(new Point(GetXPos(textArea, pos), textArea.TextView.GetVisualTopByDocumentLine(Math.Max(startLine, endLine)))).GetValueOrDefault();
 			}
 		}
