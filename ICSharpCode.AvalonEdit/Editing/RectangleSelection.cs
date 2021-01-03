@@ -298,6 +298,8 @@ namespace ICSharpCode.AvalonEdit.Editing
 
 		/// <inheritdoc/>
 		public override void ReplaceSelectionWithText(string newText)
+		//this method is never used in Seff there is a custom implementation of it including catching the textEnteringPreview event, 
+		//to avaid inconsistent behaviour at somne fontsizes like 17.5 usig consolas
 		{
 			if (newText == null)
 				throw new ArgumentNullException("newText");
