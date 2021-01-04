@@ -583,7 +583,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			int visualColumn = GetVisualColumn(visualPosition, allowVirtualSpace, out isAtEndOfLine);
 			int documentOffset = GetRelativeOffset(visualColumn) + this.FirstDocumentLine.Offset;
 			TextViewPosition pos = new TextViewPosition(this.Document.GetLocation(documentOffset), visualColumn);
-			pos.IsAtEndOfLine = isAtEndOfLine;
+			pos.IsAtEndOfWrapedLine = isAtEndOfLine;
 			return pos;
 		}
 
@@ -600,7 +600,7 @@ namespace ICSharpCode.AvalonEdit.Rendering
 			int visualColumn = GetVisualColumnFloor(visualPosition, allowVirtualSpace, out isAtEndOfLine);
 			int documentOffset = GetRelativeOffset(visualColumn) + this.FirstDocumentLine.Offset;
 			TextViewPosition pos = new TextViewPosition(this.Document.GetLocation(documentOffset), visualColumn);
-			pos.IsAtEndOfLine = isAtEndOfLine;
+			pos.IsAtEndOfWrapedLine = isAtEndOfLine;
 			return pos;
 		}
 

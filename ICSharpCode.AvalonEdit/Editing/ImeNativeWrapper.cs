@@ -177,7 +177,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 			// in those cases. It should be refreshed immediately.
 			if (source.RootVisual == null || !source.RootVisual.IsAncestorOf(textView))
 				return EMPTY_RECT;
-			TextLine line = vl.GetTextLine(pos.VisualColumn, pos.IsAtEndOfLine);
+			TextLine line = vl.GetTextLine(pos.VisualColumn, pos.IsAtEndOfWrapedLine);
 			Rect displayRect;
 			// calculate the display rect for the current character
 			if (pos.VisualColumn < vl.VisualLengthWithEndOfLineMarker) {

@@ -209,7 +209,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 			}
 			DocumentLine caretLine = textView.Document.GetLineByNumber(caretPosition.Line);
 			VisualLine visualLine = textView.GetOrConstructVisualLine(caretLine);
-			TextLine textLine = visualLine.GetTextLine(caretPosition.VisualColumn, caretPosition.IsAtEndOfLine);
+			TextLine textLine = visualLine.GetTextLine(caretPosition.VisualColumn, caretPosition.IsAtEndOfWrapedLine);
 			switch (direction) {
 				case CaretMovementType.CharLeft:
 					desiredXPos = double.NaN;
@@ -264,7 +264,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 		{
 			int newVC = visualLine.GetTextLineVisualStartColumn(textLine) + textLine.Length - textLine.NewlineLength;
 			TextViewPosition pos = visualLine.GetTextViewPosition(newVC);
-			pos.IsAtEndOfLine = true;
+			pos.IsAtEndOfWrapedLine = true;
 			return pos;
 		}
 		#endregion

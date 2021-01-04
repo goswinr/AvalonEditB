@@ -179,7 +179,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 				bool isAtEndOfLine;
 				int offset = GetOffsetFromMousePosition(e.GetPosition(textArea.TextView), out visualColumn, out isAtEndOfLine);
 				if (offset >= 0) {
-					textArea.Caret.Position = new TextViewPosition(textArea.Document.GetLocation(offset), visualColumn) { IsAtEndOfLine = isAtEndOfLine };
+					textArea.Caret.Position = new TextViewPosition(textArea.Document.GetLocation(offset), visualColumn) { IsAtEndOfWrapedLine = isAtEndOfLine };
 					textArea.Caret.DesiredXPos = double.NaN;
 					if (textArea.ReadOnlySectionProvider.CanInsert(offset)) {
 						if ((e.AllowedEffects & DragDropEffects.Move) == DragDropEffects.Move
@@ -694,7 +694,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 				offset = offset.CoerceValue(allowedSegment.Offset, allowedSegment.EndOffset);
 			}
 			if (offset >= 0) {
-				textArea.Caret.Position = new TextViewPosition(textArea.Document.GetLocation(offset), visualColumn) { IsAtEndOfLine = isAtEndOfLine };
+				textArea.Caret.Position = new TextViewPosition(textArea.Document.GetLocation(offset), visualColumn) { IsAtEndOfWrapedLine = isAtEndOfLine };
 				textArea.Caret.DesiredXPos = double.NaN;
 			}
 		}

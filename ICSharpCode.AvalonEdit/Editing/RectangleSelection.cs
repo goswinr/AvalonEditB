@@ -163,7 +163,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 			DocumentLine documentLine = textArea.Document.GetLineByNumber(pos.Line);
 			VisualLine visualLine = textArea.TextView.GetOrConstructVisualLine(documentLine);
 			int vc = visualLine.ValidateVisualColumn(pos, true);
-			TextLine textLine = visualLine.GetTextLine(vc, pos.IsAtEndOfLine);
+			TextLine textLine = visualLine.GetTextLine(vc, pos.IsAtEndOfWrapedLine);
 			return visualLine.GetTextLineVisualXPosition(textLine, vc);
 		}
 

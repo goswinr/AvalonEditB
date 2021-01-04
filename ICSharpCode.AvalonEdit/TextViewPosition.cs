@@ -29,7 +29,7 @@ namespace ICSharpCode.AvalonEdit
 	public struct TextViewPosition : IEquatable<TextViewPosition>, IComparable<TextViewPosition>
 	{
 		int line, column, visualColumn;
-		bool isAtEndOfLine;
+		bool isAtEndOfWrapedLine;
 
 		/// <summary>
 		/// Gets/Sets Location.
@@ -73,15 +73,15 @@ namespace ICSharpCode.AvalonEdit
 		/// When word-wrap is enabled and a line is wrapped at a position where there is no space character;
 		/// then both the end of the first TextLine and the beginning of the second TextLine
 		/// refer to the same position in the document, and also have the same visual column.
-		/// In this case, the IsAtEndOfLine property is used to distinguish between the two cases:
+		/// In this case, the IsAtEndOfWrapedLine property is used to distinguish between the two cases:
 		/// the value <c>true</c> indicates that the position refers to the end of the previous TextLine;
 		/// the value <c>false</c> indicates that the position refers to the beginning of the next TextLine.
 		/// 
 		/// If this position is not at such a wrapping position, the value of this property has no effect.
 		/// </summary>
-		public bool IsAtEndOfLine {
-			get { return isAtEndOfLine; }
-			set { isAtEndOfLine = value; }
+		public bool IsAtEndOfWrapedLine {
+			get { return isAtEndOfWrapedLine; }
+			set { isAtEndOfWrapedLine = value; }
 		}
 
 		/// <summary>
@@ -92,7 +92,7 @@ namespace ICSharpCode.AvalonEdit
 			this.line = line;
 			this.column = column;
 			this.visualColumn = visualColumn;
-			this.isAtEndOfLine = false;
+			this.isAtEndOfWrapedLine = false;
 		}
 
 		/// <summary>
@@ -111,7 +111,7 @@ namespace ICSharpCode.AvalonEdit
 			this.line = location.Line;
 			this.column = location.Column;
 			this.visualColumn = visualColumn;
-			this.isAtEndOfLine = false;
+			this.isAtEndOfWrapedLine = false;
 		}
 
 		/// <summary>
@@ -126,8 +126,8 @@ namespace ICSharpCode.AvalonEdit
 		public override string ToString()
 		{
 			return string.Format(CultureInfo.InvariantCulture,
-								 "[TextViewPosition Line={0} Column={1} VisualColumn={2} IsAtEndOfLine={3}]",
-								 this.line, this.column, this.visualColumn, this.isAtEndOfLine);
+								 "[TextViewPosition Line={0} Column={1} VisualColumn={2} IsAtEndOfWrapedLine={3}]",
+								 this.line, this.column, this.visualColumn, this.IsAtEndOfWrapedLine);
 		}
 
 		#region Equals and GetHashCode implementation
@@ -146,7 +146,7 @@ namespace ICSharpCode.AvalonEdit
 		/// <inheritdoc/>
 		public override int GetHashCode()
 		{
-			int hashCode = isAtEndOfLine ? 115817 : 0;
+			int hashCode = isAtEndOfWrapedLine ? 115817 : 0;
 			unchecked {
 				hashCode += 1000000007 * Line.GetHashCode();
 				hashCode += 1000000009 * Column.GetHashCode();
@@ -160,7 +160,7 @@ namespace ICSharpCode.AvalonEdit
 		/// </summary>
 		public bool Equals(TextViewPosition other)
 		{
-			return this.Line == other.Line && this.Column == other.Column && this.VisualColumn == other.VisualColumn && this.IsAtEndOfLine == other.IsAtEndOfLine;
+			return this.Line == other.Line && this.Column == other.Column && this.VisualColumn == other.VisualColumn && this.IsAtEndOfWrapedLine == other.IsAtEndOfWrapedLine;
 		}
 
 		/// <summary>
@@ -189,9 +189,9 @@ namespace ICSharpCode.AvalonEdit
 			r = this.visualColumn.CompareTo(other.visualColumn);
 			if (r != 0)
 				return r;
-			if (isAtEndOfLine && !other.isAtEndOfLine)
+			if (isAtEndOfWrapedLine && !other.isAtEndOfWrapedLine)
 				return -1;
-			else if (!isAtEndOfLine && other.isAtEndOfLine)
+			else if (!isAtEndOfWrapedLine && other.isAtEndOfWrapedLine)
 				return 1;
 			return 0;
 		}
