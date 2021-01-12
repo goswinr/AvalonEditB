@@ -436,9 +436,8 @@ namespace ICSharpCode.AvalonEdit.Editing
 				if (!string.IsNullOrEmpty(text)) {
 					dataObject = pastingEventArgs.DataObject;
 					bool rectangular = dataObject.GetDataPresent(RectangleSelection.RectangularSelectionDataType);
-					if (textArea.AlternativeRectangularPaste != null) 
+					if (textArea.AlternativeRectangularPaste != null && textArea.Selection is RectangleSelection) 
 						{ textArea.AlternativeRectangularPaste(text,rectangular); } // This is to avoid a bug in recreating the recangular selection at some font sizes 
-
 					else {						
 						bool fullLine = textArea.Options.CutCopyWholeLine && dataObject.GetDataPresent(LineSelectedType);
 
