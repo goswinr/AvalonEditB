@@ -412,6 +412,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 			}
 		}
 
+
 		static void OnPaste(object target, ExecutedRoutedEventArgs args)
 		{
 			TextArea textArea = GetTextArea(target);
@@ -434,19 +435,24 @@ namespace ICSharpCode.AvalonEdit.Editing
 
 				if (!string.IsNullOrEmpty(text)) {
 					dataObject = pastingEventArgs.DataObject;
-					bool fullLine = textArea.Options.CutCopyWholeLine && dataObject.GetDataPresent(LineSelectedType);
 					bool rectangular = dataObject.GetDataPresent(RectangleSelection.RectangularSelectionDataType);
+					if (textArea.AlternativeRectangularPaste != null) 
+						{ textArea.AlternativeRectangularPaste(text,rectangular); } // This is to avoid a bug in recreating the recangular selection at some font sizes 
 
-					if (fullLine) {
-						DocumentLine currentLine = textArea.Document.GetLineByNumber(textArea.Caret.Line);
-						if (textArea.ReadOnlySectionProvider.CanInsert(currentLine.Offset)) {
-							textArea.Document.Insert(currentLine.Offset, text);
-						}
-					} else if (rectangular && textArea.Selection.IsEmpty && !(textArea.Selection is RectangleSelection)) {
-						if (!RectangleSelection.PerformRectangularPaste(textArea, textArea.Caret.Position, text, false))
+					else {						
+						bool fullLine = textArea.Options.CutCopyWholeLine && dataObject.GetDataPresent(LineSelectedType);
+
+						if (fullLine) {
+							DocumentLine currentLine = textArea.Document.GetLineByNumber(textArea.Caret.Line);
+							if (textArea.ReadOnlySectionProvider.CanInsert(currentLine.Offset)) {
+								textArea.Document.Insert(currentLine.Offset, text);
+							}
+						} else if (rectangular && textArea.Selection.IsEmpty && !(textArea.Selection is RectangleSelection)) {
+							if (!RectangleSelection.PerformRectangularPaste(textArea, textArea.Caret.Position, text, false))
+								textArea.ReplaceSelectionWithText(text);
+						} else {
 							textArea.ReplaceSelectionWithText(text);
-					} else {
-						textArea.ReplaceSelectionWithText(text);
+						}
 					}
 				}
 				textArea.Caret.BringCaretToView();

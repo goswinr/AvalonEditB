@@ -44,6 +44,14 @@ namespace ICSharpCode.AvalonEdit.Editing
 	{
 		internal readonly ImeSupport ime;
 
+		/// <summary>
+		/// If this is set to something other than null the  the on-paste event will only call this if a rectangular selection is present 
+		/// This is to avoid a bug in recreating the recangular selection at some font sizes 
+		/// First Arg is the text to paste, 
+		/// Second Arg whether it is a copy of rectangular selection.
+		/// </summary>
+		public Action<string, bool> AlternativeRectangularPaste = null;
+
 		#region Constructor
 		static TextArea()
 		{
