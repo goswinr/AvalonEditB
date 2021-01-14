@@ -61,15 +61,17 @@ namespace ICSharpCode.AvalonEdit.Editing
 		static EditingCommandHandler()
 		{
 			CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, OnDelete(CaretMovementType.None), CanDelete));
-			AddBinding(EditingCommands.Delete, ModifierKeys.None, Key.Delete, OnDelete(CaretMovementType.CharRight));
-			AddBinding(EditingCommands.DeleteNextWord, ModifierKeys.Control, Key.Delete, OnDelete(CaretMovementType.WordRight));
-			AddBinding(EditingCommands.Backspace, ModifierKeys.None, Key.Back, OnDelete(CaretMovementType.Backspace));
-			InputBindings.Add(TextAreaDefaultInputHandler.CreateFrozenKeyBinding(EditingCommands.Backspace, ModifierKeys.Shift, Key.Back)); // make Shift-Backspace do the same as plain backspace
-			AddBinding(EditingCommands.DeletePreviousWord, ModifierKeys.Control, Key.Back, OnDelete(CaretMovementType.WordLeft));
-			AddBinding(EditingCommands.EnterParagraphBreak, ModifierKeys.None, Key.Enter, OnEnter);
-			AddBinding(EditingCommands.EnterLineBreak, ModifierKeys.Shift, Key.Enter, OnEnter);
-			AddBinding(EditingCommands.TabForward, ModifierKeys.None, Key.Tab, OnTab);
-			AddBinding(EditingCommands.TabBackward, ModifierKeys.Shift, Key.Tab, OnShiftTab);
+
+			AddBinding(EditingCommands.Delete,				ModifierKeys.None,		Key.Delete, OnDelete(CaretMovementType.CharRight));
+			AddBinding(EditingCommands.DeleteNextWord,		ModifierKeys.Control,	Key.Delete, OnDelete(CaretMovementType.WordRight));
+			AddBinding(EditingCommands.Backspace,			ModifierKeys.None,		Key.Back,	OnDelete(CaretMovementType.Backspace));
+			InputBindings.Add(TextAreaDefaultInputHandler.CreateFrozenKeyBinding(
+				       EditingCommands.Backspace,			ModifierKeys.Shift,		Key.Back)); // make Shift-Backspace do the same as plain backspace
+			AddBinding(EditingCommands.DeletePreviousWord,	ModifierKeys.Control,	Key.Back,	OnDelete(CaretMovementType.WordLeft));
+			AddBinding(EditingCommands.EnterParagraphBreak, ModifierKeys.None,		Key.Enter,	OnEnter);
+			AddBinding(EditingCommands.EnterLineBreak,		ModifierKeys.Shift,		Key.Enter,	OnEnter);
+			AddBinding(EditingCommands.TabForward,			ModifierKeys.None,		Key.Tab,	OnTab);
+			AddBinding(EditingCommands.TabBackward,			ModifierKeys.Shift,		Key.Tab,	OnShiftTab);
 
 			CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, OnCopy, CanCutOrCopy));
 			CommandBindings.Add(new CommandBinding(ApplicationCommands.Cut, OnCut, CanCutOrCopy));
@@ -88,7 +90,7 @@ namespace ICSharpCode.AvalonEdit.Editing
 			CommandBindings.Add(new CommandBinding(AvalonEditCommands.ConvertSpacesToTabs, OnConvertSpacesToTabs));
 			CommandBindings.Add(new CommandBinding(AvalonEditCommands.ConvertLeadingTabsToSpaces, OnConvertLeadingTabsToSpaces));
 			CommandBindings.Add(new CommandBinding(AvalonEditCommands.ConvertLeadingSpacesToTabs, OnConvertLeadingSpacesToTabs));
-			CommandBindings.Add(new CommandBinding(AvalonEditCommands.IndentSelection, OnIndentSelection));
+			//CommandBindings.Add(new CommandBinding(AvalonEditCommands.IndentSelection, OnIndentSelection)); //Disabled since in Seff there is no IIndentationStrategy so that KeyGesture(Key.I, ModifierKeys.Control) can be used for code formating
 
 			TextAreaDefaultInputHandler.WorkaroundWPFMemoryLeak(InputBindings);
 		}

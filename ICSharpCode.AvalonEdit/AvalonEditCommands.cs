@@ -99,6 +99,8 @@ namespace ICSharpCode.AvalonEdit
 		/// </summary>
 		public static readonly RoutedCommand ConvertLeadingSpacesToTabs = new RoutedCommand("ConvertLeadingSpacesToTabs", typeof(TextEditor));
 
+		/* Disabled since in Seff there is no IIndentationStrategy so that KeyGesture(Key.I, ModifierKeys.Control) can be used for code formating
+		 
 		/// <summary>
 		/// Runs the IIndentationStrategy on the selected lines (or the whole document if the selection is empty).
 		/// </summary>
@@ -107,5 +109,6 @@ namespace ICSharpCode.AvalonEdit
 			new InputGestureCollection {
 				new KeyGesture(Key.I, ModifierKeys.Control)
 			});
+		*/
 	}
 }
