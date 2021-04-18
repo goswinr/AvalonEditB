@@ -25,9 +25,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// This class is the main class of the text model. Basically, it is a <see cref="System.Text.StringBuilder"/> with events.

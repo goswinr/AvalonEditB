@@ -16,9 +16,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Indentation
+namespace AvalonEditB.Indentation
 {
 	/// <summary>
 	/// Strategy how the text editor handles indentation when new lines are inserted.

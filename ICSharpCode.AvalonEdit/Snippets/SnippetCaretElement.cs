@@ -19,9 +19,9 @@
 using System;
 using System.Runtime.Serialization;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Snippets
+namespace AvalonEditB.Snippets
 {
 	/// <summary>
 	/// Sets the caret position after interactive mode has finished.

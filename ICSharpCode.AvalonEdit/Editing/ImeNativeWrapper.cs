@@ -23,10 +23,10 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.TextFormatting;
 
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Rendering;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// Native API required for IME support.

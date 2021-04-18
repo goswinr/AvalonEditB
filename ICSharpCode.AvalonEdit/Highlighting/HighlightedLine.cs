@@ -22,10 +22,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Represents a highlighted document line.

@@ -23,9 +23,9 @@ using System.Windows.Automation;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	class TextAreaAutomationPeer : FrameworkElementAutomationPeer, IValueProvider, ITextProvider
 	{

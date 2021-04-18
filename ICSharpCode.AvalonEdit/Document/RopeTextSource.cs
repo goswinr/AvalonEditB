@@ -19,9 +19,9 @@
 using System;
 using System.IO;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// Implements the ITextSource interface using a rope.

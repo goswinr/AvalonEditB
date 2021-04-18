@@ -21,10 +21,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// A RichTextWriter that writes into a document and RichTextModel.

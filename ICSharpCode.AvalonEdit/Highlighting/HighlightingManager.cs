@@ -23,9 +23,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Manages a list of syntax highlighting definitions.

@@ -20,9 +20,9 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Rendering
+namespace AvalonEditB.Rendering
 {
 	/// <summary>
 	/// Renders a ruler at a certain column.

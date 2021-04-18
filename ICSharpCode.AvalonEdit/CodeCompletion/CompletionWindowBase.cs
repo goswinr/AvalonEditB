@@ -24,12 +24,12 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Editing;
+using AvalonEditB.Rendering;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.CodeCompletion
+namespace AvalonEditB.CodeCompletion
 {
 	/// <summary>
 	/// Base class for completion windows. Handles positioning the window at the caret.

@@ -22,10 +22,10 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.TextFormatting;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Rendering
+namespace AvalonEditB.Rendering
 {
 	// This class is internal because it does not need to be accessed by the user - it can be configured using TextEditorOptions.
 

@@ -21,12 +21,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-using SpanStack = ICSharpCode.AvalonEdit.Utils.ImmutableStack<ICSharpCode.AvalonEdit.Highlighting.HighlightingSpan>;
+using SpanStack = AvalonEditB.Utils.ImmutableStack<AvalonEditB.Highlighting.HighlightingSpan>;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// This class can syntax-highlight a document.

@@ -18,9 +18,9 @@
 
 using System;
 
-using ICSharpCode.AvalonEdit.Rendering;
+using AvalonEditB.Rendering;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	sealed class SelectionColorizer : ColorizingTransformer
 	{

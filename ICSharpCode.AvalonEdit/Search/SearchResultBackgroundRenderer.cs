@@ -20,10 +20,10 @@ using System;
 using System.Linq;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Rendering;
+using AvalonEditB.Document;
+using AvalonEditB.Rendering;
 
-namespace ICSharpCode.AvalonEdit.Search
+namespace AvalonEditB.Search
 {
 	class SearchResultBackgroundRenderer : IBackgroundRenderer
 	{

@@ -20,9 +20,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Documents;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Snippets
+namespace AvalonEditB.Snippets
 {
 	/// <summary>
 	/// A snippet element that has sub-elements.

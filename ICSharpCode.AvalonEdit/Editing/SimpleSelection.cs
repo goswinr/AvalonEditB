@@ -19,10 +19,10 @@
 using System;
 using System.Collections.Generic;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// A simple selection.

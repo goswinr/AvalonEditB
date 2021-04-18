@@ -22,9 +22,9 @@ using System.Globalization;
 using System.Text;
 using System.Windows;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Allows copying HTML text to the clipboard.

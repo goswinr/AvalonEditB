@@ -18,10 +18,10 @@
 
 using System;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Rendering;
+using AvalonEditB.Document;
+using AvalonEditB.Rendering;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// A colorizer that applies the highlighting from a <see cref="RichTextModel"/> to the editor.

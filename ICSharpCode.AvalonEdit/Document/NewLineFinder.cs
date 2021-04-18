@@ -19,7 +19,7 @@
 using System;
 using System.Text;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	static class NewLineFinder
 	{

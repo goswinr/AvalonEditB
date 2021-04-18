@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// A highlighting definition.

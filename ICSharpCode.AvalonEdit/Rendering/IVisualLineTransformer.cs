@@ -18,7 +18,7 @@
 
 using System.Collections.Generic;
 
-namespace ICSharpCode.AvalonEdit.Rendering
+namespace AvalonEditB.Rendering
 {
 	/// <summary>
 	/// Allows transforming visual line elements.

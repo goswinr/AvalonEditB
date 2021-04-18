@@ -18,7 +18,7 @@
 
 using System.ComponentModel;
 
-namespace ICSharpCode.AvalonEdit.CodeCompletion
+namespace AvalonEditB.CodeCompletion
 {
 	/// <summary>
 	/// Provides the items for the OverloadViewer.

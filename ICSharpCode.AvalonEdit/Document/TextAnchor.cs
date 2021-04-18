@@ -18,9 +18,9 @@
 
 using System;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// The TextAnchor class references an offset (a position between two characters).

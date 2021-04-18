@@ -19,9 +19,9 @@
 using System;
 using System.Windows.Controls;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.CodeCompletion
+namespace AvalonEditB.CodeCompletion
 {
 	/// <summary>
 	/// The list box used inside the CompletionList.

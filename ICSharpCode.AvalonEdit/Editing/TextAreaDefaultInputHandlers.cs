@@ -20,9 +20,9 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// Contains the predefined input handlers.

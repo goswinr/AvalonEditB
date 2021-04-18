@@ -2,7 +2,7 @@
 // added by goswinr for using an external logging function during debugging
 using System;
 
-namespace ICSharpCode.AvalonEdit.Utils
+namespace AvalonEditB.Utils
 {
 	/// <summary>
 	/// A  static class for logging ,intended for debuging 

@@ -25,9 +25,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.CodeCompletion
+namespace AvalonEditB.CodeCompletion
 {
 	/// <summary>
 	/// The listbox used inside the CompletionWindow, contains CompletionListBox.

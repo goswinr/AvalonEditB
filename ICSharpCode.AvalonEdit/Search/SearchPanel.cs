@@ -25,11 +25,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Rendering;
+using AvalonEditB.Document;
+using AvalonEditB.Editing;
+using AvalonEditB.Rendering;
 
-namespace ICSharpCode.AvalonEdit.Search
+namespace AvalonEditB.Search
 {
 	/// <summary>
 	/// Provides search functionality for AvalonEdit. It is displayed in the top-right corner of the TextArea.

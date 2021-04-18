@@ -25,11 +25,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Rendering;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// Rectangular selection ("box selection").

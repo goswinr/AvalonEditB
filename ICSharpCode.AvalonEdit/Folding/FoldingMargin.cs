@@ -24,11 +24,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.TextFormatting;
 
-using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Editing;
+using AvalonEditB.Rendering;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Folding
+namespace AvalonEditB.Folding
 {
 	/// <summary>
 	/// A margin that shows markers for foldings and allows to expand/collapse the foldings.

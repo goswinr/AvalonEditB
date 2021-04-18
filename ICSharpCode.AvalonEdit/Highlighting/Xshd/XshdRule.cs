@@ -18,7 +18,7 @@
 
 using System;
 
-namespace ICSharpCode.AvalonEdit.Highlighting.Xshd
+namespace AvalonEditB.Highlighting.Xshd
 {
 	/// <summary>
 	/// &lt;Rule&gt; element.

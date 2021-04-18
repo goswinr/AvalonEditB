@@ -19,9 +19,9 @@
 using System;
 using System.Globalization;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit
+namespace AvalonEditB
 {
 	/// <summary>
 	/// Represents a text location with a visual column.

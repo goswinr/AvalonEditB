@@ -23,9 +23,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Stores rich-text formatting.

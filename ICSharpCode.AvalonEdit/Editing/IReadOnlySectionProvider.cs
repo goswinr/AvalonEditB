@@ -18,9 +18,9 @@
 
 using System.Collections.Generic;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// Determines whether the document can be modified.

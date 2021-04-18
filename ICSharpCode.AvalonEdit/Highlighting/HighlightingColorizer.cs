@@ -21,10 +21,10 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Rendering;
+using AvalonEditB.Document;
+using AvalonEditB.Rendering;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// A colorizes that interprets a highlighting rule set and colors the document accordingly.

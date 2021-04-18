@@ -18,7 +18,7 @@
 
 using System;
 
-namespace ICSharpCode.AvalonEdit.Snippets
+namespace AvalonEditB.Snippets
 {
 	/// <summary>
 	/// Provides information about the event that occured during use of snippets.

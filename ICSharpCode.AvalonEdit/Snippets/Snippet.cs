@@ -18,10 +18,10 @@
 
 using System;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
+using AvalonEditB.Document;
+using AvalonEditB.Editing;
 
-namespace ICSharpCode.AvalonEdit.Snippets
+namespace AvalonEditB.Snippets
 {
 	/// <summary>
 	/// A code snippet that can be inserted into the text editor.

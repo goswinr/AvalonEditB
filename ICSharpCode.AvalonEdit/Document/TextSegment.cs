@@ -19,7 +19,7 @@
 using System;
 using System.Diagnostics;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// A segment that can be put into a <see cref="TextSegmentCollection{T}"/>.

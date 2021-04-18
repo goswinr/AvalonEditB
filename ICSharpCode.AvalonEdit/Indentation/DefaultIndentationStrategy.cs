@@ -18,9 +18,9 @@
 
 using System;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Indentation
+namespace AvalonEditB.Indentation
 {
 	/// <summary>
 	/// Handles indentation by copying the indentation from the previous line.

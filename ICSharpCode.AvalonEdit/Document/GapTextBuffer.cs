@@ -20,9 +20,9 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/*
 	/// <summary>

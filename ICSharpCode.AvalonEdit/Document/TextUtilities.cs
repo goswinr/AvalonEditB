@@ -20,7 +20,7 @@ using System;
 using System.Globalization;
 using System.Windows.Documents;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// Specifies the mode for getting the next caret position.

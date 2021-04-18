@@ -20,10 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// Dummy value for no selction present.

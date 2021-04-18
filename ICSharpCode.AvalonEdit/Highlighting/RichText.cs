@@ -24,9 +24,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Documents;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Represents a immutable piece text with highlighting information.

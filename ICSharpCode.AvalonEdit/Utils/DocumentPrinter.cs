@@ -21,10 +21,10 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Documents;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Highlighting;
+using AvalonEditB.Document;
+using AvalonEditB.Highlighting;
 
-namespace ICSharpCode.AvalonEdit.Utils
+namespace AvalonEditB.Utils
 {
 	/// <summary>
 	/// Helps printing documents.

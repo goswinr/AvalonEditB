@@ -11,8 +11,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ICSharpCode.AvalonEdit.snk</AssemblyOriginatorKeyFile>
-    <DocumentationFile>ICSharpCode.AvalonEdit.xml</DocumentationFile>
+    <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>
+    <DocumentationFile>AvalonEditB.xml</DocumentationFile>
     <Company>ICSharpCode</Company>
     <Copyright>2000-2020 AlphaSierraPapa for the SharpDevelop Team</Copyright>
     <Description>AvalonEdit is the WPF-based text editor used in SharpDevelop. This Branch is used in Seff F# scripting editor </Description>

@@ -18,7 +18,7 @@
 
 using System;
 
-namespace ICSharpCode.AvalonEdit.Highlighting.Xshd
+namespace AvalonEditB.Highlighting.Xshd
 {
 	/// <summary>
 	/// Specifies the type of the regex.

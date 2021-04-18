@@ -19,9 +19,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Rendering
+namespace AvalonEditB.Rendering
 {
 	/// <summary>
 	/// A node in the text view's height tree.

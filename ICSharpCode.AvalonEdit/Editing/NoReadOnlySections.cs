@@ -20,10 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Editing
+namespace AvalonEditB.Editing
 {
 	/// <summary>
 	/// <see cref="IReadOnlySectionProvider"/> that has no read-only sections; all text is editable.

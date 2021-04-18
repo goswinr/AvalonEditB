@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace ICSharpCode.AvalonEdit.Utils
+namespace AvalonEditB.Utils
 {
 	/// <summary>
 	/// A IList{T} implementation that has efficient insertion and removal (in O(lg n) time)

@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace ICSharpCode.AvalonEdit.Utils
+namespace AvalonEditB.Utils
 {
 	interface IFreezable
 	{

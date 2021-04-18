@@ -19,11 +19,11 @@
 using System.Diagnostics;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Document;
+using AvalonEditB.Rendering;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Folding
+namespace AvalonEditB.Folding
 {
 	/// <summary>
 	/// A section that can be folded.

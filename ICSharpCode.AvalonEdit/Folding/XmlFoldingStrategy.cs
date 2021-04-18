@@ -22,9 +22,9 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-using ICSharpCode.AvalonEdit.Document;
+using AvalonEditB.Document;
 
-namespace ICSharpCode.AvalonEdit.Folding
+namespace AvalonEditB.Folding
 {
 	/// <summary>
 	/// Holds information about the start of a fold in an xml string.

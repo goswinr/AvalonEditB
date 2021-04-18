@@ -21,9 +21,9 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-using ICSharpCode.AvalonEdit.Editing;
+using AvalonEditB.Editing;
 
-namespace ICSharpCode.AvalonEdit.Search
+namespace AvalonEditB.Search
 {
 	/// <summary>
 	/// Search commands for AvalonEdit.

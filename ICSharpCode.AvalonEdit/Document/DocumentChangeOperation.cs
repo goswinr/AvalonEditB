@@ -18,7 +18,7 @@
 
 using System.Diagnostics;
 
-namespace ICSharpCode.AvalonEdit.Document
+namespace AvalonEditB.Document
 {
 	/// <summary>
 	/// Describes a change to a TextDocument.

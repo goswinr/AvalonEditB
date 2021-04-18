@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace ICSharpCode.AvalonEdit.Indentation.CSharp
+namespace AvalonEditB.Indentation.CSharp
 {
 	sealed class IndentationSettings
 	{

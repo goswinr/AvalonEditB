@@ -19,9 +19,9 @@
 using System;
 using System.Collections.Generic;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Highlighting.Xshd
+namespace AvalonEditB.Highlighting.Xshd
 {
 	/// <summary>
 	/// A &lt;SyntaxDefinition&gt; element.

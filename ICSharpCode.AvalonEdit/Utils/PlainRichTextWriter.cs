@@ -20,7 +20,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace ICSharpCode.AvalonEdit.Utils
+namespace AvalonEditB.Utils
 {
 	/// <summary>
 	/// RichTextWriter implementation that writes plain text only

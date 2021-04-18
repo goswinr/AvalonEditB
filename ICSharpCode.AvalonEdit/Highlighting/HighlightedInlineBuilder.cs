@@ -23,9 +23,9 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 
-using ICSharpCode.AvalonEdit.Utils;
+using AvalonEditB.Utils;
 
-namespace ICSharpCode.AvalonEdit.Highlighting
+namespace AvalonEditB.Highlighting
 {
 	/// <summary>
 	/// Takes a series of highlighting commands and stores them.
