@@ -6,7 +6,7 @@
       net 462 is maximum for revit 2018
       net 472 for Rhino and Netstandard2.0
       Rhino can only host netFramwork apps-, -->
-    <TargetFrameworks>net462;net472</TargetFrameworks>   
+    <TargetFrameworks>net462;net472;net50-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
