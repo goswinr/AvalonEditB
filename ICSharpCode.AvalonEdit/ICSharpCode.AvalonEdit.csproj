@@ -11,18 +11,18 @@
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>
+    <!--<AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> not neded anymore? file removed -->
     <DocumentationFile>AvalonEditB.xml</DocumentationFile>
     <Company>ICSharpCode</Company>
     <Copyright>2000-2020 AlphaSierraPapa for the SharpDevelop Team</Copyright>
     <Description>AvalonEdit is the WPF-based text editor used in SharpDevelop. This Branch is used in Seff F# scripting editor </Description>
-    <Version>7.0</Version>
-    <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
-<PropertyGroup>
-    <PackageId>AvalonEdit</PackageId>
+<!--PropertyGroup>
+    <PackageId>AvalonEditB</PackageId>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -34,20 +34,13 @@
     <PackageIcon>images\AvalonEditNuGetPackageIcon.png</PackageIcon>
     <PackageTags>WPF Text Editor SharpDevelop AvalonEdit</PackageTags>
     <PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes>
-  </PropertyGroup>
-  <!--
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+  </PropertyGroup -->
+  
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System.Windows.Forms" />
-  </ItemGroup>-->
+  </ItemGroup>
+  
   <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>  
@@ -75,10 +68,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  
   <ItemGroup>
     <Resource Include="Search\replacenext.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Search\replaceall.png" />
   </ItemGroup>
 </Project>
