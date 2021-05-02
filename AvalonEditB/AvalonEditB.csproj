@@ -2,40 +2,45 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <!-- no net50-windows because no Thread.Abort() in net50 (for fsi canceling), 
-      net 462 is maximum for revit 2018
-      net 472 for Rhino and Netstandard2.0
-      Rhino can only host netFramwork apps-, -->
+    <!--net50-windows has no Thread.Abort() (for fsi canceling), 
+        net 462 is maximum for Revit 2018
+        net 472 for Rhino and Netstandard2.0
+        Rhino can only host netFramwork apps -->
     <TargetFrameworks>net462;net472;net50-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
+    
     <SignAssembly>true</SignAssembly>
     <!--<AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> not neded anymore? file removed -->
-    <DocumentationFile>AvalonEditB.xml</DocumentationFile>
-    <Company>ICSharpCode</Company>
-    <Copyright>2000-2020 AlphaSierraPapa for the SharpDevelop Team</Copyright>
-    <Description>AvalonEdit is the WPF-based text editor used in SharpDevelop. This Branch is used in Seff F# scripting editor </Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile> <!-- for xml in bin dir-->
+    <!--<DocumentationFile>AvalonEditB.xml</DocumentationFile> from main fork, puts the xml in the root dir, but it is not wanted there. -->    
+    <Copyright>GoswinR &amp; AvalonEdit Contributors</Copyright>
+    <Authors>GoswinR &amp; AvalonEdit Contributors</Authors>
+    <Description>A fork of AvalonEdit with small changes. see Readme.md on Github repro.</Description>
+    
     <Version>1.0.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
-
-<!--PropertyGroup>
+  
+  <PropertyGroup>
     <PackageId>AvalonEditB</PackageId>
+    <Authors>GoswinR &amp; AvalonEdit Contributors</Authors>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <RepositoryUrl>https://github.com/icsharpcode/AvalonEdit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Authors>AvalonEdit Contributors</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>http://www.avalonedit.net</PackageProjectUrl>
-    <PackageIcon>images\AvalonEditNuGetPackageIcon.png</PackageIcon>
-    <PackageTags>WPF Text Editor SharpDevelop AvalonEdit</PackageTags>
-    <PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes>
-  </PropertyGroup -->
-  
+    <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/goswinr/AvalonEditB</RepositoryUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included</PackageReleaseNotes>
+    <!-- PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes -->
+  </PropertyGroup>
+
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System.Windows.Forms" />
@@ -49,9 +54,9 @@
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
     <None Remove="themes\RightArrow.cur" />
-    <None Include="AvalonEditNuGetPackageIcon.png">
+    <None Include="logo.png">
       <Pack>True</Pack>
-      <PackagePath>images</PackagePath>
+      <PackagePath></PackagePath>
     </None>
     <Resource Include="Search\next.png" />
     <Resource Include="Search\prev.png" />
@@ -59,14 +64,16 @@
   </ItemGroup>
   
   <ItemGroup>
+    <!-- needed for enabeling the highlighting engine: -->
     <None Remove="Highlighting\Resources\*" />
     <EmbeddedResource Include="Highlighting\Resources\*" />
     <EmbeddedResource Remove="Highlighting\Resources\Resources.cs" />
-    <Resource Include="Highlighting\Resources\Resources.cs" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-      <PrivateAssets>all</PrivateAssets>
+    <Resource Include="Highlighting\Resources\Resources.cs" /> 
+    
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" >      
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    
   </ItemGroup>
   
   <ItemGroup>
