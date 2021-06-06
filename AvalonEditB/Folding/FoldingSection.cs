@@ -16,7 +16,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
+using System;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
 
 using AvalonEditB.Document;
@@ -35,7 +37,7 @@ namespace AvalonEditB.Folding
 		internal CollapsedLineSection[] collapsedSections;
 		string title;
 
-		SolidColorBrush backbgroundColor = null;
+		SolidColorBrush backbgroundColor = null;//added by Goswin, used for selection highlighting
 		/// <summary>
 		/// Get or Set the background color for the box in collapsed state
 		/// Call TextView.Redraw() if not showing.
@@ -44,6 +46,17 @@ namespace AvalonEditB.Folding
 			get { return backbgroundColor; }
 			set { backbgroundColor = value; }
 		}
+		
+		
+		Action<Rect,DrawingContext> decorateRectangle = null; //added by Goswin, used for Error highlighting
+		/// <summary>
+		/// Get or Set an additional drawing action on the collapsed rectangle.
+		/// </summary>
+		public Action<Rect,DrawingContext> DecorateRectangle {
+			get { return decorateRectangle; }
+			set { decorateRectangle = value; }
+		}
+
 
 		/// <summary>
 		/// Gets/sets if the section is folded.

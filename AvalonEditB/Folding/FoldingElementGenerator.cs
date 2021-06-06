@@ -143,7 +143,9 @@ namespace AvalonEditB.Folding
 
 				var textFormatter = TextFormatterFactory.Create(CurrentContext.TextView);
 				var text = FormattedTextElement.PrepareText(textFormatter, title, p);
-				return new FoldingLineElement(foldingSection, text, foldedUntil - offset) { textBrush = textBrush, textBrushBackground = foldingSection.BackbgroundColor  };
+				return new FoldingLineElement(foldingSection, text, foldedUntil - offset) { textBrush = textBrush, 
+																							textBrushBackground = foldingSection.BackbgroundColor,
+																							decorateRectangle   = foldingSection.DecorateRectangle };
 			} else {
 				return null;
 			}
@@ -154,7 +156,8 @@ namespace AvalonEditB.Folding
 			readonly FoldingSection fs;
 
 			internal Brush textBrush;
-			internal Brush textBrushBackground; //added by Goswin
+			internal Brush textBrushBackground; //added by Goswin, used for selection highlighting
+			internal Action<Rect, DrawingContext> decorateRectangle; //added by Goswin, used for Error highlighting
 
 			public FoldingLineElement(FoldingSection fs, TextLine text, int documentLength) : base(text, documentLength)
 			{
@@ -163,7 +166,9 @@ namespace AvalonEditB.Folding
 
 			public override TextRun CreateTextRun(int startVisualColumn, ITextRunConstructionContext context)
 			{
-				return new FoldingLineTextRun(this, this.TextRunProperties) { textBrush = textBrush, textBrushBackground = textBrushBackground };
+				return new FoldingLineTextRun(this, this.TextRunProperties) {	textBrush = textBrush, 
+																				textBrushBackground = textBrushBackground, 
+																				decorateRectangle = decorateRectangle };
 			}
 
 			protected internal override void OnMouseDown(MouseButtonEventArgs e)
@@ -180,7 +185,8 @@ namespace AvalonEditB.Folding
 		sealed class FoldingLineTextRun : FormattedTextRun
 		{
 			internal Brush textBrush;
-			internal Brush textBrushBackground; //added by Goswin
+			internal Brush textBrushBackground; //added by Goswin, used for selection highlighting
+			internal Action<Rect,DrawingContext> decorateRectangle; //added by Goswin, used for Error highlighting
 
 			public FoldingLineTextRun(FormattedTextElement element, TextRunProperties properties)
 				: base(element, properties)
@@ -193,6 +199,7 @@ namespace AvalonEditB.Folding
 				Rect r = new Rect(origin.X, origin.Y - metrics.Baseline, metrics.Width, metrics.Height);
 				//drawingContext.DrawRectangle(null, new Pen(textBrush, 1), r); // original
 				drawingContext.DrawRectangle(textBrushBackground, new Pen(textBrush, 1), r); // so that the colapsing text box can be highlighted too
+				if (decorateRectangle != null) { decorateRectangle(r, drawingContext); } // to draw red squiggles on folding box 
 				base.Draw(drawingContext, origin, rightToLeft, sideways);
 			}
 		}
