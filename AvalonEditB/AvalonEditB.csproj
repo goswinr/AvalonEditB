@@ -2,33 +2,38 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <!--net50-windows has no Thread.Abort() (for fsi canceling), 
-        net 462 is maximum for Revit 2018
+    <!--net50-windows has no Thread.Abort() (for fsi canceling),         
         net 472 for Rhino and Netstandard2.0
         Rhino can only host netFramwork apps -->
-    <TargetFrameworks>net462;net472;net50-windows</TargetFrameworks>   
+    <TargetFrameworks>net472;net50-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
+
+    <RootNamespace>AvalonEditB</RootNamespace>
+    <AssemblyName>AvalonEditB</AssemblyName>
     
+
     <SignAssembly>true</SignAssembly>
     <!--<AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> not neded anymore? file removed -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile> <!-- for xml in bin dir-->
-    <!--<DocumentationFile>AvalonEditB.xml</DocumentationFile> from main fork, puts the xml in the root dir, but it is not wanted there. -->    
-    <Copyright>GoswinR &amp; AvalonEdit Contributors</Copyright>
-    <Authors>GoswinR &amp; AvalonEdit Contributors</Authors>
-    <Description>A fork of AvalonEdit with small changes. see Readme.md on Github repro.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile> <!-- for xml in bin dir-->    
+    <Copyright>GoswinR</Copyright>
+    <Authors>GoswinR</Authors>
+    
+    <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
     
     <Version>1.0.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon>
   </PropertyGroup>
   
-  <PropertyGroup>
-    <PackageId>AvalonEditB</PackageId>
-    <Authors>GoswinR &amp; AvalonEdit Contributors</Authors>
+  <PropertyGroup>    
+    <AssemblyTitle>AvalonEditB</AssemblyTitle>
+    <Title>AvalonEditB</Title>    
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>AvalonEditB</PackageId>    
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -36,15 +41,16 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
     <RepositoryUrl>https://github.com/goswinr/AvalonEditB</RepositoryUrl>
-    <PackageIcon>logo.png</PackageIcon>
-    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included</PackageReleaseNotes>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- <PackageIcon>logo128.png</PackageIcon> -->
+    <!-- <PackageIconUrl>https://github.com/goswinr/AvalonEditB/AvalonEditB.Docs/logo128.png</PackageIconUrl> -->
+    <PackageIcon>logo128.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageDescription>A fork of the TextEditor AvalonEdit with small changes.</PackageDescription>
+    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included.</PackageReleaseNotes>
+    <PackageTags>WPF Text Editor AvalonEdit</PackageTags>
     <!-- PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes -->
   </PropertyGroup>
-
-  
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
     <Reference Include="System.Windows.Forms" />
@@ -54,10 +60,8 @@
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
     <None Remove="themes\RightArrow.cur" />
-    <None Include="logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="../AvalonEditB.Docs/logo128.png" Pack="true" PackagePath="\"/> <!--PackagePath = "\" makes the fike availabe to nuget pack tool-->
+    <None Include="../README.md" Pack="true" PackagePath="\"/>
     <Resource Include="Search\next.png" />
     <Resource Include="Search\prev.png" />
     <Resource Include="themes\RightArrow.cur" />
