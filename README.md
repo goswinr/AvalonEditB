@@ -1,6 +1,8 @@
-﻿# AvalonEditB [![NuGet](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEdit) [![Build AvalonEdit](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml/badge.svg)](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml)
+﻿# AvalonEditB [![NuGet](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEdit) 
 
+<!-- [![Build AvalonEdit](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml/badge.svg)](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml) -->
 
+![logo](AvalonEditB.Docs/logo400.png)
 
 AvalonEditB is a fork of a [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 with some small modifications like:
@@ -8,39 +10,25 @@ with some small modifications like:
 * Some private properties exposed as public
 * Block selection with middle mouse button (like VS code)
 
-
-
-Downloads
--------
+### Download
 
 AvalonEditB is available as [NuGet package](https://www.nuget.org/packages/AvalonEditB). 
-Usage details, documentation and more
-can be found on the [original AvalonEdit homepage](http://avalonedit.net/)
 
-How to build
--------
+### How to build
 
-AvalonEditB is targeting net5.0 and net472. You must have .NET Core 5.0 SDK installed 
-on your machine. 
+Just run `dotnet build` in `AvalonEditB` directory.
 
+### Documentation
+Check out the original [original documentation](http://avalonedit.net/documentation/) and the [samples and articles wiki page](https://github.com/icsharpcode/AvalonEdit/wiki/Samples-and-Articles). 
+Building the documentation and running the test currently does not work from this fork.
 
-Documentation
--------
-
-Check out the original [official documentation](http://avalonedit.net/documentation/) and the [samples and articles wiki page](https://github.com/icsharpcode/AvalonEdit/wiki/Samples-and-Articles)
-
-Rebuilding the  Documentation and running the test  currently does not work from this fork
-
-License
--------
-
+### License
 AvalonEditB is also distributed under the [MIT License](http://opensource.org/licenses/MIT).
 
-Projects using AvalonEditB
--------
-
+### Projects using AvalonEditB
 
 * https://github.com/goswinr/AvalonLog
 * https://github.com/goswinr/Seff 
 
-Logo by [Lovepik](https://lovepik.com/image-401268798/crystal-parrot-side-cartoon.html)
+Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-cartoon-01.html)
+
