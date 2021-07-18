@@ -1,8 +1,6 @@
-﻿# AvalonEditB [![NuGet](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEdit) 
+﻿# AvalonEditB [![NuGet](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB) 
 
-<!-- [![Build AvalonEdit](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml/badge.svg)](https://github.com/goswinr/AvalonEditB/actions/workflows/dotnet.yml) -->
-
-![logo](AvalonEditB.Docs/logo400.png)
+![logo](https://raw.githubusercontent.com/goswinr/AvalonEditB/main/AvalonEditB.Docs/logo400.png)
 
 AvalonEditB is a fork of a [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 with some small modifications like:
