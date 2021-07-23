@@ -1,39 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <!--net50-windows has no Thread.Abort() (for fsi canceling),         
-        net 472 for Rhino and Netstandard2.0
-        Rhino can only host netFramwork apps -->
+    <OutputType>Library</OutputType>    
     <TargetFrameworks>net472;net50-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    
     <DefineConstants>TRACE</DefineConstants>
+
+    <NeutralLanguage>en</NeutralLanguage>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>    <!--to only have the english resources-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <RootNamespace>AvalonEditB</RootNamespace>
     <AssemblyName>AvalonEditB</AssemblyName>
-    
-
-    <SignAssembly>true</SignAssembly>
-    <!--<AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> not neded anymore? file removed -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile> <!-- for xml in bin dir-->    
-    <Copyright>GoswinR</Copyright>
-    <Authors>GoswinR</Authors>
-    
-    <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
+    <AssemblyTitle>AvalonEditB</AssemblyTitle>
+    <Title>AvalonEditB</Title>  
+    <Product>AvalonEditB</Product>
+    <PackageId>AvalonEditB</PackageId> 
     
     <Version>1.0.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included.</PackageReleaseNotes>
+
+    <Authors>GoswinR</Authors>
+    <Copyright>Goswin Rothenthal 2021</Copyright>
     
-    <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon>
+    <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
+    <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon> 
+
+    <!--
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> 
+    not neded anymore? snk file removed 
+    -->
+
   </PropertyGroup>
   
   <PropertyGroup>    
-    <AssemblyTitle>AvalonEditB</AssemblyTitle>
-    <Title>AvalonEditB</Title>    
+    <!-- nuget Package -->-
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>AvalonEditB</PackageId>    
+       
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -42,14 +50,10 @@
     <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
     <RepositoryUrl>https://github.com/goswinr/AvalonEditB</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <!-- <PackageIcon>logo128.png</PackageIcon> -->
-    <!-- <PackageIconUrl>https://github.com/goswinr/AvalonEditB/AvalonEditB.Docs/logo128.png</PackageIconUrl> -->
     <PackageIcon>logo128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageDescription>A fork of the TextEditor AvalonEdit with small changes.</PackageDescription>
-    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included.</PackageReleaseNotes>
-    <PackageTags>WPF Text Editor AvalonEdit</PackageTags>
-    <!-- PackageReleaseNotes>Changes are detailed at https://github.com/icsharpcode/AvalonEdit/blob/master/ChangeLog.md</PackageReleaseNotes -->
+    <PackageDescription>A fork of the TextEditor AvalonEdit with small changes.</PackageDescription>    
+    <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
   </PropertyGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
