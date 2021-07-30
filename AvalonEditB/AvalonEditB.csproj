@@ -4,11 +4,10 @@
     <OutputType>Library</OutputType>    
     <TargetFrameworks>net472;net50-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-    
+    <UseWindowsForms>true</UseWindowsForms>    
     <DefineConstants>TRACE</DefineConstants>
 
-    <NeutralLanguage>en</NeutralLanguage>
+    <!-- <NeutralLanguage>en</NeutralLanguage> error? -->
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>    <!--to only have the english resources-->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
@@ -19,10 +18,10 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.0.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <PackageReleaseNotes>All commits up to 6.1.1 release of AvalonEdit are included.</PackageReleaseNotes>
+    <Version>1.1.0.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <PackageReleaseNotes>All relevant commits up to release 6.1.2 of AvalonEdit are included.</PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
     <Copyright>Goswin Rothenthal 2021</Copyright>
@@ -30,62 +29,51 @@
     <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
     <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon> 
 
-    <!--
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile> 
-    not neded anymore? snk file removed 
-    -->
+    <!-- <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>     not neded anymore? snk file removed     -->
 
   </PropertyGroup>
-  
-  <PropertyGroup>    
-    <!-- nuget Package -->-
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-       
+   <PropertyGroup>  
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>      
     <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->  <!-- using  snupkg the readme does not pack https://github.com/NuGet/Home/issues/10791 -->    
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
     <RepositoryUrl>https://github.com/goswinr/AvalonEditB</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageIcon>logo128.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>READMEnuget.md</PackageReadmeFile>
     <PackageDescription>A fork of the TextEditor AvalonEdit with small changes.</PackageDescription>    
     <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
   </PropertyGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>  
+  <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">  <Reference Include="System.Windows.Forms" />  </ItemGroup>  coverd by UseWindowsForms ? -->
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <!-- https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets -->
+  </ItemGroup> 
+
+  <ItemGroup>
+    
+    <None Include="README.md" />    
+    <None Include="../AvalonEditB.Docs/READMEnuget.md"  Pack="true" PackagePath="" />
+    <None Include="../AvalonEditB.Docs/logo128.png"     Pack="true" PackagePath=""/> <!--PackagePath = "" makes the file availabe to nuget pack tool-->
+    
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
     <None Remove="themes\RightArrow.cur" />
-    <None Include="../AvalonEditB.Docs/logo128.png" Pack="true" PackagePath="\"/> <!--PackagePath = "\" makes the fike availabe to nuget pack tool-->
-    <None Include="../README.md" Pack="true" PackagePath="\"/>
     <Resource Include="Search\next.png" />
     <Resource Include="Search\prev.png" />
     <Resource Include="themes\RightArrow.cur" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <!-- needed for enabeling the highlighting engine: -->
-    <None Remove="Highlighting\Resources\*" />
-    <EmbeddedResource Include="Highlighting\Resources\*" />
-    <EmbeddedResource Remove="Highlighting\Resources\Resources.cs" />
-    <Resource Include="Highlighting\Resources\Resources.cs" /> 
-    
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" >      
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    
-  </ItemGroup>
-  
-  <ItemGroup>
     <Resource Include="Search\replacenext.png" />
     <Resource Include="Search\replaceall.png" />
-  </ItemGroup>
+  
+    <!-- needed for enabeling the highlighting engine: -->
+    <None              Remove="Highlighting\Resources\*" />
+    <EmbeddedResource Include="Highlighting\Resources\*" />
+    <EmbeddedResource  Remove="Highlighting\Resources\Resources.cs" />
+    <Resource         Include="Highlighting\Resources\Resources.cs" />    
+ 
+  </ItemGroup>  
 </Project>

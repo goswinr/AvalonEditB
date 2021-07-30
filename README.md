@@ -1,4 +1,7 @@
-﻿# AvalonEditB [![NuGet](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB) 
+﻿# AvalonEditB 
+
+[![AvalonEditB on nuget.org](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB) 
+[![AvalonEditB on fuget.org](https://www.fuget.org/packages/AvalonEditB/badge.svg)](https://www.fuget.org/packages/AvalonEditB)
 
 ![logo](https://raw.githubusercontent.com/goswinr/AvalonEditB/main/AvalonEditB.Docs/logo400.png)
 
@@ -27,6 +30,8 @@ AvalonEditB is also distributed under the [MIT License](http://opensource.org/li
 
 * https://github.com/goswinr/AvalonLog
 * https://github.com/goswinr/Seff 
+* https://github.com/goswinr/Seff.Rhino 
+* https://github.com/goswinr/Seff.Revit
 
 Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-cartoon-01.html)
 
