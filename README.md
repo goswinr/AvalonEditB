@@ -1,15 +1,19 @@
-﻿# AvalonEditB 
+# AvalonEditB 
 
-[![AvalonEditB on nuget.org](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB) 
-[![AvalonEditB on fuget.org](https://www.fuget.org/packages/AvalonEditB/badge.svg)](https://www.fuget.org/packages/AvalonEditB)
+[![nuget](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB) 
+[![fuget](https://www.fuget.org/packages/AvalonEditB/badge.svg)](https://www.fuget.org/packages/AvalonEditB)
+![code size](https://img.shields.io/github/languages/code-size/goswinr/AvalonEditB.svg) 
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+<!-- [![license](https://img.shields.io/github/license/goswinr/AvalonEditB.svg)](https://github.com/goswinr/AvalonEditB/blob/main/LICENSE.txt) doesnt work -->
+<!-- [![release](https://img.shields.io/github/release/goswinr/AvalonEditB.svg)](https://github.com/goswinr/AvalonEditB/releases)  -->
 
 ![logo](https://raw.githubusercontent.com/goswinr/AvalonEditB/main/AvalonEditB.Docs/logo400.png)
 
 AvalonEditB is a fork of a [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 with some small modifications like:
-* Search and replace functionality from a [PR](https://github.com/icsharpcode/AvalonEdit/pull/99)
+* **Search and replace** functionality from this [PR](https://github.com/icsharpcode/AvalonEdit/pull/99)
+* **Block selection** with middle mouse button (like in VS code)
 * Some private properties exposed as public
-* Block selection with middle mouse button (like VS code)
 
 ### Download
 
@@ -24,7 +28,9 @@ Check out the original [original documentation](http://avalonedit.net/documentat
 Building the documentation and running the test currently does not work from this fork.
 
 ### License
-AvalonEditB is also distributed under the [MIT License](http://opensource.org/licenses/MIT).
+AvalonEditB also has the  [MIT License](https://github.com/goswinr/AvalonEditB/blob/main/LICENSE.txt).
+
+Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-cartoon-01.html)
 
 ### Projects using AvalonEditB
 
@@ -33,5 +39,4 @@ AvalonEditB is also distributed under the [MIT License](http://opensource.org/li
 * https://github.com/goswinr/Seff.Rhino 
 * https://github.com/goswinr/Seff.Revit
 
-Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-cartoon-01.html)
 
