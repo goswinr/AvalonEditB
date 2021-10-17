@@ -124,7 +124,7 @@ namespace AvalonEditB.Document
 			}
 			set {
 				if (value < 0)
-					throw new ArgumentOutOfRangeException("value", "Offset must not be negative");
+					throw new ArgumentOutOfRangeException("value", "setting TextSegment.StartOffset must not be negative(" + value + ")");
 				if (this.StartOffset != value) {
 					// need a copy of the variable because ownerTree.Remove() sets this.ownerTree to null
 					ISegmentTree ownerTree = this.ownerTree;
@@ -153,7 +153,7 @@ namespace AvalonEditB.Document
 			set {
 				int newLength = value - StartOffset;
 				if (newLength < 0)
-					throw new ArgumentOutOfRangeException("value", "EndOffset must be greater or equal to StartOffset");
+					throw new ArgumentOutOfRangeException("value", "setting TextSegment.EndOffset to  ("+value+ "). Value  must be greater or equal to StartOffset(" + StartOffset.ToString() + ")");
 				Length = newLength;
 			}
 		}
@@ -170,7 +170,7 @@ namespace AvalonEditB.Document
 			}
 			set {
 				if (value < 0)
-					throw new ArgumentOutOfRangeException("value", "Length must not be negative");
+					throw new ArgumentOutOfRangeException("value", "setting TextSegment.Length must not be negative(" + value + ")");
 				if (segmentLength != value) {
 					segmentLength = value;
 					if (ownerTree != null)
