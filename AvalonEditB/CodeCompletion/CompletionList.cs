@@ -275,12 +275,12 @@ namespace AvalonEditB.CodeCompletion
 			foreach (var matchingItem in matchingItems) {
 				double priority = matchingItem.Item == suggestedItem ? double.PositiveInfinity : matchingItem.Item.Priority;
 				int quality = matchingItem.Quality;
-				//if (quality > bestQuality || (quality == bestQuality && (priority > bestPriority))) {     // original if clause in Avalonedit
+				if (quality > bestQuality || (quality == bestQuality && (priority > bestPriority))) {     // original if clause in Avalonedit
 				
-				// new clause
-				int incrQuality = quality + 1; // +1 to ignore case sensitve quality ranking
-				bool anygoodatall = quality > 0; // to still exclude none matches
-				if (quality > bestQuality || ( anygoodatall && incrQuality >= bestQuality && priority > bestPriority )) { // allow higher priority to win if quality is close
+				// new clause by goswin
+				//int incrQuality = quality + 1; // +1 to ignore case sensitve quality ranking
+				//bool anygoodatall = quality > 0; // to still exclude none matches
+				//if (quality > bestQuality || ( anygoodatall && incrQuality >= bestQuality && priority > bestPriority )) { // allow higher priority to win if quality is close ( by goswin)
 				    bestIndex = i;
 					bestPriority = priority;
 					bestQuality = quality;

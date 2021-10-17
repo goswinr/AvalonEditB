@@ -18,15 +18,19 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.1.0.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <PackageReleaseNotes>All relevant commits up to release 6.1.2 of AvalonEdit are included.</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <FileVersion>1.2.0</FileVersion>
+    <PackageReleaseNotes>
+      Revert to original sorting in completion list.
+      Improve Error messages of TextSegment.
+      All relevant commits up to release 6.1.2 of AvalonEdit are included.
+    </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
-    <Copyright>Goswin Rothenthal 2021</Copyright>
-    
+    <Copyright>Goswin Rothenthal 2021</Copyright>    
     <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
+    <PackageDescription>A fork of the AvalonEdit TextEditor with small changes.</PackageDescription> <!--this desc is used by Nuget -->
     <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon> 
 
     <!-- <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>     not neded anymore? snk file removed     -->
@@ -43,7 +47,6 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageIcon>logo128.png</PackageIcon>
     <PackageReadmeFile>READMEnuget.md</PackageReadmeFile>
-    <PackageDescription>A fork of the TextEditor AvalonEdit with small changes.</PackageDescription>    
     <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
   </PropertyGroup>
   
@@ -56,7 +59,7 @@
 
   <ItemGroup>
     
-    <None Include="README.md" />    
+    <None Include="../README.md" />    
     <None Include="../AvalonEditB.Docs/READMEnuget.md"  Pack="true" PackagePath="" />
     <None Include="../AvalonEditB.Docs/logo128.png"     Pack="true" PackagePath=""/> <!--PackagePath = "" makes the file availabe to nuget pack tool-->
     

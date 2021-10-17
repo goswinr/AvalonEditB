@@ -11,8 +11,8 @@
 
 AvalonEditB is a fork of a [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 with some small modifications like:
-* **Search and replace** functionality from this [PR](https://github.com/icsharpcode/AvalonEdit/pull/99)
-* **Block selection** with middle mouse button (like in VS code)
+* **Search-and-Replace** functionality taken and adapted from [PR 99](https://github.com/icsharpcode/AvalonEdit/pull/99)
+* **Block Selection** with middle mouse button (like in VS code)
 * Some private properties exposed as public
 
 ### Download
@@ -38,5 +38,15 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff 
 * https://github.com/goswinr/Seff.Rhino 
 * https://github.com/goswinr/Seff.Revit
+
+### Changelog
+
+`1.2.0` 
+- Revert to original sorting in completion list.
+- Improve Error messages of TextSegment.
+- All relevant commits up to release 6.1.2 of [AvalonEdit](https://github.com/icsharpcode/AvalonEdit) are included.
+            
+`1.0.0` 
+- All relevant commits up to release 6.1.1 of [AvalonEdit](https://github.com/icsharpcode/AvalonEdit) are included.
 
 
