@@ -17,6 +17,8 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 
 ### Changelog
+`1.3.0` 
+- target net6.0 and net472
 
 `1.2.0` 
 - Revert to original sorting in completion list.

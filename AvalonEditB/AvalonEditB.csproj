@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>    
-    <TargetFrameworks>net472;net50-windows</TargetFrameworks>   
+    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>    
     <DefineConstants>TRACE</DefineConstants>
@@ -18,13 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <Version>1.3.0</Version>
+    <AssemblyVersion>1.3.0</AssemblyVersion>
+    <FileVersion>1.3.0</FileVersion>
     <PackageReleaseNotes>
-      Revert to original sorting in completion list.
-      Improve Error messages of TextSegment.
-      All relevant commits up to release 6.1.2 of AvalonEdit are included.
+      - target net6.0 and net472
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
@@ -39,7 +37,7 @@
    <PropertyGroup>  
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>      
     <IncludeSymbols>true</IncludeSymbols>
-    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->  <!-- using  snupkg the readme does not pack https://github.com/NuGet/Home/issues/10791 -->    
+    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->  <!-- using  snupkg the readme does not pack https://github.com/NuGet/Home/issues/10791 , fixed ?-->    
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
@@ -53,7 +51,7 @@
   <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">  <Reference Include="System.Windows.Forms" />  </ItemGroup>  coverd by UseWindowsForms ? -->
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <!-- https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets -->
   </ItemGroup> 
 
