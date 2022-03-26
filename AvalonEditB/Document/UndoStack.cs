@@ -31,14 +31,14 @@ namespace AvalonEditB.Document
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
 	public sealed class UndoStack : INotifyPropertyChanged
 	{
-		/// undo stack is listening for changes
+		// undo stack is listening for changes
 		internal const int StateListen = 0;
-		/// undo stack is reverting/repeating a set of changes
+		// undo stack is reverting/repeating a set of changes
 		internal const int StatePlayback = 1;
 		// undo stack is reverting/repeating a set of changes and modifies the document to do this
 		internal const int StatePlaybackModifyDocument = 2;
-		/// state is used for checking that noone but the UndoStack performs changes
-		/// during Undo events
+		// state is used for checking that none but the UndoStack performs changes
+		// during Undo events
 		internal int state = StateListen;
 
 		Deque<IUndoableOperation> undostack = new Deque<IUndoableOperation>();

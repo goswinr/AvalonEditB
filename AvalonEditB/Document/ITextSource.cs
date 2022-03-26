@@ -73,7 +73,7 @@ namespace AvalonEditB.Document
 		/// <summary>
 		/// Gets a character at the specified position in the document.
 		/// </summary>
-		/// <paramref name="offset">The index of the character to get.</paramref>
+		/// <param name="offset">The index of the character to get.</param>
 		/// <exception cref="ArgumentOutOfRangeException">Offset is outside the valid range (0 to TextLength-1).</exception>
 		/// <returns>The character at the specified position.</returns>
 		/// <remarks>This is the same as Text[offset], but is more efficient because

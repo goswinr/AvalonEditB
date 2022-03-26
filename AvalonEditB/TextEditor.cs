@@ -84,7 +84,7 @@ namespace AvalonEditB
 			return new TextEditorAutomationPeer(this);
 		}
 
-		/// Forward focus to TextArea.
+		/// <summary>Forward focus to TextArea.</summary>
 		/// <inheritdoc/>
 		protected override void OnGotKeyboardFocus(KeyboardFocusChangedEventArgs e)
 		{
