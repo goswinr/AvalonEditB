@@ -17,6 +17,10 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 
 ### Changelog
+
+`1.4.0` 
+- bring in changes from Avalonedit 6.1.3
+
 `1.3.0` 
 - target net6.0 and net472
 

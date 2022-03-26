@@ -41,6 +41,9 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 
 ### Changelog
 
+`1.4.0` 
+- bring in changes from Avalonedit 6.1.3
+
 `1.3.0` 
 - target net6.0 and net472
 
