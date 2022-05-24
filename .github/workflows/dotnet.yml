@@ -59,18 +59,13 @@
 #       env:
 #         TestAssembly: ICSharpCode.AvalonEdit.Tests\bin\${{ matrix.configuration }}\netcoreapp3.1\ICSharpCode.AvalonEdit.Tests.dll
         
-#     - name: net45 Unit Tests
-#       run: vstest.console $env:TestAssembly
-#       env:
-#         TestAssembly: ICSharpCode.AvalonEdit.Tests\bin\${{ matrix.configuration }}\net45\ICSharpCode.AvalonEdit.Tests.dll
+    - name: net462 Unit Tests
+      run: vstest.console $env:TestAssembly
+      env:
+        TestAssembly: ICSharpCode.AvalonEdit.Tests\bin\${{ matrix.configuration }}\net462\ICSharpCode.AvalonEdit.Tests.dll
         
-#     - name: net40 Unit Tests
-#       run: vstest.console $env:TestAssembly
-#       env:
-#         TestAssembly: ICSharpCode.AvalonEdit.Tests\bin\${{ matrix.configuration }}\net40\ICSharpCode.AvalonEdit.Tests.dll
-        
-#     - name: Style - tab check
-#       run: python BuildTools\tidy.py
+    - name: Style - tab check
+      run: python BuildTools\tidy.py
 
 #     - name: Pack
 #       run: dotnet pack ICSharpCode.AvalonEdit/ICSharpCode.AvalonEdit.csproj -c ${{ matrix.configuration }}

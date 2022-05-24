@@ -158,7 +158,7 @@ namespace AvalonEditB.Highlighting
 				}
 				if (endPos > pos)
 					WriteSimpleString(value.Substring(pos, endPos - pos));
-				WriteChar(value[pos]);
+				WriteChar(value[endPos]);
 				pos = endPos + 1;
 			} while (pos < value.Length);
 		}
