@@ -71,32 +71,19 @@ namespace AvalonEditB.Utils
 			if (foreground == null)
 				foreground = TextBlock.GetForeground(element);
 
-			//new:
-			var pixelsPerDip = VisualTreeHelper.GetDpi(element).PixelsPerDip;
-			//var formating = TextOptions.GetTextFormattingMode(element);
-			FormattedText formattedText = new FormattedText(
-							text,
-							CultureInfo.CurrentCulture,
-							FlowDirection.LeftToRight,
-							typeface,
-							emSize.Value,
-							foreground, pixelsPerDip
-						);
-
-			//orignal but obsolete:
-			/*
-			FormattedText formattedTextOLD = new FormattedText(
-							text,
-							CultureInfo.CurrentCulture,
-							FlowDirection.LeftToRight,
-							typeface,
-							emSize.Value,
-							foreground,
-							null,
-							TextOptions.GetTextFormattingMode(element)
-						);
-			*/
-			return formattedText;
+			//fixed 2022-05:
+			return new FormattedText(
+				text,
+				CultureInfo.CurrentCulture,
+				FlowDirection.LeftToRight,
+				typeface,
+				emSize.Value,
+				foreground,
+				null,
+				TextOptions.GetTextFormattingMode(element),
+				VisualTreeHelper.GetDpi(element).PixelsPerDip
+			);
+		
 		}
 	}
 }
