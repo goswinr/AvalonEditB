@@ -18,11 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.4.0</Version>
-    <AssemblyVersion>1.4.0</AssemblyVersion>
-    <FileVersion>1.4.0</FileVersion>
+    <Version>1.4.1</Version>
+    <AssemblyVersion>1.4.1</AssemblyVersion>
+    <FileVersion>1.4.1</FileVersion>
     <PackageReleaseNotes>
-      - bring in changes from Avalonedit 6.1.3
+      - bring in changes from Avalonedit repro up till July 2022
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
