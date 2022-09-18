@@ -1054,7 +1054,8 @@ namespace AvalonEditB.Rendering
 			return new VisualLineTextParagraphProperties {
 				defaultTextRunProperties = defaultTextRunProperties,
 				textWrapping = canHorizontallyScroll ? TextWrapping.NoWrap : TextWrapping.Wrap,
-				tabSize = Options.IndentationSize * WideSpaceWidth
+				tabSize = Options.IndentationSize * WideSpaceWidth,
+				flowDirection = FlowDirection
 			};
 		}
 
@@ -1278,7 +1279,7 @@ namespace AvalonEditB.Rendering
 							}
 						}
 						startVC = element.VisualColumn;
-						length = element.DocumentLength;
+						length = element.VisualLength;
 						currentBrush = element.BackgroundBrush;
 					} else {
 						length += element.VisualLength;
@@ -1575,7 +1576,10 @@ namespace AvalonEditB.Rendering
 				using (var line = formatter.FormatLine(
 					new SimpleTextSource("x", textRunProperties),
 					0, 32000,
-					new VisualLineTextParagraphProperties { defaultTextRunProperties = textRunProperties },
+					new VisualLineTextParagraphProperties {
+						defaultTextRunProperties = textRunProperties,
+						flowDirection = FlowDirection
+					},
 					null)) {
 					wideSpaceWidth = Math.Max(1, line.WidthIncludingTrailingWhitespace);
 					defaultBaseline = Math.Max(1, line.Baseline);
@@ -2043,7 +2047,8 @@ namespace AvalonEditB.Rendering
 				|| e.Property == Control.FontSizeProperty
 				|| e.Property == Control.FontStretchProperty
 				|| e.Property == Control.FontStyleProperty
-				|| e.Property == Control.FontWeightProperty) {
+				|| e.Property == Control.FontWeightProperty
+				|| e.Property == Control.FlowDirectionProperty) {
 				// changing font properties requires recreating cached elements
 				RecreateCachedElements();
 				// and we need to re-measure the font metrics:
