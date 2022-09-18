@@ -275,16 +275,23 @@ namespace AvalonEditB.Folding
 		}
 
 
-		SolidColorBrush backbgroundColor = null;
+		SolidColorBrush backgroundColor = null;
 		/// <summary>
 		/// Get or Set the background color of the full Margin
 		/// </summary>
-		public SolidColorBrush BackbgroundColor {
-			get { return backbgroundColor; }
-			set { backbgroundColor = value; }
+		public SolidColorBrush BackgroundColor {
+			get { return backgroundColor; }
+			set { backgroundColor = value; }
 		}
 
-
+		/// <summary>
+		/// Get or Set the background color of the full Margin
+		/// </summary>
+		[Obsolete("Has a typo, use BackgroundColor instead")]
+		public SolidColorBrush BackbgroundColor {
+			get { return backgroundColor; }
+			set { backgroundColor = value; }
+		}
 
 		/// <inheritdoc/>
 		protected override void OnRender(DrawingContext drawingContext)
@@ -295,9 +302,9 @@ namespace AvalonEditB.Folding
 				return;
 
 			// draw Background
-			if (backbgroundColor != null) {
+			if (backgroundColor != null) {
 				Size renderSize = this.RenderSize;
-				drawingContext.DrawRectangle(backbgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
+				drawingContext.DrawRectangle(backgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
 			}
 
 			var allTextLines = TextView.VisualLines.SelectMany(vl => vl.TextLines).ToList();
