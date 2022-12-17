@@ -17,9 +17,11 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 
 ### Changelog
-`1.5.0` 
+
+`1.5.1` 
 - net7.0
 - bring in changes from Avalonedit repro up till Dec 2022
+- fix typos
 
 `1.4.1` 
 - bring in changes from Avalonedit repro up till July 2022

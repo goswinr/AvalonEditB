@@ -37,14 +37,25 @@ namespace AvalonEditB.Folding
 		internal CollapsedLineSection[] collapsedSections;
 		string title;
 
-		SolidColorBrush backbgroundColor = null;//added by Goswin, used for selection highlighting
+		SolidColorBrush backgroundColor = null;//added by Goswin, used for selection highlighting
+		
 		/// <summary>
 		/// Get or Set the background color for the box in collapsed state
 		/// Call TextView.Redraw() if not showing.
 		/// </summary>
+		[Obsolete("Has a typo, use BackgroundColor instead")]
 		public SolidColorBrush BackbgroundColor {
-			get { return backbgroundColor; }
-			set { backbgroundColor = value; }
+			get { return backgroundColor; }
+			set { backgroundColor = value; }
+		}
+
+		/// <summary>
+		/// Get or Set the background color for the box in collapsed state
+		/// Call TextView.Redraw() if not showing.
+		/// </summary>
+		public SolidColorBrush BackgroundColor {
+			get { return backgroundColor; }
+			set { backgroundColor = value; }
 		}
 		
 		

@@ -84,13 +84,24 @@ namespace AvalonEditB.Editing
 		}
 
 
-		SolidColorBrush backbgroundColor = null;
+		SolidColorBrush backgroundColor = null;
+
 		/// <summary>
 		/// Get or Set the background color of the full Margin
 		/// </summary>
+		[Obsolete("Has a typo, use BackgroundColor instead")]
 		public SolidColorBrush BackbgroundColor {
-			get { return backbgroundColor; }
-			set { backbgroundColor = value; }
+			get { return backgroundColor; }
+			set { backgroundColor = value; }
+		}
+
+
+		/// <summary>
+		/// Get or Set the background color of the full Margin
+		/// </summary>		
+		public SolidColorBrush BackgroundColor {
+			get { return backgroundColor; }
+			set { backgroundColor = value; }			
 		}
 
 		/// <inheritdoc/>
@@ -101,8 +112,8 @@ namespace AvalonEditB.Editing
 			if (textView != null && textView.VisualLinesValid) {
 
 				// draw Background
-				if ( backbgroundColor != null) { 
-					drawingContext.DrawRectangle(backbgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
+				if ( backgroundColor != null) { 
+					drawingContext.DrawRectangle(backgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
 				}
 
 				var foreground = (Brush)GetValue(Control.ForegroundProperty);

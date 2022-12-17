@@ -136,7 +136,7 @@ namespace AvalonEditB.Folding
 
 				string title = foldingSection.Title;
 				if (string.IsNullOrEmpty(title))
-					title = " ... "; // the text schown in the folding box
+					title = " ... "; // the text shown in the folding box
 				var p = new VisualLineElementTextRunProperties(CurrentContext.GlobalTextRunProperties);
 				p.SetForegroundBrush(textBrush);
 			
@@ -144,7 +144,7 @@ namespace AvalonEditB.Folding
 				var textFormatter = TextFormatterFactory.Create(CurrentContext.TextView);
 				var text = FormattedTextElement.PrepareText(textFormatter, title, p);
 				return new FoldingLineElement(foldingSection, text, foldedUntil - offset) { textBrush = textBrush, 
-																							textBrushBackground = foldingSection.BackbgroundColor,
+																							textBrushBackground = foldingSection.BackgroundColor,
 																							decorateRectangle   = foldingSection.DecorateRectangle };
 			} else {
 				return null;
