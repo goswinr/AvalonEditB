@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>    
-    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>   
+    <TargetFrameworks>net472;net7.0-windows</TargetFrameworks>   
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>    
     <DefineConstants>TRACE</DefineConstants>
@@ -18,11 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.4.1</Version>
-    <AssemblyVersion>1.4.1</AssemblyVersion>
-    <FileVersion>1.4.1</FileVersion>
+    <Version>1.5.0</Version>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <FileVersion>1.5.0</FileVersion>
     <PackageReleaseNotes>
-      - bring in changes from Avalonedit repro up till July 2022
+      - bring in changes from Avalonedit repro up till Dec 2022
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>

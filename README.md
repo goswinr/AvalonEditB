@@ -40,6 +40,11 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff.Revit
 
 ### Changelog
+### Changelog
+`1.5.0` 
+- net7.0
+- bring in changes from Avalonedit repro up till Dec 2022
+
 `1.4.1` 
 - bring in changes from Avalonedit repro up till July 2022
 
