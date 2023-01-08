@@ -29,7 +29,7 @@ namespace AvalonEditB.Highlighting.Xshd
 	{
 		#region XSHD loading
 		/// <summary>
-		/// Lodas a syntax definition from the xml reader.
+		/// Loads a syntax definition from the xml reader.
 		/// </summary>
 		public static XshdSyntaxDefinition LoadXshd(XmlReader reader)
 		{
