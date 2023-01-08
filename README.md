@@ -40,6 +40,9 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff.Revit
 
 ### Changelog
+`1.6.0` 
+- show count in search
+- fix typos
 
 `1.5.1` 
 - net7.0

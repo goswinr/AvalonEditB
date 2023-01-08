@@ -171,7 +171,7 @@ namespace AvalonEditB.Search
 		
 		void ExecuteReplaceNext(object sender, ExecutedRoutedEventArgs e) {
 			if (!panel.IsClosed) {
-				panel.ReplaceNext();
+				panel.ReplaceNext(true);
 				e.Handled = true;
 			}
 		}

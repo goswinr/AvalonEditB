@@ -18,12 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.5.1</Version>
-    <AssemblyVersion>1.5.1</AssemblyVersion>
-    <FileVersion>1.5.1</FileVersion>
-    <PackageReleaseNotes>
-      - net7.0
-      - bring in changes from Avalonedit repro up till Dec 2022
+    <Version>1.6.0</Version>
+    <AssemblyVersion>1.6.0</AssemblyVersion>
+    <FileVersion>1.6.0</FileVersion>
+    <PackageReleaseNotes>      
+      - show count in search
       - fix typos      
     </PackageReleaseNotes>
 

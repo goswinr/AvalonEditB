@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
+// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -316,11 +316,12 @@ namespace AvalonEditB.Search
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.Replace, (sender, e) => Open(true)));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.FindNext, (sender, e) => FindNext()));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.FindPrevious, (sender, e) => FindPrevious()));
-			this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, (sender, e) => ReplaceNext()));
+			this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, (sender, e) => ReplaceNext(true)));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, (sender, e) => ReplaceAll()));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.CloseSearchPanel, (sender, e) => Close()));
-			IsClosed = true;
+			IsClosed = true;						
 		}
+		
 
 		void textArea_DocumentChanged(object sender, EventArgs e)
 		{
@@ -335,6 +336,9 @@ namespace AvalonEditB.Search
 
 		void textArea_Document_TextChanged(object sender, EventArgs e)
 		{
+			// TODO why does this get called 10 times per second ???? Goswin ? but not avaEdit.TextArea.Document.TextChanged.Add ( fun a -> ISeffLog.printError "Seff TextArea.Document.TextChanged")
+			//Console.Error.WriteLine(String.Format("Search panel TextChanged: {0} {1}", e.ToString() , sender));
+			
 			DoSearch(false);
 		}
 
@@ -386,7 +390,12 @@ namespace AvalonEditB.Search
 			if (result == null)
 				result = renderer.CurrentResults.FirstSegment;
 			if (result != null) {
+				//added by Goswin:
+				int pos = renderer.CurrentResults.Where(r => r.StartOffset <= result.StartOffset).Count();
+				int count = renderer.CurrentResults.Count;
 				SelectResult(result);
+				messageView.IsOpen = true;
+				messageView.Content = String.Format("Highlighting match {0} of {1}", pos ,count);
 			}
 		}
 
@@ -402,15 +411,21 @@ namespace AvalonEditB.Search
 				result = renderer.CurrentResults.LastSegment;
 			if (result != null) {
 				SelectResult(result);
+				int pos = renderer.CurrentResults.Where(r => r.StartOffset <= result.StartOffset).Count();
+				int count = renderer.CurrentResults.Count; SelectResult(result);
+				messageView.IsOpen = true;
+				messageView.Content = String.Format("Highlighting match {0} of {1}", pos ,count);
 			}
 		}
 
 		/// <summary>
 		/// Replaces current result if any and moves to the next occurrence in the file.
 		/// </summary>
-		public int ReplaceNext() {
+		public int ReplaceNext(bool showInfo) {
 			SearchResult result = renderer.CurrentResults.FindFirstSegmentWithStartAfter(textArea.Caret.Offset);
-			var count = renderer.CurrentResults.Count;
+			int count = 0;
+			if (result != null) { count=renderer.CurrentResults.Count;}
+
 			if (result != null
 				&& !textArea.Selection.IsEmpty
 				&& textArea.Document.GetOffset(textArea.Selection.StartPosition.Location) == result.StartOffset
@@ -423,6 +438,9 @@ namespace AvalonEditB.Search
 				result = renderer.CurrentResults.FirstSegment;
 			if (result != null) {
 				SelectResult(result);
+				//added by Goswin:
+				int pos = renderer.CurrentResults.Where(r => r.StartOffset <= result.StartOffset).Count();	
+				if (showInfo) { messageView.Content = String.Format("Highlighting match {0} of {1} to be replaced", pos, count); };				
 				return count;
 			}
 			return 0;
@@ -432,9 +450,9 @@ namespace AvalonEditB.Search
 		/// Replaces all occurrences in the file.
 		/// </summary>
 		public void ReplaceAll() {
-			var count = ReplaceNext();
+			var count = ReplaceNext(false);
 			while (count-- > 0)
-				ReplaceNext();
+				ReplaceNext(false);			
 		}
 
 		void Replace(SearchResult result) {
@@ -449,6 +467,7 @@ namespace AvalonEditB.Search
 				return;
 			renderer.CurrentResults.Clear();
 
+			messageView.Content = "Search text is empty !";
 			if (!string.IsNullOrEmpty(SearchPattern)) {
 				int offset = textArea.Caret.Offset;
 				if (changeSelection) {
@@ -462,14 +481,22 @@ namespace AvalonEditB.Search
 					}
 					renderer.CurrentResults.Add(result);
 				}
-				if (!renderer.CurrentResults.Any()) {
-					messageView.IsOpen = true;
-					messageView.Content = Localization.NoMatchesFoundText;
-					messageView.PlacementTarget = searchPanel;
-				} else
-					messageView.IsOpen = false;
+
+				int count = renderer.CurrentResults.Count;
+				
+				if (count==0) { 
+					messageView.Content = "No matches found !"; } 	
+				//added by Goswin:
+				else if (count==1) { 
+					messageView.Content = "1 match found."; } 
+				else {
+					messageView.Content = String.Format("{0} matches found.", count);}
+				messageView.IsOpen = true;
+				messageView.PlacementTarget = searchPanel;
+				//Console.Error.WriteLine(String.Format("AvaB:Searching done: content:  {0}", messageView.Content));
 			}
 			textArea.TextView.InvalidateLayer(KnownLayer.Selection);
+			messageView.IsOpen = true; // otherwise it does not show it immediately ?			
 		}
 
 		void SelectResult(SearchResult result)
@@ -488,7 +515,7 @@ namespace AvalonEditB.Search
 					e.Handled = true;
 					if (replaceTextBox != null
 						&& replaceTextBox.IsFocused) {
-						ReplaceNext();
+						ReplaceNext(true);
 					} else {
 						if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
 							FindPrevious();
@@ -542,7 +569,15 @@ namespace AvalonEditB.Search
 		/// </summary>
 		public void Open(bool showReplace)
 		{
-			ShowReplace = showReplace;
+			bool update = ShowReplace != showReplace;
+			ShowReplace = showReplace;					
+			if (!IsClosed & update) { // have to move tooltip down down( or hide it)
+				messageView.IsOpen = false; // just hide it, also re-showing would still show wrong.				
+				//messageView.Placement = PlacementMode.Bottom;
+				//messageView.InvalidateArrange(); // doesn't work?
+				//textArea.TextView.InvalidateLayer(KnownLayer.Selection);// doesn't work?
+				//messageView.IsOpen = true; //re-showing would still show wrong.
+			}
 			if (!IsClosed) return;
 			var layer = AdornerLayer.GetAdornerLayer(textArea);
 			if (layer != null)
