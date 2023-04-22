@@ -19,15 +19,19 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Net.Security;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.TextFormatting;
 
+using AvalonEditB.Rendering;
 using AvalonEditB.Utils;
 
 namespace AvalonEditB.Highlighting
-{
+{	
+
 	/// <summary>
 	/// A highlighting color is a set of font properties and foreground and background color.
 	/// </summary>
@@ -38,6 +42,7 @@ namespace AvalonEditB.Highlighting
 
 		string name;
 		FontFamily fontFamily = null;
+		TextRunTypographyProperties textRunTypography = null;
 		int? fontSize;
 		FontWeight? fontWeight;
 		FontStyle? fontStyle;
@@ -72,6 +77,20 @@ namespace AvalonEditB.Highlighting
 				if (frozen)
 					throw new InvalidOperationException();
 				fontFamily = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets/sets the TextRunTypographyProperties. Null if the highlighting color does not change the TextRunTypographyProperties.
+		/// </summary>
+		public  TextRunTypographyProperties TextRunTypography {
+			get {
+				return textRunTypography;
+			}
+			set {
+				if (frozen)
+					throw new InvalidOperationException();
+				textRunTypography = value;
 			}
 		}
 
@@ -202,6 +221,17 @@ namespace AvalonEditB.Highlighting
 				this.FontFamily = new FontFamily(info.GetString("Family"));
 			if (info.GetBoolean("HasSize"))
 				this.FontSize = info.GetInt32("Size");
+
+			// added by Goswin
+			if (info.GetBoolean("HasStylisticSet1")) {
+				bool ss1 = info.GetBoolean("StylisticSet1");
+				if (ss1) this.textRunTypography = new StylisticSet1TextRunTypography(); // value is either null or true ( never false)
+			}
+
+			
+			
+			
+			     
 		}
 
 		/// <summary>
@@ -233,9 +263,16 @@ namespace AvalonEditB.Highlighting
 			info.AddValue("HasSize", this.FontSize.HasValue);
 			if (this.FontSize.HasValue)
 				info.AddValue("Size", this.FontSize.Value.ToString());
+			
+			// added by Goswin
+			info.AddValue("HasStylisticSet1", this.TextRunTypography != null);
+			if (this.TextRunTypography != null)
+				info.AddValue("StylisticSet1", true);// it would be null if false
+
+
 		}
 
-		/// <summary>
+		/// <summary> !
 		/// Gets CSS code for the color.
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "CSS usually uses lowercase, and all possible values are English-only")]
@@ -331,7 +368,8 @@ namespace AvalonEditB.Highlighting
 			return this.name == other.name && this.fontWeight == other.fontWeight
 				&& this.fontStyle == other.fontStyle && this.underline == other.underline && this.strikethrough == other.strikethrough
 				&& object.Equals(this.foreground, other.foreground) && object.Equals(this.background, other.background)
-				&& object.Equals(this.fontFamily, other.fontFamily) && object.Equals(this.FontSize, other.FontSize);
+				&& object.Equals(this.fontFamily, other.fontFamily) && object.Equals(this.FontSize, other.FontSize)
+				&& object.Equals(this.TextRunTypography, other.TextRunTypography);// added by Goswin
 		}
 
 		/// <inheritdoc/>
@@ -351,6 +389,10 @@ namespace AvalonEditB.Highlighting
 					hashCode += 1000000123 * fontFamily.GetHashCode();
 				if (fontSize != null)
 					hashCode += 1000000167 * fontSize.GetHashCode();
+				
+				if (textRunTypography != null)// added by Goswin
+					hashCode += 1000000167 ;
+
 			}
 			return hashCode;
 		}
@@ -378,13 +420,17 @@ namespace AvalonEditB.Highlighting
 				this.fontFamily = color.fontFamily;
 			if (color.fontSize != null)
 				this.fontSize = color.fontSize;
+			
+			if (textRunTypography != null)// added by Goswin
+				this.textRunTypography = color.textRunTypography;
 		}
 
 		internal bool IsEmptyForMerge {
 			get {
 				return fontWeight == null && fontStyle == null && underline == null
 					   && strikethrough == null && foreground == null && background == null
-					   && fontFamily == null && fontSize == null;
+					   && fontFamily == null && fontSize == null
+					   && textRunTypography == null;// added by Goswin
 			}
 		}
 	}

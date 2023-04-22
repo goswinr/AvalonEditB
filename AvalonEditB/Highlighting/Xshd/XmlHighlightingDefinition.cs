@@ -197,7 +197,7 @@ namespace AvalonEditB.Highlighting.Xshd
 				HighlightingColor c;
 				if (color.Name != null)
 					c = def.colorDict[color.Name];
-				else if (color.Foreground == null && color.Background == null && color.Underline == null && color.FontStyle == null && color.FontWeight == null)
+				else if (color.Foreground == null && color.Background == null && color.Underline == null && color.FontStyle == null && color.FontWeight == null && color.TextRunTypography == null)
 					return null;
 				else
 					c = new HighlightingColor();
@@ -211,6 +211,7 @@ namespace AvalonEditB.Highlighting.Xshd
 				c.FontWeight = color.FontWeight;
 				c.FontFamily = color.FontFamily;
 				c.FontSize = color.FontSize;
+				c.TextRunTypography = color.TextRunTypography;
 				return c;
 			}
 

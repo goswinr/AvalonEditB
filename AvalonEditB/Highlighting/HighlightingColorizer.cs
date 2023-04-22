@@ -234,7 +234,8 @@ namespace AvalonEditB.Highlighting
 				return true;
 			return color.Background == null && color.Foreground == null
 				&& color.FontStyle == null && color.FontWeight == null
-				&& color.Underline == null && color.Strikethrough == null;
+				&& color.Underline == null && color.Strikethrough == null
+				&& color.TextRunTypography == null;
 		}
 
 		/// <summary>
@@ -272,6 +273,9 @@ namespace AvalonEditB.Highlighting
 				element.TextRunProperties.SetTextDecorations(TextDecorations.Strikethrough);
 			if (color.FontSize.HasValue)
 				element.TextRunProperties.SetFontRenderingEmSize(color.FontSize.Value);
+
+			if (color.TextRunTypography != null)// added by Goswin
+				element.TextRunProperties.SetTypographyProperties(color.TextRunTypography);
 		}
 
 		/// <summary>

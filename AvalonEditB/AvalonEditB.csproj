@@ -18,12 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.6.0</Version>
-    <AssemblyVersion>1.6.0</AssemblyVersion>
-    <FileVersion>1.6.0</FileVersion>
-    <PackageReleaseNotes>      
-      - show count in search
-      - fix typos      
+    <Version>1.7.0</Version>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
+    <PackageReleaseNotes>
+      - support all FontWeights and stylistic set 1 in xshd syntax highlighting
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
@@ -32,7 +31,7 @@
     <PackageDescription>A fork of the AvalonEdit TextEditor with small changes.</PackageDescription> <!--this desc is used by Nuget -->
     <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon> 
 
-    <!-- <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>     not neded anymore? snk file removed     -->
+    <!-- <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>  not needed anymore? snk file removed     -->
 
   </PropertyGroup>
    <PropertyGroup>  
@@ -49,7 +48,7 @@
     <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
   </PropertyGroup>
   
-  <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">  <Reference Include="System.Windows.Forms" />  </ItemGroup>  coverd by UseWindowsForms ? -->
+  <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">  <Reference Include="System.Windows.Forms" />  </ItemGroup>  covered by UseWindowsForms ? -->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
@@ -60,7 +59,7 @@
     
     <None Include="../README.md" />    
     <None Include="../AvalonEditB.Docs/READMEnuget.md"  Pack="true" PackagePath="" />
-    <None Include="../AvalonEditB.Docs/logo128.png"     Pack="true" PackagePath=""/> <!--PackagePath = "" makes the file availabe to nuget pack tool-->
+    <None Include="../AvalonEditB.Docs/logo128.png"     Pack="true" PackagePath=""/> <!--PackagePath = "" makes the file available to nuget pack tool-->
     
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
@@ -71,7 +70,7 @@
     <Resource Include="Search\replacenext.png" />
     <Resource Include="Search\replaceall.png" />
   
-    <!-- needed for enabeling the highlighting engine: -->
+    <!-- needed for enabling the highlighting engine: -->
     <None              Remove="Highlighting\Resources\*" />
     <EmbeddedResource Include="Highlighting\Resources\*" />
     <EmbeddedResource  Remove="Highlighting\Resources\Resources.cs" />

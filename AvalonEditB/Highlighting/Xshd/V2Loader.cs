@@ -24,6 +24,7 @@ using System.Windows.Media;
 using System.Xml;
 using System.Xml.Schema;
 
+using AvalonEditB.Rendering;
 using AvalonEditB.Utils;
 
 namespace AvalonEditB.Highlighting.Xshd
@@ -301,6 +302,13 @@ namespace AvalonEditB.Highlighting.Xshd
 			color.Strikethrough = reader.GetBoolAttribute("strikethrough");
 			color.FontFamily = ParseFontFamily(position, reader.GetAttribute("fontFamily"));
 			color.FontSize = ParseFontSize(position, reader.GetAttribute("fontSize"));
+
+			var ss1 = reader.GetBoolAttribute("stylisticSet1");// added by Goswin
+			if (ss1.HasValue && ss1.Value) {
+				Console.WriteLine("Found ss1");
+				color.TextRunTypography = new StylisticSet1TextRunTypography();
+			}		
+
 			return color;
 		}
 

@@ -21,6 +21,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.TextFormatting;
+
 
 namespace AvalonEditB.Highlighting.Xshd
 {
@@ -59,6 +61,11 @@ namespace AvalonEditB.Highlighting.Xshd
 		/// Gets/sets the font weight.
 		/// </summary>
 		public FontWeight? FontWeight { get; set; }
+
+		/// <summary>
+		/// Gets/sets the TextRunTypographyProperties. Null if the highlighting color does not change the TextRunTypographyProperties.
+		/// </summary>
+		public TextRunTypographyProperties TextRunTypography {get; set; }
 
 		/// <summary>
 		/// Gets/sets the underline flag
@@ -110,6 +117,12 @@ namespace AvalonEditB.Highlighting.Xshd
 				this.FontFamily = new FontFamily(info.GetString("Family"));
 			if (info.GetBoolean("HasSize"))
 				this.FontSize = info.GetInt32("Size");
+
+			// added by Goswin
+			if (info.GetBoolean("HasStylisticSet1")) {
+				bool ss1 = info.GetBoolean("StylisticSet1");
+				if (ss1) this.TextRunTypography = new AvalonEditB.Rendering.StylisticSet1TextRunTypography(); // value is either null or true ( never false)
+			}
 		}
 
 		/// <summary>
@@ -142,6 +155,11 @@ namespace AvalonEditB.Highlighting.Xshd
 			info.AddValue("HasSize", this.FontSize.HasValue);
 			if (this.FontSize.HasValue)
 				info.AddValue("Size", this.FontSize.Value.ToString());
+
+			// added by Goswin
+			info.AddValue("HasStylisticSet1", this.TextRunTypography != null);
+			if (this.TextRunTypography != null)
+				info.AddValue("StylisticSet1", true);// it would be null if false
 		}
 
 		/// <inheritdoc/>

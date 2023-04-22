@@ -23,6 +23,17 @@ namespace AvalonEditB.Rendering
 {
 	/// <summary>
 	/// Default implementation for TextRunTypographyProperties.
+	/// But StylisticSet1 = true (makes Cascadia Code Font cursive)
+	/// </summary>
+	public class StylisticSet1TextRunTypography : DefaultTextRunTypographyProperties
+	{
+		/// <inheritdoc/>
+		public override bool StylisticSet1 { get { return true; } }
+	}
+
+
+	/// <summary>
+	/// Default implementation for TextRunTypographyProperties.
 	/// </summary>
 	public class DefaultTextRunTypographyProperties : TextRunTypographyProperties
 	{

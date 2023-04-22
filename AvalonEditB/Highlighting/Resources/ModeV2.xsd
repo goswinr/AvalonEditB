@@ -11,15 +11,29 @@
 			</xsd:simpleType>
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:string">
+					<!-- original:
 					<xsd:enumeration value="bold"/>
 					<xsd:enumeration value="normal"/>
 					<xsd:enumeration value="regular"/>
-					<!-- should we support other font weight names? -->
+					should we support other font weight names? -->
+					
+					<!-- Added by Goswin, all enums from System.Windows.FontWeights : -->
+					<xsd:enumeration value="thin"/>	<!-- usWeightClass: 100 -->					
+					<xsd:enumeration value="extraLight"/> <xsd:enumeration value="ultraLight"/> <!-- usWeightClass:200-->					
+					<xsd:enumeration value="light"/>      <!-- usWeightClass: 300-->					
+					<xsd:enumeration value="normal"/>     <xsd:enumeration value="regular"/> <!-- usWeightClass:	400-->					
+					<xsd:enumeration value="medium"/>     <!-- usWeightClass:	500-->					
+					<xsd:enumeration value="demiBold"/>   <xsd:enumeration value="semiBold"/> <!-- usWeightClass:	600-->					
+					<xsd:enumeration value="bold"/>       <!-- usWeightClass:	700-->					
+					<xsd:enumeration value="extraBold"/>  <xsd:enumeration value="ultraBold"/> <!-- usWeightClass:	800-->
+					<xsd:enumeration value="black"/>      <xsd:enumeration value="heavy"/> <!-- usWeightClass:	900-->					
+					<xsd:enumeration value="extraBlack"/> <xsd:enumeration value="ultraBlack"/> <!-- usWeightClass:950-->
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:union>
 	</xsd:simpleType>
 
+	
 	<!-- Font Style -->
 	<xsd:simpleType name="FontStyle">
 		<xsd:restriction base="xsd:string">
@@ -34,11 +48,15 @@
 		<xsd:attribute name="foreground" type="xsd:string" use="optional" />
 		<xsd:attribute name="background" type="xsd:string" use="optional" />
 		<xsd:attribute name="fontWeight" type="FontWeight" use="optional" />
-		<xsd:attribute name="fontStyle" type="FontStyle" use="optional" />
+		<xsd:attribute name="fontStyle"  type="FontStyle" use="optional" />
 		<xsd:attribute name="fontFamily" type="xsd:string" use="optional" />
-		<xsd:attribute name="fontSize" type="xsd:integer" use="optional" />
-		<xsd:attribute name="underline" type="xsd:boolean" use="optional" />
+		<xsd:attribute name="fontSize"   type="xsd:integer" use="optional" />
+		<xsd:attribute name="underline"  type="xsd:boolean" use="optional" />
 		<xsd:attribute name="strikethrough" type="xsd:boolean" use="optional" />
+		
+		<!-- StylisticSet, added by Goswin -->	
+		<xsd:attribute name="stylisticSet1"  type="xsd:boolean" use="optional" />
+		
 		<xsd:anyAttribute namespace="##other" processContents="lax" />
 	</xsd:attributeGroup>
 
