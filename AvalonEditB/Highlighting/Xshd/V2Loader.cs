@@ -305,7 +305,7 @@ namespace AvalonEditB.Highlighting.Xshd
 
 			var ss1 = reader.GetBoolAttribute("stylisticSet1");// added by Goswin
 			if (ss1.HasValue && ss1.Value) {
-				Console.WriteLine("Found ss1");
+				//Console.WriteLine("Found ss1");
 				color.TextRunTypography = new StylisticSet1TextRunTypography();
 			}		
 

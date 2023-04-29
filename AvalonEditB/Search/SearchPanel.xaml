@@ -52,8 +52,8 @@
 									<Image Width="16" Height="16" Stretch="Fill" Source="replacenext.png" />
 								</Button>								
 							</DockPanel>
-							
-							<StackPanel Orientation="Horizontal">
+
+							<StackPanel Orientation="Horizontal" TextElement.FontFamily="Segoe UI">								
 								<CheckBox Margin="6,3,6,3" IsChecked="{Binding MatchCase, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchCaseText, RelativeSource={RelativeSource TemplatedParent}}" />
 								<CheckBox Margin="6,3,6,3" IsChecked="{Binding WholeWords, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.MatchWholeWordsText, RelativeSource={RelativeSource TemplatedParent}}"  />
 								<CheckBox Margin="6,3,6,3" IsChecked="{Binding UseRegex, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Localization.UseRegexText, RelativeSource={RelativeSource TemplatedParent}}"  />								
