@@ -647,6 +647,23 @@ namespace AvalonEditB.Rendering
 			}
 		}
 
+		/* by goswin, might need disposing of other lines too 
+		/// <summary>
+		/// Reset Visual line cache.
+		/// must be given a correct list of current visual lines. all other lies will be discarded
+		/// </summary>
+		public void SetVisualLineCache(List<VisualLine> goodLines, List<VisualLine> badLines, DispatcherPriority redrawPriority = DispatcherPriority.Normal)
+		{
+			VerifyAccess();
+			allVisualLines = goodLines;			
+			foreach (VisualLine badLine in badLines) {
+				DisposeVisualLine(badLine);
+			}
+			InvalidateMeasure(redrawPriority);
+		}
+		*/
+
+
 		/// <summary>
 		/// Causes the text editor to redraw all lines overlapping with the specified segment.
 		/// </summary>

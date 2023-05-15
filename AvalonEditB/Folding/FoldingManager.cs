@@ -179,7 +179,7 @@ namespace AvalonEditB.Folding
 		/// The foldings are returned sorted by start offset;
 		/// for multiple foldings at the same offset the order is undefined.
 		/// </summary>
-		public IEnumerable<FoldingSection> AllFoldings {
+		public TextSegmentCollection<FoldingSection> AllFoldings {
 			get { return foldings; }
 		}
 
