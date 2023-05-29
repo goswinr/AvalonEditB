@@ -16,6 +16,11 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 
 ### Changelog
+
+`1.8.0`
+- Enable code folding in more than one TextViews.
+- Don't build visual lines from collapsed lines
+
 `1.7.1`
 - bring in changes from Avalonedit 6.3.0
 - support all FontWeights and stylistic set 1 in xshd syntax highlighting

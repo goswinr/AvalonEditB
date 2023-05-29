@@ -18,11 +18,12 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>1.7.1</Version>
-    <AssemblyVersion>1.7.1</AssemblyVersion>
-    <FileVersion>1.7.1</FileVersion>
+    <Version>1.8.0</Version>
+    <AssemblyVersion>1.8.0</AssemblyVersion>
+    <FileVersion>1.8.0</FileVersion>
     <PackageReleaseNotes>
-      - support all FontWeights and stylistic set 1 in xshd syntax highlighting
+      - Enable code folding in more than one TextViews.
+      - Don't build visual lines from collapsed lines.
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>

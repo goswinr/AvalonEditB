@@ -40,6 +40,11 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff.Revit
 
 ### Changelog
+
+`1.8.0`
+- Enable code folding in more than one TextViews.
+- Don't build visual lines from collapsed lines
+
 `1.7.1`
 - bring in changes from Avalonedit 6.3.0
 - support all FontWeights and stylistic set 1 in xshd syntax highlighting

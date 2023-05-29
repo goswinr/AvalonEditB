@@ -56,7 +56,7 @@ namespace AvalonEditB.Rendering
 		}
 
 		ColumnRulerRenderer columnRulerRenderer;
-		CurrentLineHighlightRenderer currentLineHighlighRenderer;
+		CurrentLineHighlightRenderer currentLineHighlightRenderer;
 
 		/// <summary>
 		/// Creates a new TextView instance.
@@ -69,7 +69,7 @@ namespace AvalonEditB.Rendering
 			lineTransformers = new ObserveAddRemoveCollection<IVisualLineTransformer>(LineTransformer_Added, LineTransformer_Removed);
 			backgroundRenderers = new ObserveAddRemoveCollection<IBackgroundRenderer>(BackgroundRenderer_Added, BackgroundRenderer_Removed);
 			columnRulerRenderer = new ColumnRulerRenderer(this);
-			currentLineHighlighRenderer = new CurrentLineHighlightRenderer(this);
+			currentLineHighlightRenderer = new CurrentLineHighlightRenderer(this);
 			this.Options = new TextEditorOptions();
 
 			Debug.Assert(singleCharacterElementGenerator != null); // assert that the option change created the builtin element generators
@@ -911,7 +911,7 @@ namespace AvalonEditB.Rendering
 
 		#region Measure
 		/// <summary>
-		/// Additonal amount that allows horizontal scrolling past the end of the longest line.
+		/// Additional amount that allows horizontal scrolling past the end of the longest line.
 		/// This is necessary to ensure the caret always is visible, even when it is at the end of the longest line.
 		/// </summary>
 		const double AdditionalHorizontalScrollAmount = 3;
@@ -2091,10 +2091,10 @@ namespace AvalonEditB.Rendering
 				columnRulerRenderer.SetRuler(this.Options.ColumnRulerPosition, this.ColumnRulerPen);
 			}
 			if (e.Property == CurrentLineBorderProperty) {
-				currentLineHighlighRenderer.BorderPen = this.CurrentLineBorder;
+				currentLineHighlightRenderer.BorderPen = this.CurrentLineBorder;
 			}
 			if (e.Property == CurrentLineBackgroundProperty) {
-				currentLineHighlighRenderer.BackgroundBrush = this.CurrentLineBackground;
+				currentLineHighlightRenderer.BackgroundBrush = this.CurrentLineBackground;
 			}
 		}
 
@@ -2154,8 +2154,8 @@ namespace AvalonEditB.Rendering
 		/// Gets/Sets highlighted line number.
 		/// </summary>
 		public int HighlightedLine {
-			get { return this.currentLineHighlighRenderer.Line; }
-			set { this.currentLineHighlighRenderer.Line = value; }
+			get { return this.currentLineHighlightRenderer.Line; }
+			set { this.currentLineHighlightRenderer.Line = value; }
 		}
 
 		/// <summary>
