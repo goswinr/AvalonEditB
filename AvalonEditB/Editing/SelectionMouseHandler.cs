@@ -723,7 +723,7 @@ namespace AvalonEditB.Editing
 						textArea.Caret.Offset = Math.Max(newWord.EndOffset, startWord.EndOffset);
 				}
 			}
-			textArea.Caret.BringCaretToView(5.0);
+			textArea.Caret.BringCaretToView(textArea.Options.MinimumDistanceToViewBorder);
 		}
 		#endregion
 
