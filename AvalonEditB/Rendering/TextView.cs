@@ -647,7 +647,7 @@ namespace AvalonEditB.Rendering
 			}
 		}
 
-		/* by goswin, might need disposing of other lines too 
+		/* by Goswin, might need disposing of other lines too 
 		/// <summary>
 		/// Reset Visual line cache.
 		/// must be given a correct list of current visual lines. all other lies will be discarded

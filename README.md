@@ -40,6 +40,8 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff.Revit
 
 ### Changelog
+`2.0.0`
+  - add FoldingManger.AutoRedrawFoldingSections = false; to not redraw full section
 
 `1.8.0`
 - Enable code folding in more than one TextViews.

@@ -115,13 +115,14 @@ namespace AvalonEditB.Folding
 		}
 
 		/// <inheritdoc/>
-		protected override void OnSegmentChanged()
-		{
-			ValidateCollapsedLineSections();
+		protected override void OnSegmentChanged()		{
 			base.OnSegmentChanged();
-			// don't redraw if the FoldingSection wasn't added to the FoldingManager's collection yet
-			if (IsConnectedToCollection)
-				manager.Redraw(this);
+			if (manager.AutoRedrawFoldingSections) { // Added by Goswin to do less Redraw() . This causes the entire folding section to redraw for a single character change, It seems not needed! 
+				ValidateCollapsedLineSections(); // because It is possible that StartOffset/EndOffset get set to invalid values via the property setters in TextSegment,
+				// don't redraw if the FoldingSection wasn't added to the FoldingManager's collection yet
+				if (IsConnectedToCollection ) {
+					manager.Redraw(this); }
+			}
 		}
 
 		/// <summary>

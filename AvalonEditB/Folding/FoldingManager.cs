@@ -40,6 +40,13 @@ namespace AvalonEditB.Folding
 		readonly TextSegmentCollection<FoldingSection> foldings;
 		bool isFirstUpdate = true;
 
+		/// <summary>
+		/// Use to not Redraw full folding sections on every change in them, if false some more manual redraw call might be needed.
+		/// False by default.
+		/// </summary>
+		public bool AutoRedrawFoldingSections{get ;set;} = false; // Added by Goswin 
+		
+
 		#region Constructor
 		/// <summary>
 		/// Creates a new FoldingManager instance.

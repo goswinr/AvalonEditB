@@ -198,7 +198,7 @@ namespace AvalonEditB.Folding
 				var metrics = Format(double.PositiveInfinity);
 				Rect r = new Rect(origin.X, origin.Y - metrics.Baseline, metrics.Width, metrics.Height);
 				//drawingContext.DrawRectangle(null, new Pen(textBrush, 1), r); // original
-				drawingContext.DrawRectangle(textBrushBackground, new Pen(textBrush, 1), r); // so that the colapsing text box can be highlighted too
+				drawingContext.DrawRectangle(textBrushBackground, new Pen(textBrush, 1), r); // so that the collapsing text box can be highlighted too
 				if (decorateRectangle != null) { decorateRectangle(r, drawingContext); } // to draw red squiggles on folding box 
 				base.Draw(drawingContext, origin, rightToLeft, sideways);
 			}

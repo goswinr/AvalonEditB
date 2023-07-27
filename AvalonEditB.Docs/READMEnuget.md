@@ -16,6 +16,8 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 
 ### Changelog
+`2.0.0`
+  - add FoldingManger.AutoRedrawFoldingSections = false; to not redraw full section
 
 `1.8.0`
 - Enable code folding in more than one TextViews.
