@@ -30,7 +30,9 @@ namespace AvalonEditB.Rendering
 		TextView textView;
 
 		public static readonly Color DefaultBackground = Color.FromArgb(22, 20, 220, 224);
-		public static readonly Color DefaultBorder = Color.FromArgb(52, 0, 255, 110);
+		
+		//public static readonly Color DefaultBorder = Color.FromArgb(52, 0, 255, 110);
+		public static readonly Color DefaultBorder = Color.FromArgb(40, 0, 0, 0);
 
 		#endregion
 
@@ -65,11 +67,11 @@ namespace AvalonEditB.Rendering
 			if (textView == null)
 				throw new ArgumentNullException("textView");
 
-			this.BorderPen = new Pen(new SolidColorBrush(DefaultBorder), 1);
+			this.BorderPen = new Pen(new SolidColorBrush(DefaultBorder), 1.5);
 			this.BorderPen.Freeze();
 
-			this.BackgroundBrush = new SolidColorBrush(DefaultBackground);
-			this.BackgroundBrush.Freeze();
+			// this.BackgroundBrush = new SolidColorBrush(DefaultBackground);
+			// this.BackgroundBrush.Freeze();
 
 			this.textView = textView;
 			this.textView.BackgroundRenderers.Add(this);
@@ -80,20 +82,25 @@ namespace AvalonEditB.Rendering
 		public void Draw(TextView textView, DrawingContext drawingContext)
 		{
 			if (!this.textView.Options.HighlightCurrentLine)
-				return;
-
-			BackgroundGeometryBuilder builder = new BackgroundGeometryBuilder();
+				return;				
 
 			var visualLine = this.textView.GetVisualLine(line);
 			if (visualLine == null) return;
 
 			var linePosY = visualLine.VisualTop - this.textView.ScrollOffset.Y;
 
-			builder.AddRectangle(textView, new Rect(0, linePosY, textView.ActualWidth, visualLine.Height));
+			//Rect rect = new Rect(0, linePosY, textView.ActualWidth, visualLine.Height);
+			double width = textView.ActualWidth;			
+			if (width > 20.0) {// during the first layout pass, the width is 0.0
+				BackgroundGeometryBuilder builder = new BackgroundGeometryBuilder {AlignToWholePixels = true };// AlignToWholePixels added by Goswin, should not be needed.				
+				double thi = BorderPen.Thickness ;
+				Rect rect = new Rect(thi, linePosY, width - thi*2.0, visualLine.Height); // shrink by half the border width to see border in full
+				builder.AddRectangle(textView, rect); // added by Goswin, make full rect visible at line start and end.		
 
-			Geometry geometry = builder.CreateGeometry();
-			if (geometry != null) {
-				drawingContext.DrawGeometry(this.BackgroundBrush, this.BorderPen, geometry);
+				Geometry geometry = builder.CreateGeometry();
+				if (geometry != null) {				
+					drawingContext.DrawGeometry(this.BackgroundBrush, this.BorderPen, geometry);
+				}
 			}
 		}
 	}

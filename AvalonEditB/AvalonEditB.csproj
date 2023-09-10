@@ -18,11 +18,13 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0</AssemblyVersion>
-    <FileVersion>2.0.0</FileVersion>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0</FileVersion>
     <PackageReleaseNotes>
-      - add FoldingManger.AutoRedrawFoldingSections = false; to not redraw full section
+      - improve current line highlighting
+      - improve line number margin
+      - improve search panel
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
@@ -76,5 +78,7 @@
     <EmbeddedResource  Remove="Highlighting\Resources\Resources.cs" />
     <Resource         Include="Highlighting\Resources\Resources.cs" />    
  
-  </ItemGroup>  
+  </ItemGroup>    
+
+  
 </Project>

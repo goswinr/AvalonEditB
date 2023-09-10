@@ -45,6 +45,8 @@ namespace AvalonEditB.Editing
 			// override Property Value Inheritance, and always render
 			// the line number margin left-to-right
 			FlowDirection = FlowDirection.LeftToRight;
+			foregroundColor.Freeze();
+			foregroundCurrColor.Freeze();
 		}
 
 		static LineNumberMargin()
@@ -61,11 +63,52 @@ namespace AvalonEditB.Editing
 		/// </summary>
 		protected Typeface typeface;
 
+
 		/// <summary>
 		/// The font size used for rendering the line number margin.
 		/// This field is calculated in MeasureOverride() based on the FontFamily etc. properties.
 		/// </summary>
 		protected double emSize;
+
+		SolidColorBrush backgroundColor = null;
+		SolidColorBrush foregroundColor = Brushes.Silver;
+		SolidColorBrush foregroundCurrColor = Brushes.Black;
+
+		Action<DrawingContext,int,Point,Point> drawInMargin = null;
+
+		/// <summary> Highlight the current line number. </summary>
+		public bool HighlightCurrentLineNumber { get; set;} = true;
+		
+		/// <summary> Color of the current line number text. </summary>
+		public SolidColorBrush CurrentLineNumberForegroundColor{ 
+			get { return foregroundCurrColor; }
+			set { value?.Freeze(); foregroundCurrColor = value; }			
+		}
+		
+		/// <summary> Color of the  line number text. </summary>
+		public SolidColorBrush LineNumberForegroundColor{ 
+			get { return foregroundColor; }
+			set { value?.Freeze(); foregroundColor = value; }			
+		}	
+
+		/// <summary>
+		/// Get or Set the background color of the full Margin
+		/// </summary>		
+		public SolidColorBrush BackgroundColor {
+			get { return backgroundColor; }
+			set { value?.Freeze(); backgroundColor = value; }			
+		}
+
+		/// <summary> 
+		/// Action to set to draw next to line number. 
+		/// the int is the line number.
+		/// The Points are bottom left and top right of the line number text.
+		/// </summary>
+		public Action<DrawingContext,int,Point,Point> DrawInMargin {
+			get { return drawInMargin; }
+			set { drawInMargin = value; }			
+		}
+
 
 		/// <inheritdoc/>
 		protected override Size MeasureOverride(Size availableSize)
@@ -78,30 +121,9 @@ namespace AvalonEditB.Editing
 				new string('9', maxLineNumberLength),
 				typeface,
 				emSize,
-				(Brush)GetValue(Control.ForegroundProperty)
+				LineNumberForegroundColor //(Brush)GetValue(Control.ForegroundProperty) // previous foreground
 			);
-			return new Size(text.Width, 0);
-		}
-
-
-		SolidColorBrush backgroundColor = null;
-
-		/// <summary>
-		/// Get or Set the background color of the full Margin
-		/// </summary>
-		[Obsolete("Has a typo, use BackgroundColor instead")]
-		public SolidColorBrush BackbgroundColor {
-			get { return backgroundColor; }
-			set { backgroundColor = value; }
-		}
-
-
-		/// <summary>
-		/// Get or Set the background color of the full Margin
-		/// </summary>		
-		public SolidColorBrush BackgroundColor {
-			get { return backgroundColor; }
-			set { backgroundColor = value; }			
+			return new Size(text.Width + 3.0, 0);
 		}
 
 		/// <inheritdoc/>
@@ -116,16 +138,31 @@ namespace AvalonEditB.Editing
 					drawingContext.DrawRectangle(backgroundColor, null, new Rect(0, 0, renderSize.Width, renderSize.Height));
 				}
 
-				var foreground = (Brush)GetValue(Control.ForegroundProperty);
+				//var foreground = (Brush)GetValue(Control.ForegroundProperty); // previous foreground
+				int curr = textView.HighlightedLine; // the current line number
+				
 				foreach (VisualLine line in textView.VisualLines) {
 					int lineNumber = line.FirstDocumentLine.LineNumber;
+					SolidColorBrush foreground = // make current line number black if HighlightCurrentLineNumber is true :	
+						(lineNumber == curr && HighlightCurrentLineNumber) ? CurrentLineNumberForegroundColor : LineNumberForegroundColor;
 					FormattedText text = TextFormatterFactory.CreateFormattedText(
 						this,
 						lineNumber.ToString(CultureInfo.CurrentCulture),
-						typeface, emSize, foreground
+						typeface, //lineNumber == curr ? typeface : typeface,	// make current line number BOLD ??
+						emSize, 
+						foreground	
 					);
 					double y = line.GetTextLineVisualYPosition(line.TextLines[0], VisualYPosition.TextTop);
-					drawingContext.DrawText(text, new Point(renderSize.Width - text.Width, y - textView.VerticalOffset));
+					Point pt = new Point(renderSize.Width - text.Width, y - textView.VerticalOffset);
+					drawingContext.DrawText(text, pt);
+					
+					// optional additional drawing action on margin
+					if (drawInMargin != null){
+						Point a = new Point(0, y - textView.VerticalOffset);
+						Point b = new Point(renderSize.Width, y - textView.VerticalOffset-text.Height);
+						drawInMargin(drawingContext, lineNumber, a, b); // additional drawing action on margin
+					}
+					
 				}
 			}
 		}

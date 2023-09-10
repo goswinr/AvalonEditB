@@ -92,9 +92,13 @@ namespace AvalonEditB.Search
 	/// </summary>
 	public class SearchInputHandler : TextAreaInputHandler
 	{
-		internal SearchInputHandler(TextArea textArea, SearchPanel panel)
+		
+		bool enableReplacing = true;
+		
+		internal SearchInputHandler(TextArea textArea, SearchPanel panel, bool enableReplace)
 			: base(textArea)
 		{
+			enableReplacing = enableReplace;
 			RegisterCommands(this.CommandBindings);
 			this.panel = panel;
 		}
@@ -102,26 +106,30 @@ namespace AvalonEditB.Search
 		internal void RegisterGlobalCommands(CommandBindingCollection commandBindings)
 		{
 			commandBindings.Add(new CommandBinding(ApplicationCommands.Find, ExecuteFind));
-			commandBindings.Add(new CommandBinding(ApplicationCommands.Replace, ExecuteReplace));
 			commandBindings.Add(new CommandBinding(SearchCommands.Find, ExecuteFind));
-			commandBindings.Add(new CommandBinding(SearchCommands.Replace, ExecuteReplace));
 			commandBindings.Add(new CommandBinding(SearchCommands.FindNext, ExecuteFindNext, CanExecuteWithOpenSearchPanel));
 			commandBindings.Add(new CommandBinding(SearchCommands.FindPrevious, ExecuteFindPrevious, CanExecuteWithOpenSearchPanel));
-			commandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, ExecuteReplaceNext, CanExecuteWithOpenSearchPanel));
-			commandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, ExecuteReplaceAll, CanExecuteWithOpenSearchPanel));
+			if (enableReplacing) {
+				commandBindings.Add(new CommandBinding(ApplicationCommands.Replace, ExecuteReplace));
+				commandBindings.Add(new CommandBinding(SearchCommands.Replace, ExecuteReplace));
+				commandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, ExecuteReplaceNext, CanExecuteWithOpenSearchPanel));
+				commandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, ExecuteReplaceAll, CanExecuteWithOpenSearchPanel));
+			}			
 		}
 
 		void RegisterCommands(ICollection<CommandBinding> commandBindings)
 		{
 			commandBindings.Add(new CommandBinding(ApplicationCommands.Find, ExecuteFind));
-			commandBindings.Add(new CommandBinding(ApplicationCommands.Replace, ExecuteReplace));
 			commandBindings.Add(new CommandBinding(SearchCommands.Find, ExecuteFind));
-			commandBindings.Add(new CommandBinding(SearchCommands.Replace, ExecuteReplace));
 			commandBindings.Add(new CommandBinding(SearchCommands.FindNext, ExecuteFindNext, CanExecuteWithOpenSearchPanel));
 			commandBindings.Add(new CommandBinding(SearchCommands.FindPrevious, ExecuteFindPrevious, CanExecuteWithOpenSearchPanel));
-			commandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, ExecuteReplaceNext, CanExecuteWithOpenSearchPanel));
-			commandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, ExecuteReplaceAll, CanExecuteWithOpenSearchPanel));
 			commandBindings.Add(new CommandBinding(SearchCommands.CloseSearchPanel, ExecuteCloseSearchPanel, CanExecuteWithOpenSearchPanel));
+			if (enableReplacing) {
+				commandBindings.Add(new CommandBinding(ApplicationCommands.Replace, ExecuteReplace));
+				commandBindings.Add(new CommandBinding(SearchCommands.Replace, ExecuteReplace));
+				commandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, ExecuteReplaceNext, CanExecuteWithOpenSearchPanel));
+				commandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, ExecuteReplaceAll, CanExecuteWithOpenSearchPanel));
+			}			
 		}
 
 		SearchPanel panel;

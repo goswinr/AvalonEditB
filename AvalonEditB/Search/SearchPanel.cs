@@ -247,34 +247,41 @@ namespace AvalonEditB.Search
 			DoSearch(true);
 		}
 
+
+		bool replaceEnabled = true;
+
 		/// <summary>
 		/// Creates a new SearchPanel.
+		/// By default this SearchPanel will also support Replacing.
 		/// </summary>
-		SearchPanel()
+		SearchPanel(bool enableReplacing)
 		{
+			replaceEnabled = enableReplacing;
 		}
 
 		/// <summary>
 		/// Creates a SearchPanel and installs it to the TextEditor's TextArea.
+		/// By default this SearchPanel will also support Replacing.
 		/// </summary>
 		/// <remarks>This is a convenience wrapper.</remarks>
-		public static SearchPanel Install(TextEditor editor)
+		public static SearchPanel Install(TextEditor editor, bool enableReplace = true)
 		{
 			if (editor == null)
 				throw new ArgumentNullException("editor");
-			return Install(editor.TextArea);
+			return Install(editor.TextArea, enableReplace);
 		}
 
 		/// <summary>
 		/// Creates a SearchPanel and installs it to the TextArea.
+		/// By default this SearchPanel will also support Replacing.
 		/// </summary>
-		public static SearchPanel Install(TextArea textArea)
+		public static SearchPanel Install(TextArea textArea, bool enableReplace = true)
 		{
 			if (textArea == null)
 				throw new ArgumentNullException("textArea");
-			SearchPanel panel = new SearchPanel();
+			SearchPanel panel = new SearchPanel(enableReplace);
 			panel.AttachInternal(textArea);
-			panel.handler = new SearchInputHandler(textArea, panel);
+			panel.handler = new SearchInputHandler(textArea, panel, enableReplace);
 			textArea.DefaultInputHandler.NestedInputHandlers.Add(panel.handler);
 			return panel;
 		}
@@ -313,12 +320,14 @@ namespace AvalonEditB.Search
 			KeyDown += SearchLayerKeyDown;
 
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.Find, (sender, e) => Open(false)));
-			this.CommandBindings.Add(new CommandBinding(SearchCommands.Replace, (sender, e) => Open(true)));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.FindNext, (sender, e) => FindNext()));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.FindPrevious, (sender, e) => FindPrevious()));
-			this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, (sender, e) => ReplaceNext(true)));
-			this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, (sender, e) => ReplaceAll()));
 			this.CommandBindings.Add(new CommandBinding(SearchCommands.CloseSearchPanel, (sender, e) => Close()));
+			if (replaceEnabled){
+				this.CommandBindings.Add(new CommandBinding(SearchCommands.Replace, (sender, e) => Open(true)));
+				this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceNext, (sender, e) => ReplaceNext(true)));
+				this.CommandBindings.Add(new CommandBinding(SearchCommands.ReplaceAll, (sender, e) => ReplaceAll()));
+			}
 			IsClosed = true;						
 		}
 		

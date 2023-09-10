@@ -470,18 +470,26 @@ namespace AvalonEditB
 			set { SetValue(ShowLineNumbersProperty, Boxes.Box(value)); }
 		}
 
+		/// <summary>
+		/// Show a dotted line margin left of line numbers? True by default.
+		/// IMPORTANT: After changing this property, set 'editor.ShowLineNumbers = true' (again) to make this change visible.
+		/// </summary>
+		public bool ShowLineNumbersWithDottedMargin {get; set;} = true;
+
 		static void OnShowLineNumbersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			TextEditor editor = (TextEditor)d;
 			var leftMargins = editor.TextArea.LeftMargins;
 			if ((bool)e.NewValue) {
 				LineNumberMargin lineNumbers = new LineNumberMargin();
-				Line line = (Line)DottedLineMargin.Create();
 				leftMargins.Insert(0, lineNumbers);
-				leftMargins.Insert(1, line);
 				var lineNumbersForeground = new Binding("LineNumbersForeground") { Source = editor };
-				line.SetBinding(Line.StrokeProperty, lineNumbersForeground);
 				lineNumbers.SetBinding(Control.ForegroundProperty, lineNumbersForeground);
+				if (editor.ShowLineNumbersWithDottedMargin){
+					Line dottedLine = (Line)DottedLineMargin.Create();
+					leftMargins.Insert(1, dottedLine);
+					dottedLine.SetBinding(Line.StrokeProperty, lineNumbersForeground);
+				}
 			} else {
 				for (int i = 0; i < leftMargins.Count; i++) {
 					if (leftMargins[i] is LineNumberMargin) {
