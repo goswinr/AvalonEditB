@@ -83,7 +83,10 @@ namespace AvalonEditB.Folding
 			}
 		}
 
-		internal void ValidateCollapsedLineSections()
+		/// <summary>
+		/// Needed locally if manager.AutoRedrawFoldingSections is false.
+		/// </summary>
+		public void ValidateCollapsedLineSections() // made public by Goswin, needs to run if a collapsed folding section changes  and manager.AutoRedrawFoldingSections is false
 		{
 			if (!isFolded) {
 				RemoveCollapsedLineSection();
@@ -117,7 +120,7 @@ namespace AvalonEditB.Folding
 		/// <inheritdoc/>
 		protected override void OnSegmentChanged()		{
 			base.OnSegmentChanged();
-			if (manager.AutoRedrawFoldingSections) { // Added by Goswin to do less Redraw() . This causes the entire folding section to redraw for a single character change, It seems not needed! 
+			if (manager.AutoRedrawFoldingSections) { // Added by Goswin to do less Redraw() . This causes the entire folding section to redraw for a single character change, It seems not needed! It s only needed if the folding section changes.
 				ValidateCollapsedLineSections(); // because It is possible that StartOffset/EndOffset get set to invalid values via the property setters in TextSegment,
 				// don't redraw if the FoldingSection wasn't added to the FoldingManager's collection yet
 				if (IsConnectedToCollection ) {

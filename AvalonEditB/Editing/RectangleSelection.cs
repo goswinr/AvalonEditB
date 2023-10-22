@@ -299,7 +299,7 @@ namespace AvalonEditB.Editing
 		/// <inheritdoc/>
 		public override void ReplaceSelectionWithText(string newText)
 		//this method is never used in Seff there is a custom implementation of it including catching the textEnteringPreview event, 
-		//to avaid inconsistent behaviour at somne fontsizes like 17.5 usig consolas
+		//to avoid inconsistent behavior at some font sizes like 17.5 using Consolas
 		{
 			if (newText == null)
 				throw new ArgumentNullException("newText");
@@ -333,7 +333,7 @@ namespace AvalonEditB.Editing
 					pos = new TextViewPosition(document.GetLocation(editOffset + firstInsertionLength));
 					textArea.ClearSelection();
 				}
-				//TODO, BUG ! on some fontsizes, like 17.5 Consolas, in rectangular selection this will put the cursor one line higher eachtime 
+				//TODO, BUG ! on some font sizes, like 17.5 Consolas, in rectangular selection this will put the cursor one line higher each time 
 				textArea.Caret.Position = textArea.TextView.GetPosition(new Point(GetXPos(textArea, pos), textArea.TextView.GetVisualTopByDocumentLine(Math.Max(startLine, endLine)))).GetValueOrDefault();
 			}
 		}

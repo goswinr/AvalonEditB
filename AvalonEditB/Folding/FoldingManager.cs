@@ -41,10 +41,10 @@ namespace AvalonEditB.Folding
 		bool isFirstUpdate = true;
 
 		/// <summary>
-		/// Use to not Redraw full folding sections on every change in them, if false some more manual redraw call might be needed.
-		/// False by default.
+		/// Use to not Redraw full folding sections on every change in them, if false some more manual redraw calls via AutoRedrawFoldingSections might be needed if foldings change.
+		/// True by default.
 		/// </summary>
-		public bool AutoRedrawFoldingSections{get ;set;} = false; // Added by Goswin 
+		public bool AutoRedrawFoldingSections{get ;set;} = true; // Added by Goswin 
 		
 
 		#region Constructor

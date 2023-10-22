@@ -76,7 +76,7 @@ namespace AvalonEditB.Editing
 
 		Action<DrawingContext,int,Point,Point> drawInMargin = null;
 
-		/// <summary> Highlight the current line number. </summary>
+		/// <summary> Highlight the current line number. True by default</summary>
 		public bool HighlightCurrentLineNumber { get; set;} = true;
 		
 		/// <summary> Color of the current line number text. </summary>
