@@ -136,42 +136,42 @@ namespace AvalonEditB.CodeCompletion
 		/// </summary>
 		public void HandleKey(KeyEventArgs e)
 		{
-			if (listBox == null)
-				return;
-
-			// We have to do some key handling manually, because the default doesn't work with
-			// our simulated events.
-			// Also, the default PageUp/PageDown implementation changes the focus, so we avoid it.
-			switch (e.Key) {
-				case Key.Down:
-					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex + 1);
-					break;
-				case Key.Up:
-					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex - 1);
-					break;
-				case Key.PageDown:
-					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex + listBox.VisibleItemCount);
-					break;
-				case Key.PageUp:
-					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex - listBox.VisibleItemCount);
-					break;
-				case Key.Home:
-					e.Handled = true;
-					listBox.SelectIndex(0);
-					break;
-				case Key.End:
-					e.Handled = true;
-					listBox.SelectIndex(listBox.Items.Count - 1);
-					break;
-				case Key.Tab:
-				case Key.Enter:
-					e.Handled = true;
-					RequestInsertion(e);
-					break;
+			if (listBox != null && listBox.IsVisible) {// added by Goswin, because list-box might not be null but not showing because empty
+				
+				// We have to do some key handling manually, because the default doesn't work with
+				// our simulated events.
+				// Also, the default PageUp/PageDown implementation changes the focus, so we avoid it.
+				switch (e.Key) {
+					case Key.Down:
+						e.Handled = true;
+						listBox.SelectIndex(listBox.SelectedIndex + 1);
+						break;
+					case Key.Up:
+						e.Handled = true;
+						listBox.SelectIndex(listBox.SelectedIndex - 1);
+						break;
+					case Key.PageDown:
+						e.Handled = true;
+						listBox.SelectIndex(listBox.SelectedIndex + listBox.VisibleItemCount);
+						break;
+					case Key.PageUp:
+						e.Handled = true;
+						listBox.SelectIndex(listBox.SelectedIndex - listBox.VisibleItemCount);
+						break;
+					case Key.Home:
+						e.Handled = true;
+						listBox.SelectIndex(0);
+						break;
+					case Key.End:
+						e.Handled = true;
+						listBox.SelectIndex(listBox.Items.Count - 1);
+						break;
+					case Key.Tab:
+					case Key.Enter:
+						e.Handled = true;
+						RequestInsertion(e);
+						break;
+				}
 			}
 		}
 

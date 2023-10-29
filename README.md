@@ -11,9 +11,13 @@
 
 AvalonEditB is a fork of a [AvalonEdit](https://github.com/icsharpcode/AvalonEdit)
 with some small modifications like:
-* **Search-and-Replace** functionality taken and adapted from [PR 99](https://github.com/icsharpcode/AvalonEdit/pull/99)
-* **Block Selection** with middle mouse button (like in VS code)
-* Some private properties exposed as public
+* **Search-and-Replace** functionality taken and adapted from [PR 99](https://github.com/icsharpcode/AvalonEdit/pull/99).
+* **Block Selection** with middle mouse button (like in VS code).
+* Some private properties exposed as public.
+* Support for cursive fonts via xshd syntax highlighting.
+* Less redrawing of folding sections for better performance (controlled via FoldingManger.AutoRedrawFoldingSections).
+* Bugfixes in key handling when completion list is not showing.
+* styling of current line and its number.
 
 ### Download
 
@@ -40,13 +44,18 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 * https://github.com/goswinr/Seff.Revit
 
 ### Changelog
+
+`2.2.0`
+- fix key handling when completion list box is invisible.
+- FoldingManger.AutoRedrawFoldingSections = true ( by default)
+
 `2.1.0`
-  - improve current line highlighting
-  - improve line number margin
-  - improve search panel
+- improve current line highlighting
+- improve line number margin
+- improve search panel
 
 `2.0.0`
-  - add FoldingManger.AutoRedrawFoldingSections = false; to not redraw full section
+- add FoldingManger.AutoRedrawFoldingSections = false; to not redraw full section
 
 `1.8.0`
 - Enable code folding in more than one TextViews.

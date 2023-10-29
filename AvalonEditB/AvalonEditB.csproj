@@ -18,13 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId> 
     
-    <Version>2.1.0</Version>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0</FileVersion>
     <PackageReleaseNotes>
-      - improve current line highlighting
-      - improve line number margin
-      - improve search panel
+      - fix key handling when completion list box is invisible.
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
@@ -50,7 +48,6 @@
     <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
   </PropertyGroup>
   
-  <!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">  <Reference Include="System.Windows.Forms" />  </ItemGroup>  covered by UseWindowsForms ? -->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
