@@ -294,16 +294,19 @@ namespace AvalonEditB.Rendering
 		//		NewLineElementGenerator newLineElementGenerator;
 		SingleCharacterElementGenerator singleCharacterElementGenerator;
 		LinkElementGenerator linkElementGenerator;
-		MailLinkElementGenerator mailLinkElementGenerator;
+
+		//MailLinkElementGenerator mailLinkElementGenerator;
+		//NugetLinkElementGenerator nugetLinkElementGenerator;
 
 		void UpdateBuiltinElementGeneratorsFromOptions()
 		{
 			TextEditorOptions options = this.Options;
 
-			//			AddRemoveDefaultElementGeneratorOnDemand(ref newLineElementGenerator, options.ShowEndOfLine);
+			// AddRemoveDefaultElementGeneratorOnDemand(ref newLineElementGenerator, options.ShowEndOfLine);
 			AddRemoveDefaultElementGeneratorOnDemand(ref singleCharacterElementGenerator, options.ShowBoxForControlCharacters || options.ShowSpaces || options.ShowTabs);
 			AddRemoveDefaultElementGeneratorOnDemand(ref linkElementGenerator, options.EnableHyperlinks);
-			AddRemoveDefaultElementGeneratorOnDemand(ref mailLinkElementGenerator, options.EnableEmailHyperlinks);
+			// AddRemoveDefaultElementGeneratorOnDemand(ref mailLinkElementGenerator, options.EnableEmailHyperlinks);
+			// AddRemoveDefaultElementGeneratorOnDemand(ref nugetLinkElementGenerator, options.EnableHyperlinks);
 		}
 
 		void AddRemoveDefaultElementGeneratorOnDemand<T>(ref T generator, bool demand)

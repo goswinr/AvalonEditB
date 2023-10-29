@@ -23,6 +23,8 @@
     <FileVersion>2.2.0</FileVersion>
     <PackageReleaseNotes>
       - fix key handling when completion list box is invisible.
+      - FoldingManger.AutoRedrawFoldingSections = true ( by default)
+      - Disable email links
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>

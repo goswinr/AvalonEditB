@@ -61,7 +61,7 @@ namespace AvalonEditB.Rendering
 		public override TextRun CreateTextRun(int startVisualColumn, ITextRunConstructionContext context)
 		{
 			this.TextRunProperties.SetForegroundBrush(context.TextView.LinkTextForegroundBrush);
-			this.TextRunProperties.SetBackgroundBrush(context.TextView.LinkTextBackgroundBrush);
+			//this.TextRunProperties.SetBackgroundBrush(context.TextView.LinkTextBackgroundBrush); // disabled by Goswin because it hides selection highlight in Seff
 			if (context.TextView.LinkTextUnderline)
 				this.TextRunProperties.SetTextDecorations(TextDecorations.Underline);
 			return base.CreateTextRun(startVisualColumn, context);

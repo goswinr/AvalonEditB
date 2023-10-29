@@ -198,7 +198,7 @@ namespace AvalonEditB.Document
 				lastGroupDescriptor = groupDescriptor;
 			}
 			undoGroupDepth++;
-			//Util.LoggingService.Debug("Open undo group (new depth=" + undoGroupDepth + ")");
+			//Utils.LoggingService.Debug("Open undo group (new depth=" + undoGroupDepth + ")");
 		}
 
 		/// <summary>
@@ -217,7 +217,7 @@ namespace AvalonEditB.Document
 				lastGroupDescriptor = groupDescriptor;
 			}
 			undoGroupDepth++;
-			//Util.LoggingService.Debug("Continue undo group (new depth=" + undoGroupDepth + ")");
+			//Utils.LoggingService.Debug("Continue undo group (new depth=" + undoGroupDepth + ")");
 		}
 
 		/// <summary>
@@ -227,7 +227,7 @@ namespace AvalonEditB.Document
 		{
 			if (undoGroupDepth == 0) throw new InvalidOperationException("There are no open undo groups");
 			undoGroupDepth--;
-			//Util.LoggingService.Debug("Close undo group (new depth=" + undoGroupDepth + ")");
+			//Utils.LoggingService.Debug("Close undo group (new depth=" + undoGroupDepth + ")");
 			if (undoGroupDepth == 0) {
 				Debug.Assert(state == StateListen || actionCountInUndoGroup == 0);
 				allowContinue = true;

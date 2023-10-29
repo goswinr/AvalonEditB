@@ -48,6 +48,7 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 `2.2.0`
 - fix key handling when completion list box is invisible.
 - FoldingManger.AutoRedrawFoldingSections = true ( by default)
+- Disable email links
 
 `2.1.0`
 - improve current line highlighting

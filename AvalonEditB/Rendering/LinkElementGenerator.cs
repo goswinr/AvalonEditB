@@ -36,10 +36,14 @@ namespace AvalonEditB.Rendering
 	{
 		// a link starts with a protocol (or just with www), followed by 0 or more 'link characters', followed by a link end character
 		// (this allows accepting punctuation inside links but not at the end)
-		internal readonly static Regex defaultLinkRegex = new Regex(@"\b(https?://|ftp://|www\.)[\w\d\._/\-~%@()+:?&=#!]*[\w\d/]");
+		//internal readonly static Regex defaultLinkRegex = new Regex(@"\b(https?://|ftp://|www\.)[\w\d\._/\-~%@()+:?&=#!]*[\w\d/]");
+		internal readonly static Regex defaultLinkRegex = new Regex(@"\b(https?://)[\w\d\._/\-~%@()+:?&=#!]*[\w\d/]"); // only http(s) links
 
 		// try to detect email addresses
-		internal readonly static Regex defaultMailRegex = new Regex(@"\b[\w\d\.\-]+\@[\w\d\.\-]+\.[a-z]{2,6}\b");
+		//internal readonly static Regex defaultMailRegex = new Regex(@"\b[\w\d\.\-]+\@[\w\d\.\-]+\.[a-z]{2,6}\b");
+
+		// try to detect nuget packages 
+		//internal readonly static Regex defaultNugetRegex = new Regex(@"#r\s*""nuget:\s*.+""");
 
 		readonly Regex linkRegex;
 
@@ -133,6 +137,9 @@ namespace AvalonEditB.Rendering
 		}
 	}
 
+
+	/* disabled for now by Goswin
+
 	// This class is internal because it does not need to be accessed by the user - it can be configured using TextEditorOptions.
 
 	/// <summary>
@@ -161,4 +168,47 @@ namespace AvalonEditB.Rendering
 			return null;
 		}
 	}
+	
+
+
+	// This class is internal because it does not need to be accessed by the user - it can be configured using TextEditorOptions.
+
+	/// <summary>
+	/// Detects nuget script references and makes them clickable.
+	/// </summary>
+	/// <remarks>
+	/// This element generator can be easily enabled and configured using the
+	/// <see cref="TextEditorOptions"/>.
+	/// </remarks>
+	sealed class NugetLinkElementGenerator : LinkElementGenerator
+	{
+		/// <summary>
+		/// Creates a new NugetLinkElementGenerator.
+		/// </summary>
+		public NugetLinkElementGenerator()
+			: base(defaultNugetRegex)
+		{
+		}
+
+		protected override Uri GetUriFromMatch(Match match)
+		{
+			//#r "nuget: Rhino.Scripting, 0.6.0"
+			string text = match.Value;
+			int startIndex = text.IndexOf(':');
+			int endIndex = text.IndexOf(',', startIndex);
+			string name ;
+			if (endIndex == -1){
+				name = text.Substring(startIndex + 1).TrimEnd('"').Trim();
+			}
+			else {
+				name = text.Substring(startIndex + 1, endIndex - startIndex - 1).TrimEnd('"').Trim();
+			}
+			string 	targetUrl = "https://www.nuget.org/packages/" + name;
+			if (Uri.IsWellFormedUriString(targetUrl, UriKind.Absolute))
+				return new Uri(targetUrl);
+
+			return null;
+		}
+	}
+	*/
 }
