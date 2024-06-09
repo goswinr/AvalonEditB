@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>Library</OutputType>    
-    <TargetFrameworks>net472;net8.0-windows</TargetFrameworks>   
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>    
+    <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
 
     <!-- <NeutralLanguage>en</NeutralLanguage> error? -->
@@ -14,54 +14,55 @@
     <RootNamespace>AvalonEditB</RootNamespace>
     <AssemblyName>AvalonEditB</AssemblyName>
     <AssemblyTitle>AvalonEditB</AssemblyTitle>
-    <Title>AvalonEditB</Title>  
+    <Title>AvalonEditB</Title>
     <Product>AvalonEditB</Product>
-    <PackageId>AvalonEditB</PackageId> 
-    
-    <Version>2.2.0</Version>
-    <AssemblyVersion>2.2.0</AssemblyVersion>
-    <FileVersion>2.2.0</FileVersion>
+    <PackageId>AvalonEditB</PackageId>
+
+    <Version>2.3.0</Version>
+    <AssemblyVersion>2.3.0</AssemblyVersion>
+    <FileVersion>2.3.0</FileVersion>
     <PackageReleaseNotes>
-      - fix key handling when completion list box is invisible.
-      - FoldingManger.AutoRedrawFoldingSections = true ( by default)
-      - Disable email links
+      - use IHighlightingRule to allow non regex highlighters
+      - Fix rounding error when getting VisualLine
+      - merge changes from AvalonEdit
+      - TargetFrameworks: net472, net6.0-windows
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
-    <Copyright>Goswin Rothenthal 2021</Copyright>    
+    <Copyright>Goswin Rothenthal 2021</Copyright>
     <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
     <PackageDescription>A fork of the AvalonEdit TextEditor with small changes.</PackageDescription> <!--this desc is used by Nuget -->
-    <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon> 
+    <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon>
 
     <!-- <SignAssembly>true</SignAssembly> <AssemblyOriginatorKeyFile>AvalonEditB.snk</AssemblyOriginatorKeyFile>  not needed anymore? snk file removed     -->
 
   </PropertyGroup>
-   <PropertyGroup>  
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>      
+   <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
-    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->  <!-- using  snupkg the readme does not pack https://github.com/NuGet/Home/issues/10791 , fixed ?-->    
+    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->  <!-- using  snupkg the readme does not pack https://github.com/NuGet/Home/issues/10791 , fixed ?-->
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/goswinr/AvalonEditB</PackageProjectUrl>
     <RepositoryUrl>https://github.com/goswinr/AvalonEditB</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageIcon>logo128.png</PackageIcon>
     <PackageReadmeFile>READMEnuget.md</PackageReadmeFile>
-    <PackageTags>WPF Text Editor AvalonEdit</PackageTags>    
+    <PackageTags>WPF Text Editor AvalonEdit</PackageTags>
   </PropertyGroup>
-  
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <!-- https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files#controlling-dependency-assets -->
-  </ItemGroup> 
+  </ItemGroup>
 
   <ItemGroup>
-    
-    <None Include="../README.md" />    
+
+    <None Include="../README.md" />
     <None Include="../AvalonEditB.Docs/READMEnuget.md"  Pack="true" PackagePath="" />
     <None Include="../AvalonEditB.Docs/logo128.png"     Pack="true" PackagePath=""/> <!--PackagePath = "" makes the file available to nuget pack tool-->
-    
+
     <None Remove="Search\next.png" />
     <None Remove="Search\prev.png" />
     <None Remove="themes\RightArrow.cur" />
@@ -70,14 +71,14 @@
     <Resource Include="themes\RightArrow.cur" />
     <Resource Include="Search\replacenext.png" />
     <Resource Include="Search\replaceall.png" />
-  
+
     <!-- needed for enabling the highlighting engine: -->
     <None              Remove="Highlighting\Resources\*" />
     <EmbeddedResource Include="Highlighting\Resources\*" />
     <EmbeddedResource  Remove="Highlighting\Resources\Resources.cs" />
-    <Resource         Include="Highlighting\Resources\Resources.cs" />    
- 
-  </ItemGroup>    
+    <Resource         Include="Highlighting\Resources\Resources.cs" />
 
-  
+  </ItemGroup>
+
+
 </Project>
