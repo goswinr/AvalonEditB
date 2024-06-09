@@ -25,7 +25,7 @@ namespace AvalonEditB.Highlighting
 	/// A highlighting rule.
 	/// </summary>
 	[Serializable]
-	public class HighlightingRule
+	public class HighlightingRule : IHighlightingRule
 	{
 		/// <summary>
 		/// Gets/Sets the regular expression for the rule.
@@ -36,6 +36,15 @@ namespace AvalonEditB.Highlighting
 		/// Gets/Sets the highlighting color.
 		/// </summary>
 		public HighlightingColor Color { get; set; }
+
+		/// <inheritdoc/>
+		public string RuleInfo => $"Regex: {Regex}";
+
+		/// <inheritdoc/>
+		public RuleMatch GetMatch(string input, int beginning, int length, int lineNumber)
+		{
+			return RuleMatch.FromRegexMatch(Regex.Match(input, beginning, length));
+		}
 
 		/// <inheritdoc/>
 		public override string ToString()

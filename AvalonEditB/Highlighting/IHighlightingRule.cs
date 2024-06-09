@@ -16,47 +16,32 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-
-using AvalonEditB.Utils;
-
-namespace AvalonEditB.Highlighting
+namespace ICSharpCode.AvalonEdit.Highlighting
 {
 	/// <summary>
-	/// A highlighting rule set describes a set of spans that are valid at a given code location.
+	/// Interface of a highlighting rule
 	/// </summary>
-	[Serializable]
-	public class HighlightingRuleSet
+	public interface IHighlightingRule
 	{
 		/// <summary>
-		/// Creates a new RuleSet instance.
+		/// Gets the first match for the rule
 		/// </summary>
-		public HighlightingRuleSet()
-		{
-			this.Spans = new NullSafeCollection<HighlightingSpan>();
-			this.Rules = new NullSafeCollection<IHighlightingRule>();
-		}
+		/// <param name="input">The string to search for a match.</param>
+		/// <param name="beginning">The zero-based character position in the input string that defines the leftmost 
+		/// position to be searched.</param>
+		/// <param name="length">The number of characters in the substring to include in the search.</param>
+		/// <param name="lineNumber">The line number of the <paramref name="input"/> string.</param>
+		/// <returns>An object that contains information about the match.</returns>
+		RuleMatch GetMatch(string input, int beginning, int length, int lineNumber);
 
 		/// <summary>
-		/// Gets/Sets the name of the rule set.
+		/// Gets the highlighting color.
 		/// </summary>
-		public string Name { get; set; }
+		HighlightingColor Color { get; }
 
 		/// <summary>
-		/// Gets the list of spans.
+		/// Info about rule. Used to help figure out why rule failed
 		/// </summary>
-		public IList<HighlightingSpan> Spans { get; private set; }
-
-		/// <summary>
-		/// Gets the list of rules.
-		/// </summary>
-		public IList<IHighlightingRule> Rules { get; private set; }
-
-		/// <inheritdoc/>
-		public override string ToString()
-		{
-			return "[" + GetType().Name + " " + Name + "]";
-		}
+		string RuleInfo { get; }
 	}
 }

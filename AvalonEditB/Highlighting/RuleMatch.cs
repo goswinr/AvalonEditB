@@ -16,47 +16,47 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
-using AvalonEditB.Utils;
-
-namespace AvalonEditB.Highlighting
+namespace ICSharpCode.AvalonEdit.Highlighting
 {
 	/// <summary>
-	/// A highlighting rule set describes a set of spans that are valid at a given code location.
+	/// And object that contains information about a rule's match
 	/// </summary>
-	[Serializable]
-	public class HighlightingRuleSet
+	public class RuleMatch
 	{
 		/// <summary>
-		/// Creates a new RuleSet instance.
+		/// Creates a new RuleMatch instance.
 		/// </summary>
-		public HighlightingRuleSet()
+		public RuleMatch() { }
+
+		/// <summary>
+		/// Gets a value indicating whether the match was successful.
+		/// </summary>
+		public bool Success { get; set; }
+
+		/// <summary>
+		/// The position in the original string where the first character of captured substring was found.
+		/// </summary>
+		public int Index { get; set; }
+
+		/// <summary>
+		/// The length of the captured substring.
+		/// </summary>
+		public int Length { get; set; }
+
+		/// <summary>
+		/// Creates a new RuleMatch instance from a <see cref="Match"/> instance.
+		/// </summary>
+		/// <param name="match">Match to use</param>
+		/// <returns>RuleMatch instance built from match parameter</returns>
+		public static RuleMatch FromRegexMatch(Match match)
 		{
-			this.Spans = new NullSafeCollection<HighlightingSpan>();
-			this.Rules = new NullSafeCollection<IHighlightingRule>();
-		}
-
-		/// <summary>
-		/// Gets/Sets the name of the rule set.
-		/// </summary>
-		public string Name { get; set; }
-
-		/// <summary>
-		/// Gets the list of spans.
-		/// </summary>
-		public IList<HighlightingSpan> Spans { get; private set; }
-
-		/// <summary>
-		/// Gets the list of rules.
-		/// </summary>
-		public IList<IHighlightingRule> Rules { get; private set; }
-
-		/// <inheritdoc/>
-		public override string ToString()
-		{
-			return "[" + GetType().Name + " " + Name + "]";
+			return new RuleMatch() {
+				Success = match.Success,
+				Index = match.Index,
+				Length = match.Length,
+			};
 		}
 	}
 }
