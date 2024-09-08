@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
+// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -177,10 +177,12 @@ namespace AvalonEditB.Folding
 
 		/// <summary>
 		/// Removes all folding sections.
+		/// Resets CollapsedLinesAreInconsistent on all TextViews to false.
 		/// </summary>
 		public void Clear()
 		{
 			document.VerifyAccess();
+			foreach (TextView textView in textViews) {textView.CollapsedLinesAreInconsistent = false;} // reset flag
 			foreach (FoldingSection s in foldings)
 				s.IsFolded = false;
 			foldings.Clear();
@@ -248,7 +250,7 @@ namespace AvalonEditB.Folding
 		/// <summary>
 		/// Updates the foldings in this <see cref="FoldingManager"/> using the given new foldings.
 		/// This method will try to detect which new foldings correspond to which existing foldings; and will keep the state
-		/// (<see cref="FoldingSection.IsFolded"/>) for existing foldings.
+		/// (<see cref="FoldingSection.IsFolded"/>) for existing foldings.		
 		/// </summary>
 		/// <param name="newFoldings">The new set of foldings. These must be sorted by starting offset.</param>
 		/// <param name="firstErrorOffset">The first position of a parse error. Existing foldings starting after
@@ -256,6 +258,16 @@ namespace AvalonEditB.Folding
 		/// Use -1 for this parameter if there were no parse errors.</param>
 		public void UpdateFoldings(IEnumerable<NewFolding> newFoldings, int firstErrorOffset)
 		{
+			// if any of the textViews has inconsistent collapsed lines, clear all foldings first
+			//foreach (TextView textView in textViews) { // Added by Goswin
+			//	if (textView.CollapsedLinesAreInconsistent) {
+			//		textView.CollapsedLinesAreInconsistent = false; // reset flag
+			//		Clear();
+			//		Console.WriteLine("Clearing all foldings because of inconsistent collapsed lines");					
+			//		break;
+			//	}
+			//}
+
 			if (newFoldings == null)
 				throw new ArgumentNullException("newFoldings");
 

@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
 // without restriction, including without limitation the rights to use, copy, modify, merge,
 // publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 // to whom the Software is furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
 // PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
@@ -187,12 +187,12 @@ namespace AvalonEditB.Rendering
 			node.lineNode.collapsedSections = null;
 			EndRemoval();
 		}
-		
+
 //		void ILineTracker.AfterRemoveLine(DocumentLine line)
 //		{
 //
 //		}
-		
+
 		void ILineTracker.LineInserted(DocumentLine insertionPos, DocumentLine newLine)
 		{
 			InsertAfter(GetNode(insertionPos), newLine);
@@ -532,7 +532,8 @@ namespace AvalonEditB.Rendering
 		public bool GetIsCollapsed(int lineNumber)
 		{
 			var node = GetNodeByIndex(lineNumber - 1);
-			return node.lineNode.IsDirectlyCollapsed || GetIsCollapedFromNode(node);
+			//if (lineNumber < 50){System.Console.WriteLine($"{lineNumber}: IsDirectlyCollapsed:{node.lineNode.IsDirectlyCollapsed}, node.documentLine:{node.documentLine}");} // to debug BuildVisualLine exceptions
+			return node.lineNode.IsDirectlyCollapsed || GetIsCollapsedFromNode(node);
 		}
 
 		/// <summary>
@@ -1011,7 +1012,7 @@ namespace AvalonEditB.Rendering
 		#endregion
 
 		#region Collapsing support
-		static bool GetIsCollapedFromNode(HeightTreeNode node)
+		static bool GetIsCollapsedFromNode(HeightTreeNode node)
 		{
 			while (node != null) {
 				if (node.IsDirectlyCollapsed)

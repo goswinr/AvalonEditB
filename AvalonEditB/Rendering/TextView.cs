@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2014 AlphaSierraPapa for the SharpDevelop Team
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
 // without restriction, including without limitation the rights to use, copy, modify, merge,
 // publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 // to whom the Software is furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in all copies or
 // substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 // INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
 // PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
@@ -39,9 +39,9 @@ namespace AvalonEditB.Rendering
 {
 	/// <summary>
 	/// A virtualizing panel producing+showing <see cref="VisualLine"/>s for a <see cref="TextDocument"/>.
-	/// 
+	///
 	/// This is the heart of the text editor, this class controls the text rendering process.
-	/// 
+	///
 	/// Taken as a standalone control, it's a text viewer without any editing capability.
 	/// </summary>
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
@@ -650,7 +650,7 @@ namespace AvalonEditB.Rendering
 			}
 		}
 
-		/* by Goswin, might need disposing of other lines too 
+		/* by Goswin, might need disposing of other lines too
 		/// <summary>
 		/// Reset Visual line cache.
 		/// must be given a correct list of current visual lines. all other lies will be discarded
@@ -658,7 +658,7 @@ namespace AvalonEditB.Rendering
 		public void SetVisualLineCache(List<VisualLine> goodLines, List<VisualLine> badLines, DispatcherPriority redrawPriority = DispatcherPriority.Normal)
 		{
 			VerifyAccess();
-			allVisualLines = goodLines;			
+			allVisualLines = goodLines;
 			foreach (VisualLine badLine in badLines) {
 				DisposeVisualLine(badLine);
 			}
@@ -1014,7 +1014,7 @@ namespace AvalonEditB.Rendering
 			while (yPos < availableSize.Height && nextLine != null) {
 				VisualLine visualLine = GetVisualLine(nextLine.LineNumber);
 				if (visualLine == null) {
-					
+
 					// Don't build visual lines from collapsed lines
 					var bBreakAll = false;
 					while (heightTree.GetIsCollapsed(nextLine.LineNumber)) {
@@ -1025,10 +1025,10 @@ namespace AvalonEditB.Rendering
 							break;
 						}
 					}
-					
+
 					if (bBreakAll)
 						break;
-					
+
 					visualLine = BuildVisualLine(nextLine,
 												 globalTextRunProperties, paragraphProperties,
 												 elementGeneratorsArray, lineTransformersArray,
@@ -1095,9 +1095,15 @@ namespace AvalonEditB.Rendering
 		}
 
 		/// <summary>
-		/// To limit the amount of InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?") printed in log
+		/// Indicates if there was a problem with the collapsed lines while building the visual line.
+		/// Clear the folding manager to resolve this.
 		/// </summary>
-		public int linesCollapsedVisualPosOffThrowCount = 0;
+		public bool CollapsedLinesAreInconsistent { get; set; } = false; // Added by Goswin 	
+
+		// <summary>
+		// To limit the amount of InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?") printed in log
+		// </summary>
+		// public int linesCollapsedVisualPosOffThrowCount = 0;
 
 		VisualLine BuildVisualLine(DocumentLine documentLine,
 								   TextRunProperties globalTextRunProperties,
@@ -1126,18 +1132,26 @@ namespace AvalonEditB.Rendering
 				double lastLinePos = heightTree.GetVisualPosition(visualLine.LastDocumentLine.NextLine ?? visualLine.LastDocumentLine);
 				if (!firstLinePos.IsClose(lastLinePos)) {
 					for (int i = visualLine.FirstDocumentLine.LineNumber + 1; i <= visualLine.LastDocumentLine.LineNumber; i++) {
-						if (!heightTree.GetIsCollapsed(i))
-							throw new InvalidOperationException("Line " + i + " was skipped by a VisualLineElementGenerator, but it is not collapsed.");
+						if (!heightTree.GetIsCollapsed(i)){ // GetIsCollapsed() might wrongly return false for lines that moved from one folding to another one.
+							// throw new InvalidOperationException("Line " + i + " was skipped by a VisualLineElementGenerator, but it is not collapsed."); // disabled by Goswin
+							CollapsedLinesAreInconsistent = true;
+							//string msg = $"Line {i} from {visualLine.FirstDocumentLine} to {visualLine.LastDocumentLine} was skipped by a VisualLineElementGenerator, but it is not collapsed.";
+							//Console.Error.WriteLine(msg);
+						}
 					}
-					
-					++linesCollapsedVisualPosOffThrowCount;
-					if (linesCollapsedVisualPosOffThrowCount < 20) { 
-						string err =
-							"THIS ERROR CAN HAPPEN WHEN SCROLLING FAST THROUGH A LARGE FILE WITH RECENTLY COLLAPSED FOLDINGS. IT CAN BE IGNORED." +
-							$"visualLine.FirstDocumentLine({visualLine.FirstDocumentLine}) != visualLine.LastDocumentLine({visualLine.LastDocumentLine})" + Environment.NewLine +
-							$"(!firstLinePos({firstLinePos}).IsClose(lastLinePos({lastLinePos}))";						
-						throw new InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?" + Environment.NewLine + err);
-					}
+
+					//++linesCollapsedVisualPosOffThrowCount;
+					//if (linesCollapsedVisualPosOffThrowCount < 20) {
+					//	string err =
+					//		"All lines collapsed but visual pos different - height tree inconsistency?" + Environment.NewLine +
+					//		"THIS ERROR CAN HAPPEN WHEN SCROLLING FAST THROUGH A LARGE FILE WITH RECENTLY COLLAPSED FOLDINGS. IT CAN BE IGNORED." +
+					//		$"visualLine.FirstDocumentLine({visualLine.FirstDocumentLine}) != visualLine.LastDocumentLine({visualLine.LastDocumentLine})" + Environment.NewLine +
+					//		$"(!firstLinePos({firstLinePos}).IsClose(lastLinePos({lastLinePos}))" + Environment.NewLine +
+					//		"linesCollapsedVisualPosOffThrowCount = " + linesCollapsedVisualPosOffThrowCount;
+
+					//	// throw new InvalidOperationException(err);  // disabled by Goswin
+					//	Console.Error.WriteLine(err);
+					//}
 					//throw new InvalidOperationException("All lines collapsed but visual pos different - height tree inconsistency?" );
 				}
 			}
@@ -2024,10 +2038,10 @@ namespace AvalonEditB.Rendering
 		/// multiple <see cref="DocumentLine"/>s. Do not call it without providing a corresponding
 		/// <see cref="VisualLineElementGenerator"/>.
 		/// If you want to create collapsible text sections, see <see cref="Folding.FoldingManager"/>.
-		/// 
+		///
 		/// Note that if you want a VisualLineElement to span from line N to line M, then you need to collapse only the lines
 		/// N+1 to M. Do not collapse line N itself.
-		/// 
+		///
 		/// When you no longer need the section to be collapsed, call <see cref="CollapsedLineSection.Uncollapse()"/> on the
 		/// <see cref="CollapsedLineSection"/> returned from this method.
 		/// </remarks>

@@ -19,6 +19,10 @@ Check out the original [original documentation](http://avalonedit.net/documentat
 AvalonEditB is also distributed under the  [MIT License](https://github.com/goswinr/AvalonEditB/blob/main/LICENSE.txt).
 
 ### Changelog
+
+`2.4.0`
+- add CollapsedLinesAreInconsitent to TextView to check Folding bugs
+
 `2.3.0`
 - use IHighlightingRule to allow non regex highlighters
 - Fix rounding error when getting VisualLine

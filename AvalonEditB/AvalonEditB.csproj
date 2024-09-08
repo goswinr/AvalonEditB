@@ -18,14 +18,11 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId>
 
-    <Version>2.3.0</Version>
-    <AssemblyVersion>2.3.0</AssemblyVersion>
-    <FileVersion>2.3.0</FileVersion>
+    <Version>2.4.0</Version>
+    <AssemblyVersion>2.4.0</AssemblyVersion>
+    <FileVersion>2.4.0</FileVersion>
     <PackageReleaseNotes>
-      - use IHighlightingRule to allow non regex highlighters
-      - Fix rounding error when getting VisualLine
-      - merge changes from AvalonEdit
-      - TargetFrameworks: net472, net6.0-windows
+      - CollapsedLinesAreInconsitent
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
@@ -79,6 +76,5 @@
     <Resource         Include="Highlighting\Resources\Resources.cs" />
 
   </ItemGroup>
-
 
 </Project>

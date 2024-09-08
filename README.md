@@ -42,6 +42,9 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 
 ### Changelog
 
+`2.4.0`
+- add CollapsedLinesAreInconsitent to TextView to check Folding bugs
+
 `2.3.0`
 - use IHighlightingRule to allow non regex highlighters
 - Fix rounding error when getting VisualLine
