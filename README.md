@@ -1,7 +1,7 @@
 # AvalonEditB
 
 [![nuget](https://img.shields.io/nuget/v/AvalonEditB.svg)](https://nuget.org/packages/AvalonEditB)
-[![fuget](https://www.fuget.org/packages/AvalonEditB/badge.svg)](https://www.fuget.org/packages/AvalonEditB)
+<!-- [![fuget](https://www.fuget.org/packages/AvalonEditB/badge.svg)](https://www.fuget.org/packages/AvalonEditB) -->
 ![code size](https://img.shields.io/github/languages/code-size/goswinr/AvalonEditB.svg)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 <!-- [![license](https://img.shields.io/github/license/goswinr/AvalonEditB.svg)](https://github.com/goswinr/AvalonEditB/blob/main/LICENSE.txt) doesnt work -->
