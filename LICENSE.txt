@@ -1,6 +1,6 @@
 MIT License
 
-AvalonEditB Copyright (c) 2021 Goswin Rothenthal 
+AvalonEditB Copyright (c) 2019-2026 Goswin Rothenthal
 
 AvalonEdit Copyright (c) AvalonEdit Contributors
 
