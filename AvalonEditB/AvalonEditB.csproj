@@ -18,11 +18,12 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId>
 
-    <Version>2.4.0</Version>
-    <AssemblyVersion>2.4.0</AssemblyVersion>
-    <FileVersion>2.4.0</FileVersion>
+    <Version>2.5.0</Version>
+    <AssemblyVersion>2.5.0</AssemblyVersion>
+    <FileVersion>2.5.0</FileVersion>
     <PackageReleaseNotes>
-      - CollapsedLinesAreInconsitent
+      - add CompletionWindow.DescriptionToolTip to style the ToolTip of the completion window, e.g. for a dark theme
+      - merge changes from AvalonEdit 6.3.1
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>

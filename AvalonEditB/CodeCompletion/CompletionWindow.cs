@@ -44,6 +44,16 @@ namespace AvalonEditB.CodeCompletion
 			set { toolTip.Content = value; }
 		}
 
+		/// <summary>
+		/// Gets the ToolTip that shows the description of the selected item.
+		/// It is opened from code and has no parent, so it does not inherit resources or styles from this window or the TextArea.
+		/// Use it to set its Style or Resources, e.g. for a dark theme.
+		/// Returns null after this window was closed.
+		/// </summary>
+		public ToolTip DescriptionToolTip { // Added by Goswin
+			get { return toolTip; }
+		}
+
 
 		/// <summary>
 		/// Gets the completion list used in this completion window.

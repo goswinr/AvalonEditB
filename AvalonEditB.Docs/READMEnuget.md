@@ -20,6 +20,10 @@ AvalonEditB is also distributed under the  [MIT License](https://github.com/gosw
 
 ### Changelog
 
+`2.5.0`
+- add CompletionWindow.DescriptionToolTip to style the ToolTip of the completion window, e.g. for a dark theme
+- merge changes from AvalonEdit 6.3.1: fix rectangular selection ignoring the horizontal scroll offset
+
 `2.4.0`
 - add CollapsedLinesAreInconsitent to TextView to check Folding bugs
 
