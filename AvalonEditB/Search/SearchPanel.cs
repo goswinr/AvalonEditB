@@ -217,6 +217,70 @@ namespace AvalonEditB.Search
 			get { return (Localization)GetValue(LocalizationProperty); }
 			set { SetValue(LocalizationProperty, value); }
 		}
+
+		/// <summary>
+		/// Dependency property for <see cref="FindNextIcon"/>.
+		/// </summary>
+		public static readonly DependencyProperty FindNextIconProperty =
+			DependencyProperty.Register("FindNextIcon", typeof(ImageSource), typeof(SearchPanel),
+										new FrameworkPropertyMetadata(null));
+
+		/// <summary>
+		/// Gets/sets the icon of the button to find the next match, shown at 16 x 16.
+		/// The default is set in the style of the SearchPanel, an arrow to the right.
+		/// </summary>
+		public ImageSource FindNextIcon {
+			get { return (ImageSource)GetValue(FindNextIconProperty); }
+			set { SetValue(FindNextIconProperty, value); }
+		}
+
+		/// <summary>
+		/// Dependency property for <see cref="FindPreviousIcon"/>.
+		/// </summary>
+		public static readonly DependencyProperty FindPreviousIconProperty =
+			DependencyProperty.Register("FindPreviousIcon", typeof(ImageSource), typeof(SearchPanel),
+										new FrameworkPropertyMetadata(null));
+
+		/// <summary>
+		/// Gets/sets the icon of the button to find the previous match, shown at 16 x 16.
+		/// The default is set in the style of the SearchPanel, an arrow to the left.
+		/// </summary>
+		public ImageSource FindPreviousIcon {
+			get { return (ImageSource)GetValue(FindPreviousIconProperty); }
+			set { SetValue(FindPreviousIconProperty, value); }
+		}
+
+		/// <summary>
+		/// Dependency property for <see cref="ReplaceNextIcon"/>.
+		/// </summary>
+		public static readonly DependencyProperty ReplaceNextIconProperty =
+			DependencyProperty.Register("ReplaceNextIcon", typeof(ImageSource), typeof(SearchPanel),
+										new FrameworkPropertyMetadata(null));
+
+		/// <summary>
+		/// Gets/sets the icon of the button to replace the current match and go to the next one, shown at 16 x 16.
+		/// The default is set in the style of the SearchPanel.
+		/// </summary>
+		public ImageSource ReplaceNextIcon {
+			get { return (ImageSource)GetValue(ReplaceNextIconProperty); }
+			set { SetValue(ReplaceNextIconProperty, value); }
+		}
+
+		/// <summary>
+		/// Dependency property for <see cref="ReplaceAllIcon"/>.
+		/// </summary>
+		public static readonly DependencyProperty ReplaceAllIconProperty =
+			DependencyProperty.Register("ReplaceAllIcon", typeof(ImageSource), typeof(SearchPanel),
+										new FrameworkPropertyMetadata(null));
+
+		/// <summary>
+		/// Gets/sets the icon of the button to replace all matches, shown at 16 x 16.
+		/// The default is set in the style of the SearchPanel.
+		/// </summary>
+		public ImageSource ReplaceAllIcon {
+			get { return (ImageSource)GetValue(ReplaceAllIconProperty); }
+			set { SetValue(ReplaceAllIconProperty, value); }
+		}
 		#endregion
 
 		static SearchPanel()

@@ -2,6 +2,11 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:search="clr-namespace:AvalonEditB.Search">
 	<Style TargetType="search:SearchPanel">
+		<!-- the default icons of the buttons, a local value of these properties replaces them -->
+		<Setter Property="FindNextIcon" Value="/AvalonEditB;component/Search/next.png"/>
+		<Setter Property="FindPreviousIcon" Value="/AvalonEditB;component/Search/prev.png"/>
+		<Setter Property="ReplaceNextIcon" Value="/AvalonEditB;component/Search/replacenext.png"/>
+		<Setter Property="ReplaceAllIcon" Value="/AvalonEditB;component/Search/replaceall.png"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type search:SearchPanel}">
@@ -26,10 +31,10 @@
 									<Path Data="M 0,0 L 8,8 M 8,0 L 0,8" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1.2" />
 								</Button>
 								<Button  DockPanel.Dock="Right" Margin="3,3,13,3" Height="24" Width="24" Command="search:SearchCommands.FindNext" ToolTip="{Binding Localization.FindNextText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="4">
-									<Image Width="16" Height="16" Stretch="Fill" Source="next.png" />
+									<Image Width="16" Height="16" Stretch="Fill" Source="{TemplateBinding FindNextIcon}" />
 								</Button>
 								<Button DockPanel.Dock="Right" Margin="3" Height="24" Width="24" Command="search:SearchCommands.FindPrevious" ToolTip="{Binding Localization.FindPreviousText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="3">
-									<Image Width="16" Height="16" Stretch="Fill" Source="prev.png" />
+									<Image Width="16" Height="16" Stretch="Fill" Source="{TemplateBinding FindPreviousIcon}" />
 								</Button>
 								
 								
@@ -46,10 +51,10 @@
 								</TextBox>
 
 								<Button DockPanel.Dock="Right" Margin="3,3,33,3" Height="24" Width="24" Command="search:SearchCommands.ReplaceAll" ToolTip="{Binding Localization.ReplaceAllText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="6"> <!-- margin = left, top, right= 13 as above plus 20 from closing button, bottom-->
-									<Image Width="16" Height="16" Stretch="Fill" Source="replaceall.png" />
+									<Image Width="16" Height="16" Stretch="Fill" Source="{TemplateBinding ReplaceAllIcon}" />
 								</Button>
 								<Button DockPanel.Dock="Right" Margin="3" Height="24" Width="24" Command="search:SearchCommands.ReplaceNext" ToolTip="{Binding Localization.ReplaceNextText, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="5">
-									<Image Width="16" Height="16" Stretch="Fill" Source="replacenext.png" />
+									<Image Width="16" Height="16" Stretch="Fill" Source="{TemplateBinding ReplaceNextIcon}" />
 								</Button>								
 							</DockPanel>
 

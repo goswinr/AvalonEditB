@@ -18,16 +18,15 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId>
 
-    <Version>2.5.0</Version>
-    <AssemblyVersion>2.5.0</AssemblyVersion>
-    <FileVersion>2.5.0</FileVersion>
+    <Version>2.6.0</Version>
+    <AssemblyVersion>2.6.0</AssemblyVersion>
+    <FileVersion>2.6.0</FileVersion>
     <PackageReleaseNotes>
-      - add CompletionWindow.DescriptionToolTip to style the ToolTip of the completion window, e.g. for a dark theme
-      - merge changes from AvalonEdit 6.3.1
+      - add FindNextIcon, FindPreviousIcon, ReplaceNextIcon and ReplaceAllIcon to SearchPanel to replace the icons of its buttons
     </PackageReleaseNotes>
 
     <Authors>GoswinR</Authors>
-    <Copyright>Goswin Rothenthal 2021</Copyright>
+    <Copyright>Goswin Rothenthal 2020-2026</Copyright>
     <Description>A fork of the TextEditor AvalonEdit with small changes.</Description>
     <PackageDescription>A fork of the AvalonEdit TextEditor with small changes.</PackageDescription> <!--this desc is used by Nuget -->
     <ApplicationIcon>../AvalonEditB.Docs/logo.ico</ApplicationIcon>

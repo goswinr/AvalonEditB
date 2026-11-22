@@ -42,6 +42,9 @@ Logo by [Lovepik](https://lovepik.com/image-401307902/crystal-clownfish-side-car
 
 ### Changelog
 
+`2.6.0`
+- add FindNextIcon, FindPreviousIcon, ReplaceNextIcon and ReplaceAllIcon to SearchPanel to replace the icons of its buttons
+
 `2.5.0`
 - add CompletionWindow.DescriptionToolTip to style the ToolTip of the completion window, e.g. for a dark theme
 - merge changes from AvalonEdit 6.3.1: fix rectangular selection ignoring the horizontal scroll offset
