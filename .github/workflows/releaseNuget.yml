@@ -1,0 +1,50 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    # id-token: write lets NuGet/login exchange a GitHub OIDC token for a temporary NuGet API key (trusted publishing)
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7.0.1
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v6.1.0
+      with:
+        dotnet-version: '11.x'
+
+    - name: Check version consistency of git tag and <Version> in AvalonEditB.csproj
+      # this repo has no Ionide.KeepAChangelog.Tasks, the version is set manually in the csproj
+      shell: bash
+      run: |
+        CSPROJ_VERSION=$(dotnet msbuild ./AvalonEditB/AvalonEditB.csproj -getProperty:Version | tr -d '[:space:]')
+        echo "CSPROJ_VERSION=$CSPROJ_VERSION"
+        echo "github.ref_name=${{ github.ref_name }}"
+        if [ "${{ github.ref_name }}" != "$CSPROJ_VERSION" ]; then
+          echo "Version mismatch: git tag (${{ github.ref_name }}) and <Version> in AvalonEditB.csproj ($CSPROJ_VERSION) are not the same."
+          exit 1
+        fi
+
+    - name: Build
+      # build only the csproj, the repo root has two .sln files
+      run: dotnet build ./AvalonEditB/AvalonEditB.csproj --configuration Release
+
+    - name: NuGet login (trusted publishing, OIDC)
+      # exchanges the GitHub OIDC token for a short-lived API key, see https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing
+      # needs a trusted publishing policy on nuget.org for this repo and workflow file (releaseNuget.yml)
+      uses: NuGet/login@v1.2.0
+      id: nuget-login
+      with:
+        user: goswinr # nuget.org profile name (not email) of the policy owner
+
+    - name: Publish NuGet package
+      run: dotnet nuget push ./AvalonEditB/bin/Release/AvalonEditB.${{ github.ref_name }}.symbols.nupkg --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <DefineConstants>TRACE</DefineConstants>
@@ -18,9 +18,9 @@
     <Product>AvalonEditB</Product>
     <PackageId>AvalonEditB</PackageId>
 
-    <Version>2.6.0</Version>
-    <AssemblyVersion>2.6.0</AssemblyVersion>
-    <FileVersion>2.6.0</FileVersion>
+    <Version>2.6.1</Version>
+    <AssemblyVersion>2.6.1</AssemblyVersion>
+    <FileVersion>2.6.1</FileVersion>
     <PackageReleaseNotes>
       - add FindNextIcon, FindPreviousIcon, ReplaceNextIcon and ReplaceAllIcon to SearchPanel to replace the icons of its buttons
     </PackageReleaseNotes>
